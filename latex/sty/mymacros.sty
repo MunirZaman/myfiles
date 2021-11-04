@@ -1,0 +1,41 @@
+% tcolorbox code blocks
+\usepackage{minted}
+\newminted{pycon}{bgcolor=bg, linenos=true, tabsize =4}
+\setminted[pycon]{autogobble}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted}
+
+\newtcblisting{tcbcode}[2][]{%
+  colback=Black!5,
+  listing only,
+  minted options={
+    mathescape
+  },  
+  minted language=#2,
+  #1
+}
+
+% mdcode blocks
+\newenvironment{mdcode}%
+{\begin{mdframed}[linecolor=Gray,innerrightmargin=30pt,innerleftmargin=30pt,leftmargin=-30pt,rightmargin=-30pt,backgroundcolor=Black!5,skipabove=10pt,skipbelow=10pt,roundcorner=2pt,splitbottomskip=6pt,splittopskip=12pt]}%
+{\end{mdframed}}
+
+%commands
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\dang}{\measuredangle} %% Directed angle
+\newcommand{\ray}[1]{\overrightarrow{#1}}
+\newcommand{\seg}[1]{\overline{#1}}
+\newcommand{\arc}[1]{\wideparen{#1}}
+
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\lcm}{lcm}
+
+\renewcommand{\deg}{^\circ}
+\newcommand{\ii}{\item}
+
+\renewcommand{\mod}[1]{\ (\mathrm{mod} \ #1)}
+
