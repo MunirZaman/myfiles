@@ -12,6 +12,9 @@
 *.cb2
 .*.lb
 
+## vim swp files
+*.swp
+
 ## Intermediate documents:
 *.dvi
 *.xdv
@@ -189,6 +192,9 @@ _minted*
 *.sout
 *.sympy
 sympy-plots-for-*.tex/
+
+#minted
+_minted-*/
 
 # pdfcomment
 *.upa
