@@ -1,0 +1,145 @@
+syntax enable 
+
+" completor "
+filetype plugin on
+filetype indent on
+set omnifunc=syntaxcomplete#Complete
+
+set encoding=utf-8
+set splitbelow
+set number
+set spl=en spell
+set ruler
+set smartindent
+set cursorline
+set cursorcolumn
+
+set t_Co=256
+
+set splitright
+set termwinsize=5x0
+
+inoremap <C-Space> <C-x><C-k>
+
+" increase term window size
+nnoremap <k8> :set termwinsize=10x0<Enter>
+inoremap <k8> <Esc>:set termwinsize=10x0<Enter>
+
+" decrease term window size 
+nnoremap <k7> :set termwinsize=5x0<Enter>
+inoremap <k7> <Esc>:set termwinsize=5x0<Enter>
+
+set guifont=Fira\ Code:h12
+set encoding=utf-8
+set renderoptions=type:directx
+
+set bs=2
+
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+set guioptions-=T
+set guioptions-=m
+
+
+call plug#begin("~/vimfiles/plugged")
+
+Plug 'lervag/vimtex'
+
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+
+Plug 'sirver/ultisnips'
+
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+
+Plug 'maralla/completor.vim'
+
+let g:completor_python_binary = 'C:/Users/Munir/AppData/Local/Programs/Python/Python39'
+
+Plug 'preservim/nerdtree'
+
+Plug '907th/vim-auto-save'
+
+let g:auto_save=1
+let g:auto_save_silent=1
+let g:auto_save_events = ["InsertLeave"]
+
+Plug 'itchyny/lightline.vim'
+set laststatus=2
+
+Plug 'morhetz/gruvbox'
+
+let g:gruvbox_transparent_bg=1
+
+Plug 'davidhalter/jedi-vim'
+
+Plug 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+
+Plug 'joshdick/onedark.vim'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'sickill/vim-monokai'
+
+call plug#end() 
+
+colorscheme ron
+"colorscheme monokai
+" colorscheme onedark
+" colorscheme gruvbox
+" set back-ground color"
+highlight Normal guibg=#062439
+
+
+setlocal spell
+set spelllang=en
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+noremap <C-s> :w<Enter>
+noremap <C-b> :wq!<Enter>
+"noremap <C-v> "+gP
+noremap <C-z> u
+
+inoremap <C-s> <Esc>:w<Enter>:w<Enter>li
+inoremap <C-b> <Esc>:wq!<Enter>li
+inoremap <C-v> <Esc>"+gP<Esc>li
+inoremap <C-z> <Esc>ui
+
+inoremap <k2>  <Esc>:tabn<Enter>
+inoremap <k1>  <Esc>:tabp<Enter>
+inoremap <k0>  <Esc>:q!<Enter>
+
+noremap <k2>  :tabn<Enter>
+noremap <k1>  :tabp<Enter>
+noremap <k0>  :q!<Enter>
+
+nnoremap <C-n> :NERDTreeToggle<CR>
+inoremap <C-n> <Esc>:NERDTreeToggle<CR>
+
+inoremap <C-c> <Esc>"+y<Esc>li
+inoremap <C-w> <Esc>:set wrap!<Enter>li
+inoremap <k3> <Esc>:below term<Enter>
+
+noremap <C-c> "+y
+noremap <C-w> :set wrap!<Enter>
+noremap <k3> :below term<Enter>
+
+nnoremap <k5> :below term<Enter>ipython<Enter>
+inoremap <k5> <Esc>:below term<Enter>ipython<Enter>
+"Opens ipython"
+
+vmap <Tab> >
+vmap <S-Tab> <
+" visual tabbing/indenting
+let NERDTreeWinPos='right'
+
+nmap ;lc :!del *.aux *.log *.gz<Enter>
+nmap ;lb :!pdflatex -interaction=batchmode -shell-escape %<Enter>
+nmap ;ll :!pdflatex -shell-escape %<Enter> 
+
