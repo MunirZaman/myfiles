@@ -87,9 +87,14 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'sickill/vim-monokai'
 
+Plug 'pixelneo/vim-python-docstring'
+
 call plug#end() 
 
-colorscheme ron
+let g:python_indent = '    '
+let g:python_style = 'numpy'
+
+colorscheme gruvbox
 "colorscheme monokai
 " colorscheme onedark
 " colorscheme gruvbox
