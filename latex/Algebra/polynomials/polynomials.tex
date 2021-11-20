@@ -1,11 +1,3 @@
-\documentclass[11pt,numbers=noenddot,svgnames]{scrbook}
-\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
-\usepackage{evanbook}
-\usepackage{pgfplots}
-\usepackage{float}
-\DeclareMathOperator{\Deg}{deg}
-\begin{document}
-
 \chapter{Polynomials}
 
 \begin{definition}
@@ -16,19 +8,88 @@
     where $a_{0},a_{1}, \cdots, a_{n}$ are constants and $n \in \mathbb{N}$. The constants $a_{i}$ are called the 
     \textit{coefficients} of the polynomial. We will denote $A[x]$ as the set of all polynomials with $a_{i} \in A$. If 
     $n\neq 0$ then $n$ is called the \textit{degree} of the polynomial $P(x)$ and write $\Deg P(x)=n$. 
-    If $a_{n} = 1$ then we say that the polynomial is \textit{moinc}. \\
+    If $a_{n} = 1$ then we say that the polynomial is \textit{monic}. \\
     $r$ is called a \textit{root} of the polynomial $P(x)$ if and only if $P(r)=0$.
 \end{definition}
 
 \section{Division Algorithm}
 
-\begin{theorem}[The Division Algorithm]\label{thm:div-algo}
+\begin{theorem}[The Division Algorithm]\label{thm:division-algorithm}
     Given two polynomial $A(x)$ and $B(x)$ there exists unique polynomials $Q(x)$ and $R(x)$ with $\Deg R(x) < \Deg B(x)$ 
     such that,
     \[
         A(x) = Q(x)B(x) + R(x)
     \]
+    The polynomials $Q(x)$ and $R(x)$ are known as the \textit{quotient} and the \textit{remainder}, respectively. If the 
+    remainder $R(x)=0$ then we say that $B(x)$ divides $A(x)$ and write $B(x) \mid A(x)$.
 \end{theorem}
+
+For example, if $B(x)= x^{2}-x+1$ and $A(x)=x^{5}+x^{3}+2x$ then,
+\[
+    x^{5}+x^{3}+2x = \left(x^{3}+x^{2}+x\right) \left(x^{2}-x+1\right) +x
+\]
+In this example, the remainder $R(x)=x$ and the quotient $Q(x)=x^{3}+x^{2}+x$. \\
+Suppose $B(x)$ is a polynomial of degree $n\geq 1$ and let $A(x)=x-z$ be linear polynomial. Now from 
+\hyperref[thm:division-algorithm]{Theorem \ref{thm:division-algorithm}} we know that there exists polynomials 
+$Q(x)$ and $R(x)$ with $\Deg R(x) < 1$ such that,
+\[
+    B(x) = A(x)Q(x) + R(x)
+\]
+Since $0 \leq \Deg R(x) < 1$, $R(x)$ must be a constant polynomial, we can assume $R(x)=r$ where $r \in \mathbb{R}$. 
+Therefore,
+\begin{align*}
+    B(x) &= A(x)Q(x) + R(x) \\
+         &= (x - z)Q(x) + r
+\end{align*}
+Now if $r=0$ then,
+\[
+    B(x) = (x-z)Q(x) \implies B\left(z\right) = 0
+\]
+Now if $B\left(z\right)=0$ that is if $z$ is a root of the polynomial $B(x)$ then,
+\[
+    B\left(z\right) = \left(z - z\right)Q(x) + r \implies B\left(z\right)=r \implies 
+    r=0
+\]
+Therefore we have proved the following theorem.
+\begin{theorem}[Factor Theorem]\label{thm:factor-theorem}
+    The real number $z$ will be a root of the polynomial $P(x)$ if and only if $P(x)$ is divisible by $x-z$.
+\end{theorem}
+\begin{corollary}
+    The number $-\frac{b}{a}$ where $a, b\in \mathbb{R}$ will be a root of the polynomial $P(x)$ if and only if the 
+    polynomial $P(x)$ is divisible by $ax+b$.
+\end{corollary}
+If $P(x)$ has the root $z$ then the \hyperref[thm:factor-theorem]{Factor Theorem} guarantees that there exists a polynomial 
+$Q_{0}(x)$ such that,
+\[
+    P(x) = \left(x - z\right)Q_{0}(x)
+\]
+Now if,
+\[
+    P(x) = \left(x-z\right)^{m}Q(x)
+\]
+then we say that $z$ is root of $P(x)$ of \textit{multiplicity} $m$.
+
+\section{The Fundamental Theorem of Algebra}
+
+\begin{theorem}[The Fundamental Theorem of Algebra]\label{thm:fta}
+    The Fundamental Theorem of Algebra states that, every polynomial $P(x)$ in $\mathbb{C}[x]$ has at least 
+    one root in $\mathbb{C}$
+\end{theorem}
+\begin{corollary}
+    If $P(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x + a_{0}$ is a polynomial of degree $n$ then,
+    \[
+        P(x) = k(x - z_{1})(x - z_{2})\cdots (x - z_{n})
+    \]
+    where, $k = a_{n}$ and $z_{i} \in \mathbb{C}$. The numbers $z_{1},z_{2}\cdots z_{n}$ are not necessarily 
+    distinct.
+\end{corollary}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1]{polynomials/figures/cplane_roots.pdf}
+\caption{The 4 complex roots of the polynomial $x^{4} - 2 x^{3} + 2 x^{2} + 8 x + 16$ }
+\label{fig:cplane_roots}
+\end{figure}
 
 \section{Roots of Cubic Polynomials}
 
@@ -175,7 +236,7 @@ of $g(x)$. The 3 numbers we will get by adding $\frac{1}{3}$ are the 3 roots of 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.75]{figures/lagrange_poly_plot1.pdf}
+\includegraphics[scale=0.75]{polynomials/figures/lagrange_poly_plot1.pdf}
 \caption{Plot of a Lagrange Polynomial}
 \label{fig:lagrange_poly_plot1}
 \end{figure}
@@ -190,7 +251,6 @@ We can easily compute Lagrange polynomials in python using \texttt{sympy}.
 >>> import sympy
 >>> x = sympy.symbols('x')
 >>> points = [(1,1), (2,3), (0, -1), (5, 4), (-5, -3), (4, 4.5)]
->>> expr = sympy.inter
 >>> expr = sympy.interpolate(points, x)
 >>> print(expr)
 0.00281746031746032*x**5 - 0.0129761904761905*x**4 - 0.111944444444445*x**3 + 0.384404761904762*x**2 + 1.73769841269841*x - 1
@@ -221,12 +281,3 @@ We can easily compute Lagrange polynomials in python using \texttt{sympy}.
     \end{align*}    
 \end{sol}
 
-\section{Computing Roots of Polynomials}
-
-Given a quadratic polynomial $P(x) = ax^{2} + bx + c$ we can easily find the roots of the polynomial $P(x)$ using 
-the quadratic formula,
-\[
-    x = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a}
-\]
-
-\end{document}
