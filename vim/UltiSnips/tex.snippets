@@ -2,38 +2,85 @@ global !p
 def math():
     return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 
-def nomath(): 
-    return vim.eval('vimtex#syntax#in_mathzone()') != '1' 
+def nomath():
+    return vim.eval('vimtex#syntax#in_mathzone()') != '1'
 
-def comment(): 
+def comment():
     return vim.eval('vimtex#syntax#in_comment()') == '1'
 
 def env(name):
-    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
     return x != '0' and x != '0'
+
+def Int(val):
+	try:
+		x = int(val)
+	except:
+		x = 0
+	return x
 
 endglobal
 
 
-snippet \art "article preamble" b
+snippet #art "article preamble" b
 \documentclass[11pt,numbers=noenddot,svgnames]{scrartcl}
 \usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
 \usepackage{evanart}
+
+% figure paths
+%\graphicspath{
+%	{Pics/PDFs/}
+%	{Pics/JPGs/}
+%	{Pics/PNGs/}
+%}
+
 \begin{document}
 $1
 \end{document}
 endsnippet
 
-snippet \book "article preamble" b
+snippet #book "article preamble" b
 \documentclass[11pt,numbers=noenddot,svgnames]{scrbook}
 \usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
 \usepackage{evanbook}
+
+% figure paths
+%\graphicspath{
+%	{Pics/PDFs/}
+%	{Pics/JPGs/}
+%	{Pics/PNGs/}
+%}
+
 \begin{document}
 $1
 \end{document}
 endsnippet
 
-snippet \usep "use package" iA
+snippet #tikz "tikz standalone" b
+\documentclass[tikz, border=5, svgnames]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+\begin{tikzpicture}
+
+$1
+
+\end{tikzpicture}
+\end{document}
+endsnippet
+
+snippet #title "title page" b
+\title{\bfseries\textsf{\textcolor{purple}{$1}}}
+\author{\textsf{Munir Uz Zaman}}
+\date{\textsf{Date: \today}}
+endsnippet
+
+snippet \usepack "use package" iA
 \usepackage{$1}
 endsnippet
 
@@ -116,7 +163,7 @@ snippet ^ "power" iA
 endsnippet
 
 context "math()"
-snippet == "equiv" iA
+snippet === "equiv" iA
 \equiv $1
 endsnippet
 
@@ -185,6 +232,24 @@ snippet @@lem "lemma" bA
 \end{lemma}
 endsnippet
 
+snippet @@fig "figure" bA
+\begin{figure}[H]
+$1
+\end{figure}
+endsnippet
+
+snippet @@sfig "subfigures" bA
+\begin{subfigure}[t]{$1\textwidth}
+\centering
+$2
+\caption{$3}
+\end{subfigure}
+endsnippet
+
+snippet @@inpic "inlcude graphics" bA
+\includegraphics[scale=$2]{$1}
+endsnippet
+
 snippet @@pycon "python console" bA
 \begin{mdcode}
 \begin{minted}[mathescape, breaklines, ]{pycon}
@@ -203,5 +268,24 @@ endsnippet
 
 snippet @@pyin "input python code" bA
 \inputminted[mathescape, breaklines, linenos]{python}{$1}
+endsnippet
+
+# tikz snippets
+context "env('tikzpicture')"
+snippet @@plane "coordinate plane" bA
+\foreach \i in {`!p snip.rv=str(Int(t[1]) + 1)`,...,`!p snip.rv=str(Int(t[2]) - 1)`}
+	\draw[line cap = round, Cyan!75!Black] (\i, $1) -- (\i, $2) %
+	($1, \i) -- ($2, \i);
+
+\draw[{Stealth[round]}-{Stealth[round]}] ($1,0) -- ($2,0);
+\draw[{Stealth[round]}-{Stealth[round]}] (0, $1) -- (0, $2);
+
+\node at ($2, 0) [anchor=north east] {$3};
+\node at (0, $2) [anchor=north east] {$4};
+endsnippet
+
+context "env('tikzpicture')"
+snippet @@point "point in tikz" bA
+\draw[thick, fill=purple] ($1, $2) circle (2pt);
 endsnippet
 
