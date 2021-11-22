@@ -91,6 +91,95 @@ then we say that $z$ is root of $P(x)$ of \textit{multiplicity} $m$.
 \label{fig:cplane_roots}
 \end{figure}
 
+\begin{theorem}[Complex Conjugate Root Theorem]
+    If $P(x) \in \mathbb{R}[x]$ and $z=a+bi$ where $a,b \in \mathbb{R}$ and $b\neq 0$ is a complex root of the polynomial 
+    $P(x)$ then $\overline{z}=a-bi$ is also a root of the polynomial $P(x)$.
+\end{theorem}
+\begin{proof}[1]
+    We have to show that, $P(z)=0 \implies P(\overline{z})=0$. Let $\mathbb{C}'=\left\{ki:k\in\mathbb{R}\right\}$ and let 
+    $\mathbb{R}$ be the set of real numbers. Now,
+    \begin{align*}
+        z^{k} + \overline{z}^{k} &= (a+bi)^{k} + (a-bi)^{k} \\
+                                 &= a^{k}\left[\left(\frac{b}{a}i + 1\right)^{k} + \left(-\frac{b}{a}i + 1\right)^{k} \right] \\
+                                 &= a^{k}
+                                 \left[ \left( \sum_{j=0}^{k} {k \choose j} \left(\frac{b}{a}\right)^{j}i^{j}\right) +
+                                 \left( \sum_{j=0}^{k} {k \choose j} \left(\frac{b}{a}\right)^{j}(-1)^{j}i^{j} \right)\right] \\
+                                 &= a^{k}
+                                 \left[\sum_{j=0}^{k} {k \choose j}\left(\frac{b}{a}\right)^{j} \left\{i^{j} + (-i)^{j} 
+                                 \right\} \right]
+    \end{align*}
+    Notice, $i^{j} + (-i)^{j}$ will be zero if $j$ is odd. If $j$ is even then $i^{j} + (-i)^{j} = 2i^{j} = 2(-1)^{\frac{j}{2}}$. 
+    Therefore,
+    \begin{align*}
+        z^{k} + \overline{z}^{k} &= a^{k}
+                                 \left[\sum_{j=0}^{k} {k \choose j}\left(\frac{b}{a}\right)^{j} \left\{i^{j} + (-i)^{j} 
+                                 \right\} \right] \\
+                                 &= a^{k} \left[\sum_{l=0}^{\floor{\frac{k}{2}}} {k \choose 2l}\left(\frac{b}{a}\right)^{2l}
+                                 \left\{2(-1)^{l}\right\}\right] \\
+                                 &= \sum_{l=0}^{\floor{\frac{k}{2}}} {k \choose 2l}\left(\frac{b}{a}\right)^{2l} 2a^{k}(-1)^{l}
+    \end{align*}
+    \begin{remark}
+        The set, $\left\{ 2l : 0 \leq l \leq \floor{\frac{k}{2}}\right\}$, contains all even integers (including zero) less than 
+        or equal to $k$.
+    \end{remark}
+    Therefore, $z^{k} + \overline{z}^{k} \in \mathbb{R}$ for all $0\leq k\in \mathbb{Z}$. This implies that,
+    \begin{equation*}
+        P(z) + P(\overline{z}) = \sum_{i=0}^{n} a_{i} \left( z^{i} + \overline{z}^{i} \right) \in \mathbb{R} 
+    \end{equation*}
+    But since $P(z)=0$, $P(z) + P(\overline{z}) \in \mathbb{R}$ implies $P(\overline{z})\in \mathbb{R}$. Now,
+    \begin{align*}
+        z^{k} - \overline{z}^{k} &= (a+bi)^{k} - (a-bi)^{k} \\
+                                 &= a^{k}\left[\left(\frac{b}{a}i + 1\right)^{k} - \left(-\frac{b}{a}i + 1\right)^{k} \right] \\
+                                 &= a^{k}
+                                 \left[ \left( \sum_{j=0}^{k} {k \choose j} \left(\frac{b}{a}\right)^{j}i^{j}\right) -
+                                 \left( \sum_{j=0}^{k} {k \choose j} \left(\frac{b}{a}\right)^{j}(-1)^{j}i^{j} \right)\right] \\
+                                 &= a^{k}
+                                 \left[\sum_{j=0}^{k} {k \choose j}\left(\frac{b}{a}\right)^{j} \left\{i^{j} - (-i)^{j} 
+                                 \right\} \right]
+    \end{align*}
+    If $j$ is even then $i^{j} - (-i)^{j}$ will be equal to zero. If $j$ is odd that is $j=2l-1$ for some $l\in \mathbb{N}$ then 
+    $i^{j} - (-i)^{j} = i^{2l-1} \left( 1 - (-1)^{2l-1} \right)=2i^{2l-1} = 2(-1)^{l}i^{-1} = 2(-1)^{l}i^{3} = 2(-1)^{l+1}i$. \\
+    Therefore,
+    \begin{align*}
+        z^{k} - \overline{z}^{k} &= a^{k} \left[\sum_{j=0}^{k} {k \choose j}\left(\frac{b}{a}\right)^{j} \left\{i^{j} - (-i)^{j} 
+                                           \right\} \right] \\
+                                           &= a^{k} \left[ \sum_{l=1}^{\floor{\frac{k+1}{2}}} 
+                                           {k \choose 2l-1}\left(\frac{b}{a}\right)^{2l-1} 2(-1)^{l+1}i\right] \\
+                                           &= \left[ \sum_{l=1}^{\floor{\frac{k+1}{2}}} {k \choose 2l-1}
+                                           \left(\frac{b}{a}\right)^{2l-1}2a^{k}(-1)^{l+1} \right]i
+    \end{align*}
+    \begin{remark}
+        The set $\left\{2l-1: 1\leq l \leq \floor{\frac{k+1}{2}}\right\}$ contains all odd positive integers less than or equal 
+        to $k$.
+    \end{remark}
+    Thus, $z^{k} - \overline{z}^{k}\in \mathbb{C}'$ for all $k\in \mathbb{N}$. Now,
+    \begin{align*}
+        P(z) - P(\overline{z}) &= \sum_{i=0}^{n} a_{i} \left( z^{i} - \overline{z}^{i} \right)\\
+        \implies P(z) - P(\overline{z}) &= \sum_{i=1}^{n} a_{i} \left( z^{i} - \overline{z}^{i} \right) 
+                               + a_{0}\left( z^{0} - \overline{z}^{0} \right) \\
+        \implies P(z) - P(\overline{z}) &= \sum_{i=1}^{n} a_{i} \left( z^{i} - \overline{z}^{i} \right) \in \mathbb{C}'
+    \end{align*}
+    But since $P(z)=0$, $P(z) - P(\overline{z}) \in \mathbb{C}'$ implies $P(\overline{z}) \in \mathbb{C}'$. And so, 
+    $P(\overline{z})\in \mathbb{R} \cup \mathbb{C}' \implies P(\overline{z}) \in \{0\} \implies P(\overline{z}) = 0$. 
+    \textsf{QED}
+\end{proof}
+\begin{proof}[2(wiki)]
+    Since $P(z)=0$,
+    \begin{equation*}
+        P(z) = \sum_{k=0}^{n} a_{k} z^{k} = 0
+    \end{equation*}
+    Now using the properties of complex conjugates,
+    \begin{align*}
+        P(\overline{z}) = \sum_{k=0}^{n} a_{k} \overline{z}^{k} 
+                        = \sum_{k=0}^{n} a_{k} \overline{z^{k}} 
+                        = \sum_{k=0}^{n} \overline{a_{k} z^{k}} 
+                        = \overline{\sum_{k=0}^{n} a_{k} z^{k}} 
+                        = \overline{P(z)} 
+                        = \overline{0} 
+                        = 0
+    \end{align*}
+    Therefore, $P(\overline{z})=0$.
+\end{proof}
 \section{Roots of Cubic Polynomials}
 
 Finding the roots of a cubic polynomial is quite hard. So, we are going to first try to solve the cubic polynomial,
