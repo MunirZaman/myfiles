@@ -1,0 +1,77 @@
+\chapter{Counting}
+
+\section{Basics}
+
+\begin{theorem}[Addition Principle]
+    If $E_{1}, E_{2},\cdots, E_{k}$ are pairwise disjoint events that can happen in 
+    $n_{1}, n_{2}, \cdots, n_{k}$ different ways respectively then the number of ways 
+    $E_{1}$, $E_{2}$, $\cdots$ or $E_{k}$ can happen is $\sum_{j=1}^{k} n_{j}$. \\
+    More formally stated in terms of set theory, 
+    if $E_{1}, E_{2}, \cdots, E_{k}$ are pairwise disjoint sets, 
+    that is $E_{i} \cap E_{j}=\phi$ for all $1\leq i,j \leq k$ and $i\neq j$, then,
+    \[
+        \abs{\bigcup_{j=1}^{k} E_{j}} = \sum_{j=1}^{k} \abs{E_{j}}
+    \]
+\end{theorem}
+
+For example, suppose there are 3 ways by air, 2 ways by sea and 4 ways by land to get from 
+city $A$ to $B$. Then the number of ways we can go to $B$ from $A$ in total is 
+$3+2+4=9$.
+
+\begin{theorem}[Multiplication Principle]
+    If an event $E$ can be decomposed into $k$ ordered events 
+    $E_{1}, E_{2}, \cdots, E_{k}$ which can occur in $n_{1}, n_{2}, \cdots, n_{k}$ 
+    ways respectively then the total number of ways the event $E$ can happen is 
+    $\prod_{j=1}^{k} n_{j}$. \\
+    More formally stated using set-theoretic terminology, 
+    if $E_{1}, E_{2}, \cdots, E_{k}$ are non-empty sets then,
+    \[
+        \abs{\prod_{j=1}^{k} E_{k}} = \prod_{j=1}^{k} \abs{E_{k}}
+    \]
+\end{theorem}
+
+\begin{problem}
+    Find the number of binary sequences of length $n$.
+\end{problem}
+\begin{sol}
+    The set of all binary sequences of length $n$ is,
+    \[
+        \left\{ (a_{1}, a_{2}, \cdots, a_{n}) \mid a_{i}\in \{0,1\}, 1\leq i\leq n \right\} = 
+        \prod_{i=1}^{n} \{0,1\}
+    \]
+    Therefore, 
+    \begin{align*}
+        \abs{\prod_{i=1}^{n} \{0,1\}} = \prod_{i=1}^{n} \abs{\{0,1\}} 
+                                      = \prod_{i=1}^{n} 2 
+                                      = 2^{n}
+    \end{align*}
+    Thus the number of binary sequences of length $n$ is $2^{n}$.
+\end{sol}
+
+\begin{problem}
+    Let $X = \left\{0, 1, 2, \cdots, 100\right\}$ and let, 
+    $S = \left\{ (a,b,c) \mid a,b,c\in X \text{ and } a<b,c \right\}$. Find $\abs{S}$.
+\end{problem}
+\begin{sol}
+    The problem may be divided into disjoint cases by considering $a=1,2,\cdots,99$. \\
+    For $a=k\in \{1,2,\cdots,99\}$ the number of choices for $b$ and $c$ are $100-k$. 
+    Thus the number of required ordered triples $(k,b,c)$ is $(100-k)^{2}$. Therefore,
+    \[
+        \abs{S} = \sum_{k=1}^{99} (100-k)^{2} = \sum_{j=1}^{99} j^{2}
+    \]
+    Using the formula $\sum_{i=1}^{n} i^{2} = \frac{1}{6}n(n+1)(2n+1)$, we obtain
+    \[
+        \abs{S} = \sum_{j=1}^{99} j^{2} = \frac{99\times 100\times 199}{6} = 328350
+    \]
+\end{sol}
+
+\begin{definition}
+    A sequence of numbers $a_{1}a_{2}\cdots a_{n}$ is called a \textit{$k$-ary sequence}, 
+    where $n,k \in \mathbb{N}$ and $a_{i}\in \left\{0, 1, 2, \cdots, k-1\right\}$ for all 
+    $1\leq i\leq n$. $n$ is said to be the \textit{length} of the sequence. If $k=2$ then 
+    we call it a \textit{binary sequence}.
+\end{definition}
+
+For example the set of all binary sequences of length 3 is 
+$\{000, 001, 011, 111, 101, 110, 010, 100\}$
+

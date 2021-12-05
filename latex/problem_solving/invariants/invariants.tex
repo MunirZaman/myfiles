@@ -1,0 +1,18 @@
+\chapter{Invariants}
+
+\begin{proposition}
+    Let $a_{n}$ be sequence of integers recursively defined as,
+    \[
+        a_{n} = \sum_{j=1}^{k} N_{j} a_{n-j}
+    \]
+    where $N_{j} \in \mathbb{Z}$. If $N$ is an integer such that, 
+    $\sum_{j=1}^{k} N_{j} \equiv 1 \pmod{N}$ then the sequence
+    \[
+        X_{n} = \sum_{i=1}^{m} k_{m} a_{n-m+1}
+    \]
+    where,
+    \[
+        k_{m} = \sum_{r=0}^{m-1} N_{k-r}
+    \]
+    is invariant modulo $N$, that is, $X_{n} \equiv X_{n-1} \pmod{N}$ for all $n$.
+\end{proposition}
