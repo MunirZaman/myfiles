@@ -1,18 +1,120 @@
 \chapter{Invariants}
 
+An \emph{invariant} is a quality or quantity that never changes. 
+For example, the net energy of a closed system is invariant 
+(This is known as \emph{the law of conservation of energy}). 
+A \emph{monovariant} or \emph{semi-invariant} is a quantity 
+that either always increases or always decreases. \\
+Finding an invariant is a common idea in problems asking to prove that 
+something cannot be achieved or some state cannot be reached (by applying some algorithm). 
+Monovariants are also very efficient in showing that the corresponding process must stop after finitely many moves.
+
+\begin{problem}
+    You are given the set of integers $1, 2, \cdots, n$. 
+    In each step you can pick any two numbers $a$ and $b$, 
+    remove those two numbers and add $ab+a+b$ to the set. 
+    Show that after $n-1$ steps the number that will remain will always be $(n+1)! -1$.
+\end{problem}
+\begin{sol}
+    Let $x_{1}, x_{2}, \cdots, x_{k}$ be the numbers currently in the set. 
+    Now let us consider the value, $X = (x_{1}+1)(x_{2}+1)\cdots (x_{k}+1)$. 
+    After removing any two numbers $x_{i}$ and $x_{j}$, and adding 
+    $x_{i}x_{j} + x_{i} + x_{j}$ to the set, the value $X$ will still be the same.
+    \[
+        X = (x_{1} + 1) \cdots (1 + x_{i} + x_{j} + x_{i}x_{j}) \cdots (x_{k} + 1) 
+          = (x_{1} + 1) \cdots (x_{i} + 1) (x_{j} + 1) \cdots (x_{k} + 1)
+    \]
+    Therefore $X$ is an invariant. Initially $X=(n+1)!$. If $A$ is the integer 
+    that will remain after $n-1$ steps then, 
+    \[
+        X = A+1 \implies A = (n+1)! - 1
+    \]
+    We are done!
+\end{sol}
+
+\begin{problem}
+    The integers $x_{1}, x_{2}, \cdots, x_{n}$ are all written around a circle. 
+    You can pick any 4 successive integers $x_{k}, x_{k+1}, x_{k+2}, x_{k+3}$. 
+    If $(x_{k} - x_{k+3})(x_{k+1} - x_{k+2}) < 0$ then 
+    you can replace $x_{k+1}$ with $x_{k+2}$ and $x_{k+2}$ with $x_{k+1}$ (swap $x_{k+1},x_{k+2}$). 
+    Show that you cannot do this indefinitely.
+\end{problem}
+\begin{sol}
+    It makes sense to try to find a monovariant as the problem wants us to 
+    show that a certain process cannot go on indefinitely. Let us consider 
+    the sum, 
+    (assume that if $k > n$ then $x_{k} = x_{r}$ where $r = k - \floor{\frac{k}{n}}n$)
+    \[
+        S = x_{1}x_{2} + x_{2}x_{3} + \cdots + x_{n-1}x_{n} + x_{n}x_{1}
+    \]
+    Now if $(x_{k} - x_{k+3})(x_{k+1} - x_{k+2}) < 0$ then we can replace 
+    $x_{k+1}$ with $x_{k+2}$ and $x_{k+2}$ with $x_{k+1}$. Suppose $S_{1}$ 
+    is the new value of the sum after swapping $x_{k+1}$ and $x_{k+2}$, and $S_{0}$ 
+    is the old value of the sum.
+    \[
+        S_{0} = x_{1}x_{2} + \cdots + x_{k}x_{k+1} + x_{k+1}x_{k+2} + x_{k+2}x_{k+3} + \cdots + x_{n}x_{1}
+    \]
+    \[
+        S_{1} = x_{1}x_{2} + \cdots + x_{k}x_{k+2} + x_{k+2}x_{k+1} + x_{k+1}x_{k+3} + \cdots + x_{n}x_{1}
+    \]
+    The difference between the two values will be 
+    \[
+        S_{1} - S_{0} = x_{k}x_{k+2} - x_{k}x_{k+1} + x_{k+1}x_{k+3} - x_{k+2}x_{k+3} 
+        \implies S_{1} - S_{0} = (x_{k} - x_{k+3})(x_{k+2} - x_{k+1})
+    \]
+    Since $(x_{k} - x_{k+3})(x_{k+1} - x_{k+2}) < 0 \implies (x_{k} - x_{k+3})(x_{k+2} - x_{k+1}) > 0$, 
+    $S_{1} > S_{0}$. Therefore the value of the sum $S$ is strictly increasing in each step. 
+    Now we just need to show that $S$ is bounded above, that is, we need to find an upper bound 
+    for the sum. Let us assume $X = \max(x_{1}, \cdots, x_{n})$. 
+    For any $i$, $x_{i}x_{i+1} \leq X^{2} \implies x_{i}x_{i+1} < X^{2} + 1$. Thus,
+    \[
+        S = x_{1}x_{2} + \cdots + x_{n}x_{1} < n \times (X^{2} + 1)
+    \]
+    And so the value of $S$ cannot increase forever which implies that the process cannot go on indefinitely.
+\end{sol}
+% TODO: add some examples
 \begin{proposition}
-    Let $a_{n}$ be sequence of integers recursively defined as,
+    Let $a_{n}$ be a sequence recursively defined as,
     \[
-        a_{n} = \sum_{j=1}^{k} N_{j} a_{n-j}
+        a_{n} = \sum_{i=1}^{k} n_{i} a_{n-i} = n_{1} a_{n-1} + \cdots + n_{k} a_{n-k}
     \]
-    where $N_{j} \in \mathbb{Z}$. If $N$ is an integer such that, 
-    $\sum_{j=1}^{k} N_{j} \equiv 1 \pmod{N}$ then the sequence
+    If $N$ is an integer such that, $\sum_{i=1}^{k} n_{i} \equiv 1 \pmod{N}$ and 
+    $X_{n}$ is a sequence such that,
     \[
-        X_{n} = \sum_{i=1}^{m} k_{m} a_{n-m+1}
+        X_{n} = \sum_{i=1}^{k} x_{i} a_{n+i-1} = x_{1} a_{n} + \cdots + x_{k} a_{n+k-1}
     \]
-    where,
-    \[
-        k_{m} = \sum_{r=0}^{m-1} N_{k-r}
-    \]
-    is invariant modulo $N$, that is, $X_{n} \equiv X_{n-1} \pmod{N}$ for all $n$.
+    where, $x_{i} \equiv \sum_{j=1}^{i} n_{k-j+1} \pmod{N}$ then the sequence 
+    $X_{n}$ is invariant modulo $N$, that is, $X_{n} \equiv X_{n-1} \pmod{N}$ 
+    for all $n$.
 \end{proposition}
+\begin{proof}
+    We first prove that, $x_{i+1} \equiv x_{i} + n_{k-i} \pmod{N}$. 
+    \begin{align*}
+        x_{i+1} \equiv \sum_{j=1}^{i+1} n_{k-j+1} 
+                \equiv \sum_{j=1}^{i} n_{k-j+1} + n_{k-i} 
+                \equiv x_{i} + n_{k-i} \pmod{N}
+    \end{align*}
+    Since $\sum_{i=1}^{k} n_{i} \equiv 1 \pmod{N} \implies x_{k} \equiv 1 \pmod{N}$,
+    \begin{align*}
+                 X_{n} &\equiv \sum_{i=1}^{k} x_{i} a_{n+i-1} \pmod{N} \\
+        \implies X_{n} &\equiv \sum_{i=1}^{k-1} x_{i} a_{n+i-1} + x_{k} a_{n+k-1} \pmod{N} \\
+        \implies X_{n} &\equiv \sum_{i=1}^{k-1} x_{i} a_{n+i-1} + a_{n+k-1} \pmod{N}
+    \end{align*}
+    Now since $a_{n+k-1}\equiv \sum_{i=1}^{k} n_{i} a_{n+k-i-1}$,
+    \begin{align*}
+       \implies X_{n} &\equiv \sum_{i=1}^{k-1} x_{i} a_{n+i-1} + a_{n+k-1} \pmod{N} \\
+       \implies X_{n} &\equiv \sum_{i=1}^{k-1} x_{i} a_{n+i-1} + \sum_{i=1}^{k} n_{i} a_{n+k-i-1} \pmod{N}
+    \end{align*}
+    Since $\sum_{i=1}^{k} n_{i} a_{n+k-i-1} = \sum_{i=0}^{k-1} n_{k-i} a_{n+i-1}$,
+    \begin{align*}
+       \implies X_{n} &\equiv \sum_{i=1}^{k-1} x_{i} a_{n+i-1} + \sum_{i=1}^{k} n_{i} a_{n+k-i-1} \pmod{N} \\
+       \implies X_{n} &\equiv \sum_{i=1}^{k-1} x_{i} a_{n+i-1} + \sum_{i=0}^{k-1} n_{k-i} a_{n+i-1} \pmod{N} \\
+       \implies X_{n} &\equiv n_{k} a_{n-1} + \sum_{i=1}^{k-1} \left( x_{i} + n_{k-i} \right) a_{n+i-1} \pmod{N} \\
+       \implies X_{n} &\equiv x_{1} a_{n-1} + \sum_{i=1}^{k-1} x_{i+1} a_{n+i-1} \pmod{N} \\
+       \implies X_{n} &\equiv x_{1} a_{n-1} + \sum_{i=2}^{k} x_{i} a_{n+i-2} \pmod{N} \\
+       \implies X_{n} &\equiv \sum_{i=1}^{k} x_{i} a_{n-1+i-1} \pmod{N} \\
+       \implies X_{n} &\equiv X_{n-1} \pmod{N}
+    \end{align*}
+    And we are done!
+\end{proof}
+

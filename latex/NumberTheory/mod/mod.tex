@@ -1,0 +1,61 @@
+\chapter{Modular Arithmetic}
+
+\section{Basics}
+%TODO
+
+\section{Linear Congruences}
+
+\begin{theorem}
+    The linear congruence $ax \equiv b \pmod{n}$ has a solution if and only if $d\mid b$ 
+    where $d=\gcd(a,n)$. Moreover the equation will have $d$ incongruent solutions modulo $n$.
+\end{theorem}
+\begin{proof}
+    $ax \equiv b \pmod{n}$ implies that there exists an integer $y$ such that 
+    $ax - b = ny \implies ax - ny = b$. We already know that the equation $ax -ny = b$ 
+    will have a solution if and only if $\gcd(a, n)\mid b$. \\
+    Now let us show that the equation will have $d$ incongruent solutions modulo $n$. 
+    We know that if $(x_{0}, y_{0})$ is a solution of $ax -ny = b$ then every other solution 
+    of the equation will be of the form
+    \[
+        x = x_{0} + \frac{n}{d} t \quad y = y_{0} + \frac{a}{d} t
+    \]
+    where $t$ is some integer. Now let us consider the solutions when $0 \leq t \leq d-1$. 
+    We claim that these are all of the incongruent solutions modulo $n$. \\
+    We will first show that if $0\leq t_{1} < t_{2}\leq n-1$ are two distinct integers then 
+    the two solutions $x_{0} + \frac{n}{d} t_{1}$ and $x_{0} + \frac{n}{d} t_{2}$ must be 
+    incongruent modulo $n$. Suppose that the two solutions are congruent then
+    \begin{align*}
+                 & x_{0} + \frac{n}{d} t_{1} \equiv x_{0} + \frac{n}{d} t_{2} \pmod{n} \\
+        \implies & \frac{n}{d} t_{1} \equiv \frac{n}{d} t_{2} \pmod{n}
+    \end{align*}
+    Now since $\gcd(n/d, n) = n/d$ we get
+    \[
+        t_{1} \equiv t_{2} \pmod{d} \implies d \mid t_{2} - t_{1} 
+    \]
+    But $d \mid t_{2} - t_{1} \implies d \leq t_{2} - t_{1}$ which is impossible because 
+    $t_{2} - t_{1} < d$. Therefore the solutions for which $0 \leq t \leq d-1$ must be incongruent 
+    modulo $n$. \\
+    Now it remains to show that any other solution $x_{0} + \frac{n}{d} t$ is congruent to 
+    one of the $d$ solutions for which $0 \leq t \leq d-1$. From the division algorithm we 
+    know that there exists integers $q$ and $t'$ where $0 \leq t' \leq d-1$ such that 
+    $t = dq + t'$. Now,
+    \begin{align*}
+        x_{0} + \frac{n}{d} t & \equiv x_{0} + \frac{n}{d} (dq + t') \pmod{n} \\
+                              & \equiv x_{0} + \frac{n}{d} \times dq + \frac{n}{d} \times t' \pmod{n} \\
+                              & \equiv x_{0} + \frac{n}{d} t' \pmod{n}
+    \end{align*}
+    We are done!
+\end{proof}
+
+\begin{corollary}
+    If $a$ and $n$ are coprime integers, that is $\gcd(a, n)=1$, then the linear congruence 
+    $ax \equiv b \pmod{n}$ where $b$ is some integer has a unique solution modulo $n$.
+\end{corollary}
+
+\begin{example}
+    Find all incongruent solutions of the linear congruence $36x \equiv 8 \pmod{102}$
+\end{example}
+\begin{sol}
+    Since $\gcd(36, 102) = 6$ and $6 \nmid 8$, there does not exist any solution to this 
+    linear congruence.
+\end{sol}
