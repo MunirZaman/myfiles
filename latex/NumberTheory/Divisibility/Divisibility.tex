@@ -1,0 +1,59 @@
+\chapter{Divisibility}
+\section{Divisibility Properties}
+
+\begin{theorem}[Division Algorithm]
+    For any integers $a,b$, with $b>0$, there exists \textbf{unique} integers 
+    $q$ and $r$ such that,
+    \[
+        a = qb + r, \quad 0 \leq r < b
+    \]
+\end{theorem}
+\begin{proof}
+    Suppose $\mathcal{S} = \left\{ a-qb \mid q \in \mathbb{Z}, a-qb \geq 0 \right\}$. 
+    We want to show that $r$ is the least element of the set $\mathcal{S}$. 
+    But first we have to show that $\mathcal{S}$ is a non-empty set. Notice, 
+    \[
+    \floor{\frac{a}{b}} \leq \frac{a}{b} 
+    \implies \floor{\frac{a}{b}} \times b \leq a 
+    \implies 0 \leq a - \floor{\frac{a}{b}}b
+    \]
+    Therefore for the choice $q = \floor{\frac{a}{b}}$, $a - \floor{\frac{a}{b}}b \in \mathcal{S}$. 
+    Thus $\mathcal{S}$ is a non-empty set of non-negative integers.
+    \begin{theorem*}[Well Ordering Principle]
+        Every non-empty set of non-negative integers contains a least element. 
+        That is if $\mathcal{S}$ is a non-empty set of non-negative integers then 
+        there exists a non-negative integer $n \in \mathcal{S}$ such that 
+        $n \leq x$ for every $x \in \mathcal{S}$.
+    \end{theorem*}
+    Now from the Well Ordering Principle we know that $\mathcal{S}$ contains a least element. 
+    Let $r$ be the least element of $\mathcal{S}$. Assume $r \geq b$ and let $r' = r - b$. 
+    Since $r \geq b$ we have,
+    \[
+        r' = r - b \geq 0 
+        \implies r' = a - qb - b = a - (q+1)b \geq 0 
+        \implies r' \in \mathcal{S}
+    \]
+    But this contradicts our assumption that $r$ is the least element of $\mathcal{S}$. 
+    Thus $r$ must be less than $b$. Now we will prove the uniqueness of the integers $r$ and $q$. 
+    Suppose there exists integers $q'$ and $r'$, with $0\leq r' < b$, such that $a = q'b + r'$. Now, 
+    \[
+        q'b + r' = qb + r 
+        \implies (q' - q)b = r - r' 
+        \implies \abs{q' - q} b = \abs{r - r'}
+    \]
+    Adding the two inequalities, $0 \leq r < b$ and $-b < -r' \leq 0$, 
+    we get $-b < r - r' < b \implies 0 \leq \abs{r-r'} < b$. Therefore,
+    \[
+    0 \leq \abs{r-r'} < b 
+    \implies 0\leq \abs{q' - q} b < b 
+    \implies 0\leq \abs{q' - q} < 1
+    \]
+    Since $\abs{q' - q}$ is a non-negative integer we must have $q' - q=0 \implies q= q'$ 
+    and which in turn implies $r=r'$.
+\end{proof}
+\begin{corollary}
+    If $a$ and $b$ are integers, with $b\neq 0$, then there exists unique integers $q$ and $r$ such that,
+    \[
+        a = qb + r, \quad 0\leq r < \abs{b}
+    \]
+\end{corollary}

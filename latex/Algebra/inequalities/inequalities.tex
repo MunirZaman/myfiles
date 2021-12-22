@@ -1,0 +1,70 @@
+\chapter{Inequalities}
+
+\section{AM-GM Inequality}
+
+\begin{theorem}[AM-GM Inequality]
+    For all positive real numbers $a_{1}, a_{2}, \cdots, a_{n}$ where 
+    $n \in \mathbb{N}$ and $n\geq 2$ the following inequality holds,
+    \[
+        \frac{a_{1} + a_{2} + \cdots + a_{n}}{n} \geq \sqrt[n]{a_{1}a_{2}\cdots a_{n}}
+    \]
+    Equality occurs if and only if $a_{1} = a_{2} = \cdots = a_{n}$.
+\end{theorem}
+\begin{proof}
+    We will prove this theorem using a special type of induction know as 
+    \emph{Cauchy Induction}. Here's how we'll prove it, 
+    (let $P_{n}$ be the statement for $n$ numbers.)
+    \begin{itemize}
+        \ii We will first show that $P_{2}$ is true. 
+        \ii We will show that $P_{n} \implies P_{2n}$
+        \ii Then we will show that $P_{n} \implies P_{n-1}$
+    \end{itemize}
+    When these are verified, all the assertions $P_{n}$ with $n \geq 2$ are shown to be true. \\
+    First we need to prove that if $a_{1}, a_{2}$ are two positive reals then 
+    \[
+        \frac{a_{1} + a_{2}}{2} \geq \sqrt[2]{a_{1} a_{2}}
+    \]
+    This can be easily shown from the fact that $(\sqrt{a_{1}} - \sqrt{a_{2}})^{2} \geq 0$. \\
+    Next we need show that $P_{n} \implies P_{2n}$. This is also very easy.
+    \[
+    a_{1} + a_{2} + \cdots + a_{2n} 
+    \geq n\sqrt[n]{a_{1}a_{2} \cdots a_{n}}+ n\sqrt[n]{a_{n+1}a_{n+2} \cdots a_{2n}} 
+    \geq 2n\sqrt[2n]{a_{1}a_{2} \cdots a_{2n}}
+    \]
+    Now we just need to show that $P_{n} \implies P_{n-1}$. Let $g = \sqrt[n-1]{a_{1}a_{2} \cdots a_{n-1}}$. 
+    Now,
+    \begin{align*}
+                 & a_{1} + \cdots + a_{n-1} + g \geq n\sqrt[n]{a_{1}\cdots a_{n-1} \times g} \\
+        \implies & a_{1} + \cdots + a_{n-1} + g \geq n\sqrt[n]{g^{n-1}g} \\
+        \implies & a_{1} + \cdots + a_{n-1} + g \geq ng \\
+        \implies & a_{1} + \cdots + a_{n-1} \geq (n-1)g \\
+        \implies & a_{1} + \cdots + a_{n-1} \geq (n-1)\sqrt[n-1]{a_{1}a_{2}\cdots a_{n-1}}
+    \end{align*}
+    By \emph{Cauchy induction}, the inequality is true for every natural number $n\geq 2$. 
+    Equality occurs if and only if $a_{1} = a_{2} = \cdots = a_{n}$.
+\end{proof}
+
+\begin{theorem}[Weighted AM-GM Inequality]
+    If $a_{1}, a_{2}, \cdots, a_{n}$ are positive real numbers with $n\geq 2$ and 
+    $x_{1}, x_{2}, \cdots, x_{n}$ are $n$ non-negative real numbers such that 
+    $\sum_{i=1}^{n} x_{i}=1$ then 
+    \[
+        a_{1}x_{1} + \cdots + a_{n}x_{n} \geq a_{1}^{x_{1}} \cdots a_{n}^{x_{n}}
+    \]
+\end{theorem}
+
+\begin{problem}[BDMO 2019]
+    Show that if $a,b,c$ are positive real numbers then
+    \[
+        \frac{a}{bc} + \frac{b}{ac} + \frac{c}{ab} \geq 2\left(\frac{1}{a} + \frac{1}{b} - \frac{1}{c}\right)
+    \]
+\end{problem}
+\begin{sol}
+    \begin{align*}
+                 & (a+b-c)^{2} \geq 0 \\
+        \implies & a^{2} + b^{2} + c^{2} + 2(ab - bc - ca) \geq 0 \\
+        \implies & a^{2} + b^{2} + c^{2} \geq 2(bc + ca - ab) \\
+        \implies & \frac{a^{2} + b^{2} + c^{2}}{abc} \geq 2\left(\frac{bc+ ca - ab}{abc}\right) \\
+        \implies & \frac{a}{bc} + \frac{b}{ac} + \frac{c}{ab} \geq 2\left(\frac{1}{a} + \frac{1}{b} - \frac{1}{c}\right)
+    \end{align*}
+\end{sol}
