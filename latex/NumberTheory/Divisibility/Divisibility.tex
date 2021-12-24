@@ -7,6 +7,8 @@
     \[
         a = qb + r, \quad 0 \leq r < b
     \]
+    The integers $r$ and $q$ are called the \emph{remainder} and \emph{quotient} upon 
+    dividing $a$ by $b$, respectively.
 \end{theorem}
 \begin{proof}
     Suppose $\mathcal{S} = \left\{ a-qb \mid q \in \mathbb{Z}, a-qb \geq 0 \right\}$. 
@@ -57,3 +59,57 @@
         a = qb + r, \quad 0\leq r < \abs{b}
     \]
 \end{corollary}
+
+\begin{definition}
+    An integer $n$ is said to be divisible by $m$ if and only if 
+    there exists an integer $k$ such that $n = km$. If $n$ is 
+    divisible by $m$ then we symbolically write this as, $m \mid n$. 
+    This is read as ``$m$ divides $n$".
+\end{definition}
+For example, the number $35$ is divisible by $7$ as $35 = 5 \times 7$. 
+Therefore we can write $7 \mid 35$. From the definition it is clear that 
+\[
+    m \mid n \iff \frac{n}{m} \in \mathbb{Z}
+\]
+Here are some basic properties of divisibility.
+\begin{theorem}
+    If $n \mid a$ and $n \mid b$, and $x,y \in \mathbb{Z}$ then, 
+    $n\mid a\text{ and } n\mid b \implies m\mid ax \pm by $.
+\end{theorem}
+The proof is very simple and so it is left as an exercise to the reader. 
+
+\begin{theorem}
+    If $m \mid n$ then either $n=0$ or $\abs{m} \leq \abs{n}$.
+\end{theorem}
+\begin{proof}
+    We know that there exists an integer $k$ such that $n = km$. Now if $k\neq 0$ then $\abs{k} \geq 1$,
+    \begin{align*}
+        n = km 
+        \implies \abs{n} = \abs{k}\cdot\abs{m} \geq \abs{m} 
+        \implies \abs{n} \geq \abs{m}
+    \end{align*}
+    If $k=0$ then $n=0$. And we are done!
+\end{proof}
+
+\begin{theorem}
+    If $x,y$ are two distinct integers and $n$ is a natural number then, 
+    \[
+        x^{n} - y^{n} = (x-y)\left(x^{n-1} + x^{n-2}y + \cdots + xy^{n-2} + y^{n-1}\right)
+    \]
+\end{theorem}
+\begin{proof}
+    We will first prove that if $r$ is a real number then, 
+    \[
+        \left(1 + r + \cdots + r^{n-1}\right)\left( r - 1\right) = r^{n} - 1     
+    \]
+    Assume $S = 1 + r + \cdots + r^{n-1}$. Now,
+    \begin{align*}
+        rS       & =      r + r^{2} + \cdots + r^{n-1} + r^{n} \\
+        S        & = 1 +  r + r^{2} + \cdots + r^{n-1} \\
+        (r - 1)S & = r^{n} - 1 \implies \left(1 + r + \cdots + r^{n-1}\right)\left(r - 1\right) = r^{n} - 1
+    \end{align*}
+\end{proof}
+%%TODO: COMPLETE THE PROOF
+
+
+

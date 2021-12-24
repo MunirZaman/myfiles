@@ -58,6 +58,13 @@
 \newcommand{\RR}{\mathbb R}
 \newcommand{\ZZ}{\mathbb Z}
 
+\newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+
+% moral
+\newenvironment{moral}{%
+	\begin{mdframed}[linecolor=green!70!black]%
+	\bfseries\color{green!70!black}}%
+	{\end{mdframed}}
 
 % Fancy section and chapter heads. Thx evan!
 \@ifundefined{KOMAClassName}{}{
@@ -84,7 +91,6 @@
 
 % thm boxes
 
-% theorem, lemma, corollary, proposition
 
 \mdfdefinestyle{mdbluebox}{%
 	roundcorner = 10pt,
@@ -102,7 +108,65 @@
 	headpunct={\\[3pt]},
 	postheadspace={0pt}
 ]{thmbluebox}
+                                                             
+\mdfdefinestyle{mdredbox}{%
+	linewidth=0.5pt,
+	skipabove=12pt,
+	frametitleaboveskip=5pt,
+	frametitlebelowskip=0pt,
+	skipbelow=2pt,
+	frametitlefont=\bfseries\sffamily,
+	innertopmargin=4pt,
+	innerbottommargin=8pt,
+	nobreak=true,
+	backgroundcolor=Salmon!5,
+	linecolor=RawSienna,
+}
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{RawSienna},
+	mdframed={style=mdredbox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt},
+]{thmredbox}
+                                                             
+\mdfdefinestyle{mdgreenbox}{%
+	skipabove=8pt,
+	linewidth=2pt,
+	rightline=false,
+	leftline=true,
+	topline=false,
+	bottomline=false,
+	linecolor=ForestGreen,
+	backgroundcolor=ForestGreen!5,
+}
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily\color{ForestGreen!70!black},
+	bodyfont=\normalfont,
+	spaceabove=2pt,
+	spacebelow=1pt,
+	mdframed={style=mdgreenbox},
+	headpunct={ --- },
+]{thmgreenbox}
+                                                             
+\mdfdefinestyle{mdblackbox}{%
+	skipabove=8pt,
+	linewidth=3pt,
+	rightline=false,
+	leftline=true,
+	topline=false,
+	bottomline=false,
+	linecolor=black,
+	backgroundcolor=RedViolet!5!gray!5,
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	bodyfont=\normalfont\small,
+	spaceabove=0pt,
+	spacebelow=0pt,
+	mdframed={style=mdblackbox}
+]{thmblackbox}
 
+% theorem, lemma, corollary, proposition, claim
 \declaretheorem[style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
 \declaretheorem[style=thmbluebox,name=Lemma,sibling=theorem]{lemma}
 \declaretheorem[style=thmbluebox,name=Proposition,sibling=theorem]{proposition}
@@ -113,61 +177,43 @@
 \declaretheorem[style=thmbluebox,name=Proposition,numbered=no]{proposition*}
 \declaretheorem[style=thmbluebox,name=Corollary,numbered=no]{corollary*}
 
+\declaretheorem[style=thmgreenbox,name=Claim,sibling=theorem]{claim}
+\declaretheorem[style=thmgreenbox,name=Claim,numbered=no]{claim*}
+
 % Problem, Example
-
-\mdfdefinestyle{mdredbox}{%
-	roundcorner = 5pt,
-	linewidth=0.5pt,
-	skipabove=12pt,
-	frametitleaboveskip=5pt,
-	frametitlebelowskip=0pt,
-	skipbelow=2pt,
-	frametitlefont=\bfseries,
-	innertopmargin=4pt,
-	innerbottommargin=8pt,
-	nobreak=true,
-	linecolor=purple,
-	backgroundcolor=purple!10,
-}
-
-\declaretheoremstyle[
-	headfont=\sffamily\bfseries\color{purple},
-	mdframed={style=mdredbox},
-	headpunct={\\[3pt]},
-	postheadspace={0pt},
-]{thmredbox}
-
-\declaretheorem[style=thmredbox,name=Problem,numberwithin=section]{problem}
-\declaretheorem[style=thmredbox,name=Example,sibling=problem]{example}
-
-\declaretheorem[style=thmredbox,name=Problem,numbered=no]{problem*}
+\declaretheorem[style=thmredbox,name=Example,sibling=theorem]{example}
 \declaretheorem[style=thmredbox,name=Example,numbered=no]{example*}
+
+\declaretheorem[style=thmredbox,name=Problem,sibling=theorem]{problem}
+\declaretheorem[style=thmredbox,name=Problem,numbered=no]{problem*}
 
 % Definition, Remark, Claim
 
-\declaretheoremstyle[
-	spaceabove=5pt, spacebelow=5pt,
-	headfont=\sffamily\bfseries\color{MidnightBlue},
-	postheadspace={2pt}
-]{plain_blue}
+\declaretheorem[style=thmblackbox,name=Remark,sibling=theorem]{remark}
+\declaretheorem[style=thmblackbox,name=Remark,numbered=no]{remark*}
 
 \declaretheoremstyle[
 	spaceabove=5pt, spacebelow=5pt,
-	headfont=\sffamily\bfseries\color{orange},
+	headfont=\sffamily\bfseries,
 	postheadspace={2pt}
-]{plain_orange}
+]{plain}
 
-\declaretheoremstyle[
-	spaceabove=5pt, spacebelow=5pt,
-	headfont=\sffamily\bfseries\color{ForestGreen},
-	postheadspace={2pt}
-]{plain_green}
+\declaretheorem[style=plain,name=Definition,sibling=theorem]{definition}
+\declaretheorem[style=plain,name=Definition,numbered=no]{definition*}
 
-\declaretheorem[style=plain_orange,name=Definition,numberwithin=section]{definition}
-\declaretheorem[style=plain_orange,name=Definition,numbered=no]{definition*}
+% Others
 
-\declaretheorem[style=plain_green,name=Remark,numbered=no]{remark}
-\declaretheorem[style=plain_blue,name=Claim]{claim}
+\declaretheorem[style=thmgreenbox,name=Conjecture,sibling=theorem]{conjecture}
+\declaretheorem[style=thmgreenbox,name=Conjecture,numbered=no]{conjecture*}
+
+\declaretheorem[style=plain,name=Exercise,sibling=theorem]{exercise}
+\declaretheorem[style=plain,name=Exercise,numbered=no]{exercise*}
+
+\declaretheorem[style=thmblackbox,name=Fact,sibling=theorem]{fact}
+\declaretheorem[style=thmblackbox,name=Fact,numbered=no]{fact*}
+
+\declaretheorem[style=plain,name=Question,sibling=theorem]{ques}
+\declaretheorem[style=plain,name=Question,numbered=no]{ques*}
 
 % proof and solution
 
@@ -207,6 +253,17 @@
 % code
 \newif\ifcode\codefalse
 \DeclareOption{code}{\codetrue}
+
+\newif\ifpage\pagefalse
+\DeclareOption{page}{\pagetrue}
+
+\newif\ifhead\headfalse
+\DeclareOption{head}{\headtrue}
+
+%% include Date in head
+\newif\ifheaddate\headdatefalse
+\DeclareOption{headdate}{\headdatetrue}
+
 \ProcessOptions\relax
 
 \ifcode
@@ -233,4 +290,62 @@
 \fi
 
 
+%%fakesection \maketitle configuration
+\@ifundefined{KOMAClassName}%
+    {} % do nothing outside KOMA class
+	{% If KOMA exists. . .
+    \addtokomafont{subtitle}{\Large\sffamily}
+	\setkomafont{author}{\Large\sffamily}
+	\setkomafont{date}{\sffamily}
+}
 
+%% Page Setup
+\providecommand{\thetitle}{\@title}
+\providecommand{\theauthor}{\@author}
+\providecommand{\thedate}{\@date}
+
+\ifpage
+	\@ifundefined{KOMAClassName}
+	{
+		\usepackage{fancyhdr}
+		\setlength{\headheight}{0.75in}
+		\setlength{\oddsidemargin}{0in}
+		\setlength{\evensidemargin}{0in}
+		\setlength{\voffset}{-1.0in}
+		\setlength{\headsep}{10pt}
+		\setlength{\textwidth}{6.5in}
+		\setlength{\headwidth}{6.5in}
+		\setlength{\textheight}{8.75in}
+		\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+		\setlength{\footskip}{0.3in}
+		\ifhead
+			\renewcommand{\headrulewidth}{0.5pt}
+			\renewcommand{\footrulewidth}{0.0pt}
+			\pagestyle{fancy}
+			\lhead{Munir Uz Zaman}
+			\chead{}
+			\rhead{\nouppercase{\leftmark}}
+			\lfoot{}
+			\cfoot{\thepage}
+			\rfoot{}
+		\fi
+	}
+	{
+		\usepackage[headsepline]{scrlayer-scrpage}
+		\renewcommand{\headfont}{}
+		%\addtolength{\textheight}{3.14cm}
+		\setlength{\footskip}{0.5in}
+		\setlength{\headsep}{10pt}
+
+        \ifheaddate
+		    \ihead{\sffamily\footnotesize\textbf{\theauthor} (\thedate)}
+        \else
+            \ihead{\sffamily\footnotesize\textbf{\theauthor}}
+        \fi
+
+		\automark{section}
+		\chead{}
+        \ohead{\footnotesize\textbf{\sffamily\color{purple}\thetitle}}
+		%\cfoot{\pagemark}
+	}
+\fi

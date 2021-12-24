@@ -137,7 +137,7 @@ the root 2 has multiplicity 2 and the root 3 has multiplicity 1.
     and \hyperref[thm:factor-theorem]{Factor Theorem}.
 \end{proof}
 
-\begin{figure}[H]
+\begin{figure}[!htpb]
 \centering
 \includegraphics[scale=1]{polynomials/figures/cplane_roots.pdf}
 \caption{The 4 complex roots of the polynomial $x^{4} - 2 x^{3} + 2 x^{2} + 8 x + 16$ }
@@ -272,11 +272,23 @@ the root 2 has multiplicity 2 and the root 3 has multiplicity 1.
     If $P(x) \in \mathbb{R}[x]$ and $\Deg P(x)$ is odd then $P(x)$ has at least on real root.
 \end{corollary}
 
-\begin{figure}[H]
+\begin{figure}[!htpb]
 \centering
 \includegraphics[scale=1]{polynomials/figures/cubic_with_one_real_root}
 \caption{The real root of the cubic polynomial $f(x)=x^3+2x^2+0.5$}
 \end{figure}
+
+\section{Roots of Polynomials}
+\begin{theorem}[Rational Root Theorem]
+    If $P(x)$ is a polynomial with integer coefficients and $z=\frac{p}{q}$ is a 
+    rational root, where $p$ and $q$ are in lowest terms, of $P(x)$ then 
+    the leading coefficient, $a_{n}$, of $P(x)$ is a multiple of $p$ and the 
+    constant term, $a_{0}$, of $P(x)$ is a multiple of $q$. 
+\end{theorem}
+\begin{corollary}
+    If $P(x)$ is a polynomial with integer coefficients then every rational 
+    root of $P(x)$ is an integer.
+\end{corollary}
 
 \section{Quadratic Polynomials}
 \begin{definition}
@@ -291,12 +303,15 @@ One can find the roots of a quadratic polynomial using the well known \textit{qu
     x_{1,2} = \frac{-b \pm \sqrt{b^{2} - 4ac}}{2a}
 \]
 The value $\Delta = b^{2} - 4ac$ is called the \textit{discriminant} of the quadratic polynomial. 
-The discriminant gives us the following informations about the roots of the quadratic polynomial,
-\begin{itemize}
-        \ii $\Delta>0 \iff x_{1}, x_{2} \in \mathbb{R} \text{ and } x_{1}\neq x_{2}$
-        \ii $\Delta=0 \iff x_{1}, x_{2} \in \mathbb{R} \text{ and } x_{1}=x_{2}$
-        \ii $\Delta<0 \iff x_{1}, x_{2} \in \mathbb{C} \text{ and } x_{1}\neq x_{2}$
-\end{itemize}
+\begin{theorem}
+    If $P(x)$ is some quadratic polynomial whose discriminant is $\Delta$ and 
+    whose two roots are $x_{1}$ and $x_{2}$ then,
+    \begin{itemize}
+            \ii $\Delta>0 \iff x_{1}, x_{2} \in \mathbb{R} \text{ and } x_{1}\neq x_{2}$
+            \ii $\Delta=0 \iff x_{1}, x_{2} \in \mathbb{R} \text{ and } x_{1}=x_{2}$
+            \ii $\Delta<0 \iff x_{1}, x_{2} \in \mathbb{C} \text{ and } x_{1}\neq x_{2}$
+    \end{itemize}
+\end{theorem}
 
 \begin{theorem}
     The value $P\left(-\frac{b}{2a}\right)$ is either the maximum (if $a>0$) or the minimum value (if $a<0$) of 
@@ -320,123 +335,16 @@ The discriminant gives us the following informations about the roots of the quad
     $P(x)$ will reach its minimum when $x + \frac{b}{2a} =0 \implies x = -\frac{b}{2a}$.
 \end{proof}
 
-\begin{figure}[H]
-\begin{subfigure}[H]{0.5\textwidth}
+\begin{figure}[!htpb]
+\begin{subfigure}[!htpb]{0.5\textwidth}
 \includegraphics[scale=.85]{polynomials/figures/quad_max.pdf}
 \caption{Maximum of $f(x)=-0.5x^2 - x + 2$}
 \end{subfigure}
-\begin{subfigure}[H]{0.5\textwidth}
+\begin{subfigure}[!htpb]{0.5\textwidth}
 \includegraphics[scale=.85]{polynomials/figures/quad_min.pdf}
 \caption{Minimum of $f(x)=0.5x^2 - 2x -1.5$}
 \end{subfigure}
 \end{figure}
-
-\section{Roots of Cubic Polynomials}
-Finding the roots of a cubic polynomial is quite hard. So, we are going to first try to solve the cubic polynomial,
-\[
-    f(x) = x^{3} + px + q
-\]
-where $p, q \in \mathbb{R}$.
-Setting $p=-3ab$ and $q = a^{3} + b^{3}$ we get,
-\[
-    f(x) = x^{3} + a^{3} + b^{3} - 3abx
-\]
-Now using the formula,
-\[
-    a^{3} + b^{3} + c^{3} - 3abc = (a+b+c)(a^{2} + b^{2} + c^{2} - ab - bc - ca)
-\]
-we get,
-\[
-    f(x) = (x+a+b)(x^{2} -(a+b)x + a^{2} + b^{2} - ab)
-\]
-Therefore the 3 roots of $f$ are,
-\begin{align*}
-    x_{1}        &= -a-b \\
-    x_{2}, x_{3} &= \frac{a+b \pm \sqrt{a^{2} + b^{2} + 2ab - 4a^{2} - 4b^{2} + 4ab}}{2}\\
-                 &= \frac{a+b \pm \sqrt{-3a^{2} -3b^{2} + 6ab}}{2} \\
-                 &= \frac{a+b \pm \sqrt{-3(a-b)^{2}}}{2} \\
-                 &= \frac{a+b \pm \sqrt{3}i(a-b)}{2} \\
-                 &= \frac{(1 + \sqrt{3}i)a \pm (1 - \sqrt{3}i)b}{2} \\
-                 &= \frac{1+\sqrt{3}i}{2}a \pm \frac{1-\sqrt{3}i}{2}b
-\end{align*}
-
-Now we have express the root in terms of $p, q$ that is, we have to express $a,b$ in terms of $p,q$. Now,
-
-\begin{align*}
-         & q = a^{3} + b^{3} \\
-         & p = -3ab \\
-\implies & a^{3}b^{3} = -\frac{p^{3}}{27}
-\end{align*}
-
-Let $u=a^{3}$ and $v=b^{3}$. Notice that $u$ and $v$ are the roots of the quadratic polynomial,
-\[
-    P(x) = x^{2} - (u+v)x + uv = x^{2} - q^{3}x -\frac{p^{3}}{27} 
-\]
-
-Using the quadratic equation we get,
-\begin{align*}
-    u,v &= \frac{q^{3} \pm \sqrt{q^{6} + \frac{4}{27}p^{3}}}{2} \\
-    a,b &= \sqrt[3]{\frac{q^{3}}{2} \pm \frac{\sqrt{q^{6} + \frac{4}{27}p^{3}}}{2}}\\
-        &= \sqrt[3]{\frac{q^{3}}{2} \pm \sqrt{\frac{q^{6}}{4} + \frac{p^{3}}{27}}}
-\end{align*}
-
-So let's now try to solve the cubic equation using the results we've got so far,
-\[
-    f(x) = x^{3} - x^{2} - 2x + 1
-\]
-First we have to use substitution to transform the polynomial into another polynomial of the form,
-\[
-    x^{3} + px + q
-\]
-
-Since every polynomial can be uniquely defined by its coefficients, we can associate or 
-express a polynomial of degree $n$ by a unique point in $n+1$ dimensional space. 
-For example we can express the polynomial,
-\[
-    (1) \cdot x^{3} + (-1) \cdot x^{2} + (-2) \cdot x + (1)
-\]
-as,
-\[
-    (1) \cdot x^{3} + (-1) \cdot x^{2} + (-2) \cdot x + (1) \rightarrow (1, -1, -2, 1)
-\]
-Likewise, the point $(5, -1, 0, 1)$ can be used to represent the polynomial,
-\[
-    (5, -1, 0, 1) \rightarrow 5x^{3} -x^{2} + 1
-\]
-Notice that,
-\[
-    (x_{3}, x_{2}, \cdots, x_{0}) + (y_{3}, y_{2}, \cdots, y_{0}) = (x_{3} + y_{3}, x_{2} + y_{2}, \cdots, x_{0} + y_{0})
-\]
-
-Say that there exists a polynomial $u(x) = (x+n)$ where $n \in \mathbb{C}$ such that,
-\[
-    x^{3} - x^{2} -2x + 1 = u(x)^{3} + pu(x) + q
-\]
-This equation can also be represented as,
-\[
-    (1, -1, -2, 1) = (1, 3n, 3n^{2}, n^{3}) + (0, 0, p, pn) + (0,0,0,q) \implies (1, -1, -2, 1) = (1, 3n, 3n^{2}+p, n^{3}+ pn + q)
-\]
-This gives us the system of equation,
-\begin{align*}
-   3n              &= -1 \\
-   3n^{2} + p      &= -2 \\
-    n^{3} + pn + q &= 1
-\end{align*}
-
-Therefore,
-\begin{align*}
-   n &= -\frac{1}{3} \\
-   p &= -\frac{7}{3}\\
-   q &=  \frac{7}{27}
-\end{align*}
-
-Thus,
-\[
-    x^{3} - x^{2} -2x +1 = \left(x - \frac{1}{3}\right)^{3} -\frac{7}{3}\left(x - \frac{1}{3}\right) +\frac{7}{27} \implies f(x) = g\left(x - \frac{1}{3}\right)
-\]
-where \[ g(x) = x^{3} - \frac{7}{3}x + \frac{7}{27} \]
-Now we can use the results we've proved earlier to solve the polynomial $g(x)$. After that we add $\frac{1}{3}$ to the 3 roots 
-of $g(x)$. The 3 numbers we will get by adding $\frac{1}{3}$ are the 3 roots of $f(x)$.
 
 \section{Lagrange Interpolation}
 
@@ -473,7 +381,7 @@ of $g(x)$. The 3 numbers we will get by adding $\frac{1}{3}$ are the 3 roots of 
     $P(\alpha_k) = \beta_k$ for all $0 \leq k \leq n$
 \end{proof}
 
-\begin{figure}[H]
+\begin{figure}[!htpb]
 \centering
 \includegraphics[scale=0.75]{polynomials/figures/lagrange_poly_plot1.pdf}
 \caption{Plot of a Lagrange Polynomial}
