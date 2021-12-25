@@ -68,3 +68,75 @@
         \implies & \frac{a}{bc} + \frac{b}{ac} + \frac{c}{ab} \geq 2\left(\frac{1}{a} + \frac{1}{b} - \frac{1}{c}\right)
     \end{align*}
 \end{sol}
+
+\begin{problem}
+    Show that if $a_{1}, a_{2}, \cdots, a_{n}$ are $n$ positive real numbers 
+    such that $a_{1}a_{2}\cdots a_{n} = 1$ then
+    \[
+        (1+a_{1})(1+a_{2})\cdots (1+a_{n}) \geq 2^{n}
+    \]
+\end{problem}
+\begin{sol}
+    Using the AM-GM Inequality, we have 
+    $(1 + a_{i}) \geq 2\sqrt{a_{i}}$ for all $1\leq i \leq n$. 
+    Now multiplying the inequalities for all values of $i$ we get
+    \begin{align*}
+        (1+a_{1})(1+a_{2})\cdots (1+a_{n}) \geq 2^{n} \sqrt{a_{1}a_{2}\cdots a_{n}} = 2^{n}
+    \end{align*}
+\end{sol}
+
+\begin{problem}
+    Show that if $x_{1}, x_{2},\cdots, x_{n}$ are $n$ real numbers then
+    \[
+        (x_{1} + x_{2} + \cdots + x_{n})
+        \left(\frac{1}{x_{1}} + \frac{1}{x_{2}} + \cdots + \frac{1}{x_{n}}\right) \geq n^{2}
+    \]
+\end{problem}
+\begin{sol}
+    Using the AM-GM Inequality, we have
+    \begin{align*}
+        (x_{1} + x_{2} + \cdots + x_{n}) &\geq n\sqrt[n]{x_{1} x_{2} \cdots x_{n}} \\
+        \left(\frac{1}{x_{1}} + \frac{1}{x_{2}} + \cdots ++ \frac{1}{x_{n}}\right) &\geq 
+        n\sqrt[n]{\frac{1}{x_{1}x_{2}\cdots x_{n}}}
+    \end{align*}
+    Multiplying the two inequalities we get
+    \[
+        (x_{1} + x_{2} + \cdots + x_{n})
+        \left(\frac{1}{x_{1}} + \frac{1}{x_{2}} + \cdots + \frac{1}{x_{n}}\right) \geq n^{2}
+    \]
+\end{sol}
+
+\begin{problem}[Russia MO 2004]
+    Let $a,b,c$ be positive real numbers with sum 3. Show that 
+    \[
+        \sqrt{a} + \sqrt{b} + \sqrt{c} \geq ab + bc + ca
+    \]
+\end{problem}
+\begin{sol}
+    We know that
+    \[
+        (a+ b+ c)^{2} = a^{2} + b^{2} + c^{2} + 2ab + 2bc + 2ca \implies 
+        2ab + 2bc + 2ca = 9 - (a^{2} + b^{2} + c^{2})
+    \]
+    The inequality is therefore equivalent to 
+    \[
+        a^{2} + b^{2} + c^{2} + 2\sqrt{a} + 2\sqrt{b} + 2\sqrt{c} \geq 9
+    \]
+    Now using the AM-GM Inequality we have
+    \begin{align*}
+        (a^{2} + \sqrt{a} + \sqrt{a}) &\geq 3a \\
+        (b^{2} + \sqrt{b} + \sqrt{b}) &\geq 3b \\
+        (c^{2} + \sqrt{c} + \sqrt{c}) &\geq 3c
+    \end{align*}
+    Adding the 3 inequalities we get 
+    \[
+        a^{2} + b^{2} + c^{2} + 2\sqrt{a} + 2\sqrt{b} + 2\sqrt{c} \geq 9
+    \]
+\end{sol}
+
+\begin{problem}
+    Let $x,y,z$ be three positive real numbers such that $xyz = 1$. Prove that 
+    \[
+        \frac{x^{3}}{(1+y)(1+z)} + \frac{y^{3}}{(1+x)(1+z)} + \frac{z^{3}}{(1+x)(1+y)} \geq \frac{3}{4}
+    \]
+\end{problem}
