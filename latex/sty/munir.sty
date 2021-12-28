@@ -284,9 +284,67 @@
     }
 
     % mdcode blocks
-    \newenvironment{mdcode}%
-    {\begin{mdframed}[linecolor=Gray,innerrightmargin=30pt,innerleftmargin=30pt,leftmargin=-30pt,rightmargin=-30pt,backgroundcolor=Black!5,skipabove=10pt,skipbelow=10pt,roundcorner=2pt,splitbottomskip=6pt,splittopskip=12pt]}%
+    \newenvironment{mdcode}[1][]%
+    {\begin{mdframed}%
+    [linecolor=Gray,
+    backgroundcolor=Black!5,
+    skipabove=10pt,skipbelow=10pt,
+    roundcorner=0pt,
+    splitbottomskip=6pt,splittopskip=12pt,
+    innerleftmargin=30pt, innerrightmargin=30pt,#1]}%
     {\end{mdframed}}
+
+    % mdconsole blocks
+    \newenvironment{mdconsole}[1][]%
+    {\begin{mdframed}%
+    [linecolor=Gray,
+    backgroundcolor=Black!5,
+    skipabove=10pt,skipbelow=10pt,
+    roundcorner=0pt,
+    splitbottomskip=6pt,splittopskip=12pt,
+    innerleftmargin=2.5pt, innerrightmargin=30pt,#1]}%
+    {\end{mdframed}}
+
+    \newcommand{\codefontsize}{\footnotesize}
+
+    %python, pycon, ipython, cpp, julia, julia-repl
+
+	%code environments
+	\newenvironment{python}%
+	 {\VerbatimEnvironment
+	 \begin{mdcode}
+	 \begin{minted}[mathescape, breaklines, linenos, fontsize=\codefontsize]{python}}
+	 {\end{minted}\end{mdcode}}
+
+	\newenvironment{pycon}%
+	 {\VerbatimEnvironment
+	 \begin{mdconsole}
+	 \begin{minted}[mathescape, breaklines, fontsize=\codefontsize]{pycon}}
+	 {\end{minted}\end{mdconsole}}
+
+	\newenvironment{ipython}%
+	 {\VerbatimEnvironment
+	 \begin{mdconsole}
+	 \begin{minted}[mathescape, breaklines, fontsize=\codefontsize]{ipython}}
+	 {\end{minted}\end{mdconsole}}
+
+	\newenvironment{cpp}%
+	 {\VerbatimEnvironment
+	 \begin{mdcode}
+	 \begin{minted}[mathescape, breaklines, linenos, fontsize=\codefontsize]{cpp}}
+	 {\end{minted}\end{mdcode}}
+
+	\newenvironment{julia}%
+	 {\VerbatimEnvironment
+	 \begin{mdcode}
+	 \begin{minted}[mathescape, breaklines, linenos, fontsize=\codefontsize]{julia}}
+	 {\end{minted}\end{mdcode}}
+
+	\newenvironment{julia-repl}%
+	 {\VerbatimEnvironment
+	 \begin{mdconsole}
+	 \begin{minted}[mathescape, breaklines, fontsize=\codefontsize]{julia-repl}}
+	 {\end{minted}\end{mdconsole}}
 \fi
 
 
