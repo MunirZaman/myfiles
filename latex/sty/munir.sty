@@ -264,6 +264,10 @@
 \newif\ifheaddate\headdatefalse
 \DeclareOption{headdate}{\headdatetrue}
 
+%% use sans-serif fonts
+\newif\ifsf\sffalse
+\DeclareOption{sf}{\sftrue}
+
 \ProcessOptions\relax
 
 \ifcode
@@ -407,3 +411,10 @@
 		%\cfoot{\pagemark}
 	}
 \fi
+
+\ifsf
+	\renewcommand{\familydefault}{\sfdefault} %% sans-serif text
+	\usepackage[cm]{sfmath} %% sans-serif math
+\fi
+
+
