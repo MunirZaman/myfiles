@@ -1,0 +1,237 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[page, head, date, sf]{munir}
+\usepackage{mathtools}
+\usepackage{microtype}
+
+\title{Mathematical Induction}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\begin{document}
+\maketitle
+
+\section{Preliminaries}
+\begin{definition}
+A \vocab{proposition} in mathematics is a statement that is either true or false.
+\end{definition}
+For example, ``2 + 2 = 4'' and ``19 is a prime number'' both are true mathematical statements. 
+Here are some more examples of propositions.
+\begin{proposition}
+    If $f(n) = n^{2} + n + 41$ then $f(n)$ is a prime number for all non-negative integers $n$.
+\end{proposition}
+This is a proposition but sadly this statement is not true for all non-negative integers. 
+For example, if $n=40$ then 
+\[
+    f(40) = 40^{2} + 40 + 41 = 40^{2} + 2\times 40 + 1 = 41^{2}
+\]
+\begin{proposition}[Goldbach's Conjecture]
+    Every integer greater than 2 is a sum of two primes.
+\end{proposition}
+Goldbach's Conjecture is also a proposition but so far no one has been able to 
+prove that it is true.
+
+\begin{definition}
+    A \vocab{predicate} is a proposition whose truth depends on one or more variables.
+\end{definition}
+For example, ``$p$ is a prime number'' is a predicate as its truth depends on the value of $p$. 
+For $p=3$ the statement is true but for $p=132$ the statement is false. 
+A function-like notation is used to denote a predicate supplied with specific variable values. 
+For example, we might use the name ``P'' for the predicate above:
+\[
+P(n) = \text{``}p\text{ is a prime number''}
+\]
+Like before, we can say that $P(3)$ is true and $P(132)$ is false.
+
+\begin{definition}
+    An \vocab{axiom} is a proposition which is accepted as true without any proof.
+\end{definition}
+For example, ``$a = b \iff a + c = b + c$'' and ``two sets are equal if and only if they have the same elements'' are 
+examples of axioms.
+
+\section{The Induction Principle}
+Suppose we have the predicate 
+\[
+    P(n) = \text{``}\sum_{k=1}^{n} k = \frac{n(n+1)}{2} \text{''}
+\]
+We want prove that $P(n)$ is true for all non-negative integers. The induction principle claims that if 
+$\mathcal{P}(n)$ is some predicate and if
+\begin{itemize}
+        \ii $\mathcal{P}(n_{0})$ is true where $n_{0}$ is some integer and 
+        \ii $\mathcal{P}(k) \implies \mathcal{P}(k+1)$ where $k\geq n_{0}$
+\end{itemize}
+then $\mathcal{P}(n)$ is true for all $n \geq n_{0}$. We will later prove the induction principle but for now 
+let's use this principle and try to prove the fact that 
+\[
+    1 + 2 + \cdots + n = \frac{n(n+1)}{2}
+\]
+We want show that $P(n)$ is true for all $n\geq 1$. Clearly $P(1)$ is true. Now we just need to show that 
+$P(k) \implies P(k+1)$. Suppose $P(k)$ is true where $k \geq 1$. Now
+\begin{align*}
+             & 1 + 2 + \cdots + k = \frac{k(k+1)}{2} \\
+    \implies & 1 + 2 + \cdots + k + (k+1) = (k+1) + \frac{k(k+1)}{2} \\
+    \implies & 1 + 2 + \cdots + (k+1) = (k+1) \left(1 + \frac{k}{2}\right) \\
+    \implies & 1 + 2 + \cdots + (k+1) = \frac{(k+1)(k + 2)}{2}
+\end{align*}
+And that's it! We just proved that if $P(k)$ is true then $P(k+1)$ is also true. Now from the induction 
+principle, we can say that $P(n)$ is true for all $n \geq 1$. \\
+There are two main steps in a proof involving induction. First we show that $\mathcal{P}(n_{0})$ is 
+true where $n_{0}$ is an integer. This step is known as the \vocab{base step} or the \vocab{induction basis}. 
+Next we prove that if $k$ is an integer greater that or equal to $n_{0}$ and $\mathcal{P}(k)$ is true then 
+$\mathcal{P}(k+1)$ is also true. This step is called the \vocab{inductive step}. Here are some more examples 
+of proof by induction.
+
+\begin{example}[BDMO]
+    Let $f\colon \mathbb{R} \to \mathbb{R}$ be a function such that $f(1) = 1$ and for any $x\in \mathbb{R}$, 
+    $f(x+7)\geq f(x) + 7$ and $f(x + 1)\leq f(x) + 1$. Find the value of $f(2013)$.
+\end{example}
+\begin{sol}
+    Notice that 
+    \begin{align*}
+        & f(x + 2) \leq f(x + 1) + 1 \leq f(x) + 2, \\
+        & f(x + 3) \leq f(x + 2) + 1 \leq f(x) + 3
+    \end{align*}
+    We can generalize and say that if $n$ is a non-negative integer then $f(x + n) \leq f(x) + n$. 
+    But how do we prove this? Let's try using induction!\\
+    The question already tells us that the statement is true for $n=1$. We just need to show 
+    that 
+    \[
+        f(x + k)\leq f(x) + k \implies f(x + k + 1)\leq f(x) + k + 1
+    \]
+    This is quite trivial.
+    \[
+        f(x + k + 1 )\leq f(x + k) + 1 \leq f(x) + k + 1
+    \]
+    And so we just proved that $f(x+n) \leq f(x) + n$. Now setting $n=7$, we get 
+    \[
+        f(x + 7) \leq f(x) + 7
+    \]
+    Therefore since $f(x+7) \geq f(x)+7$ and $f(x+7) \leq f(x) + 7$, we must have $f(x + 7) = f(x) + 7$. 
+    That's great! But now what? Setting $x=1$, we get $f(8) = f(1) + 7 = 8$. But how can we find the value of $f(2013)$? 
+    We can guess that $f(x) = x$ for all $x$. Can we prove this? If we can somehow show that $f(x) + 1 = f(x+1)$ for all $x$ 
+    then we'll be able to easily show that $f(n) = n$ for all non-negative integer $n$. So let's try to prove that 
+    $f(x) + 1 = f(x + 1)$ for all $x$. \\
+    Suppose that there exists some real number $r$ such that $f(r) + 1 \neq f(r + 1)$. Therefore $f(r+1)$ must be 
+    less than $f(r) + 1$. Now suppose $r = x + 6$ where $x$ is a real number. 
+    \[
+        f(r + 1) < f(r) + 1 \implies f(x+7) < f(x + 6) + 1
+    \]
+    Now notice that 
+    \[
+        f(x + 6) + 1 \leq f(x + 5) + 2 \leq f(x + 4) + 2 \leq \cdots \leq f(x) + 7
+    \]
+    Therefore we have 
+    \[
+        f(x + 7) < f(x) + 7
+    \]
+    But that is impossible as we've shown that $f(x + 7) = f(x) + 7$  for all $x \in \mathbb{R}$. 
+    Hence such a real number $r$ cannot exist which implies $f(x) + 1 = f(x + 1)$ for all $x \in \mathbb{R}$. \\
+    We can now use induction to show that $f(n) = n$ for all non-negative integer $n$. For $n=1$ the statement 
+    is obviously true. We need to prove that if $f(k) = k$ then $f(k+1) = k + 1$. This is also quite trivial. 
+    \[
+        f(k + 1) = f(k) + 1 \implies f(k + 1) = k + 1
+    \]
+    And we are done! YAY! We not only found the value of $f(2013)$ but also found the value of $f(n)$ for all 
+    non-negative integer $n$. Awesome, right?
+\end{sol}
+
+\begin{example}
+    If $n$ is a non-negative integer and $x, y$ are two real numbers then 
+    \[
+        (x + y)^{n} = \sum_{k=0}^{n} \binom{n}{k} x^{k}y^{n-k}
+    \]
+\end{example}
+\begin{proof}
+    The statement is evidently true for $n=1$. Now we need to show that 
+    \[
+        (x + y)^{m} = \sum_{k=0}^{m} \binom{m}{k} x^{k} y^{m - k}
+        \implies (x + y)^{m + 1} = \sum_{k=0}^{m + 1} \binom{m+1}{k} x^{k} y^{m - k + 1}
+    \]
+    Okay, let's try to prove it!
+    \begin{align*}
+        (x + y)^{m} \times (x + y) 
+        &= (x + y)^{m} x + (x + y)^{m} y \\
+        &= \sum_{k=0}^{m} \binom{m}{k} x^{k + 1} y^{m - k} + \sum_{k=0}^{m} \binom{m}{k} x^{k} y^{m - k + 1}
+    \end{align*}
+    Now 
+    \begin{align*}
+        \sum_{k=0}^{m} \binom{m}{k} x^{k + 1} y^{m - k} &= x^{m + 1} + 
+        \sum_{k=0}^{m-1} \binom{m}{k} x^{k+1} y^{m - k} \\
+        &= x^{m+1} + \sum_{k=1}^{m} \binom{m}{k-1} x^{k} y^{m - k + 1} \\ 
+        \sum_{k=0}^{m} \binom{m}{k} x^{k} y^{m - k + 1} &= y^{m + 1} + 
+        \sum_{k = 1}^{m} \binom{m}{k} x^{k} y^{m - k + 1}
+    \end{align*}
+    Therefore 
+    \begin{align*}
+        (x + y)^{m + 1} &= \sum_{k=0}^{m} \binom{m}{k} x^{k + 1} y^{m - k} + \sum_{k=0}^{m} \binom{m}{k} x^{k} y^{m - k + 1} \\
+        &= x^{m + 1} + \sum_{k=1}^{m} \left\{\binom{m}{k} + \binom{m}{k-1} \right\} x^{k} y^{m - k + 1} + y^{m + 1}
+    \end{align*}
+    Now 
+    \begin{align*}
+        \binom{m}{k} + \binom{m}{k - 1} &= \frac{m!}{(m - k)!k!} + \frac{m!}{(m - k + 1)!(k - 1)!} \\
+                                        &= \frac{m!}{(m - k)!(k - 1)!} \left(\frac{1}{k} + \frac{1}{m - k + 1}\right) \\
+                                        &= \frac{m!}{(m - k)!(k - 1)!}\left(\frac{m + 1}{k(m - k + 1)}\right) \\
+                                        &= \frac{(m + 1)!}{(m - k + 1)! k!} \\
+                                        &= \binom{m + 1}{k}
+    \end{align*}
+    Thus we have 
+    \begin{align*}
+        (x + y)^{m + 1} 
+        &= x^{m + 1} + \sum_{k=1}^{m} \left\{\binom{m}{k} + \binom{m}{k-1} \right\} x^{k} y^{m - k + 1} + y^{m + 1} \\
+        &= x^{m + 1} + \sum_{k=1}^{m} \binom{m + 1}{k} x^{k} y^{m - k + 1} + y^{m + 1} \\
+        &= \sum_{k = 0}^{m + 1} \binom{m + 1}{k} x^{k} y^{m + 1 - k}
+    \end{align*}
+    Voila! We just proved the binomial theorem using induction!
+\end{proof}
+
+\begin{example}
+    Show that if $H_{n}$ is the $n$-th Harmonic Number, where $n\geq 4$, then 
+    \[
+        1 + \frac{\floor{\log_{2} n}}{2} < H_{n}
+    \]
+\end{example}
+\begin{proof}
+    The problem looks quite complicated! So let's try proving a more simplified version of the problem first. 
+    We will show that if $n$ is an integer greater than 1 then
+    \[
+        1 + \frac{n}{2} < H_{2^{n}}
+    \]
+    This looks more simpler than the original problem because it does not contain the ugly floor function. 
+    But how do we prove this? We are going to use induction on $n$. \\
+    The base case, $n = 2$, is trivial as usual. We just have to show that 
+    \[
+        1 + \frac{k}{2} < H_{2^{k}} \implies 1 + \frac{k + 1}{2} < H_{2^{k + 1}}
+    \]
+    Notice that 
+    \[
+        H_{2^{k + 1}} = H_{2^{k}} + \frac{1}{2^{k} + 1} + \frac{1}{2^{k} + 2} + \cdots + \frac{1}{2^{k} + 2^{k}}
+    \]
+    Now since 
+    \[
+        2^{k + 1} > 2^{k + 1} - 1 > \cdots > 2^{k} + 2 > 2^{k} + 1
+    \]
+    we have 
+    \begin{align*}
+        \frac{1}{2^{k + 1}} < \frac{1}{2^{k + 1} - 1} < \cdots < \frac{1}{2^{k} + 2} < \frac{1}{2^{k} + 1}
+    \end{align*}
+    Adding the inequalities we get 
+    \begin{align*}
+        \frac{2^{k}}{2^{k + 1}} &< \frac{1}{2^{k + 1}} + \cdots + \frac{1}{2^{k} + 2} + \frac{1}{2^{k} + 1} \\
+        \implies \frac{1}{2} &< \frac{1}{2^{k + 1}} + \cdots + \frac{1}{2^{k} + 2} + \frac{1}{2^{k} + 1}
+    \end{align*}
+    Therefore 
+    \[
+        H_{2^{k}} + \frac{1}{2} < H_{2^{k+1}} \implies 1 + \frac{k + 1}{2} < H_{2^{k + 1}}
+    \]
+    And we are done! No, not really. We still have to solve the original problem. \\
+    Suppose that $\floor{\log_{2} n} = k$. Now
+    \begin{align*}
+        2^{k} \leq n & \implies H_{2^{k}} \leq H_{n} \\
+                     & \implies 1 + \frac{k}{2} \leq H_{n} \\
+                     & \implies 1 + \frac{\floor{\log_{2} n}}{2} \leq H_{n}
+    \end{align*}
+\end{proof}
+\begin{center}
+\includegraphics[scale=.35]{induction-meme-0.png}
+\end{center}
+\end{document}

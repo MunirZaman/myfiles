@@ -313,16 +313,14 @@ the points,
 \[ \left\{(1,1), (2,3), (0, -1), (5, 4), (-5, -3), (4, 4.5) \right\}\] 
 We can easily compute Lagrange polynomials in python using \texttt{sympy}.
 
-\begin{mdcode}
-\begin{minted}[mathescape, breaklines, ]{pycon}
+\begin{pycon}
 >>> import sympy
 >>> x = sympy.symbols('x')
 >>> points = [(1,1), (2,3), (0, -1), (5, 4), (-5, -3), (4, 4.5)]
 >>> expr = sympy.interpolate(points, x)
 >>> print(expr)
 0.00281746031746032*x**5 - 0.0129761904761905*x**4 - 0.111944444444445*x**3 + 0.384404761904762*x**2 + 1.73769841269841*x - 1
-\end{minted}
-\end{mdcode}
+\end{pycon}
 
 \begin{problem}
     Let $P(x)$ be a polynomial of degree $n$ such that, $P(k)=2^{k}$ for all $0\leq k \leq n$. Find $P(n+1)$.

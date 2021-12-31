@@ -75,13 +75,9 @@ $1
 endsnippet
 
 snippet #title "title page" b
-\title{\bfseries\textsf{\textcolor{purple}{$1}}}
-\author{\textsf{Munir Uz Zaman}}
-\date{\textsf{Date: \today}}
-endsnippet
-
-snippet \usepack "use package" iA
-\usepackage{$1}
+\title{$1}
+\author{Munir Uz Zaman}
+\date{Date: \today}
 endsnippet
 
 
@@ -184,61 +180,61 @@ snippet NN "Natural Numbers" iA
 endsnippet
 
 
-snippet @@def "definition" bA
+snippet @def "definition" bA
 \begin{definition}
     $1
 \end{definition}
 endsnippet
 
-snippet @@thm "theorem" bA
+snippet @thm "theorem" bA
 \begin{theorem}
     $1
 \end{theorem}
 endsnippet
 
-snippet @@exa "example" bA
+snippet @exa "example" bA
 \begin{example}
     $1
 \end{example}
 endsnippet
 
-snippet @@coro "corollary" bA
+snippet @coro "corollary" bA
 \begin{corollary}
     $1
 \end{corollary}
 endsnippet
 
-snippet @@prf "proof" bA
+snippet @prf "proof" bA
 \begin{proof}
     $1
 \end{proof}
 endsnippet
 
-snippet @@sol "solution" bA
+snippet @sol "solution" bA
 \begin{sol}
     $1
 \end{sol}
 endsnippet
 
-snippet @@prob "problem" bA
+snippet @prob "problem" bA
 \begin{problem}
 	$1
 \end{problem}
 endsnippet
 
-snippet @@lem "lemma" bA
+snippet @lem "lemma" bA
 \begin{lemma}
 	$1
 \end{lemma}
 endsnippet
 
-snippet @@fig "figure" bA
+snippet @fig "figure" bA
 \begin{figure}[H]
 $1
 \end{figure}
 endsnippet
 
-snippet @@sfig "subfigures" bA
+snippet @sfig "subfigures" bA
 \begin{subfigure}[t]{$1\textwidth}
 \centering
 $2
@@ -246,11 +242,11 @@ $2
 \end{subfigure}
 endsnippet
 
-snippet @@inpic "inlcude graphics" bA
+snippet @inpic "inlcude graphics" bA
 \includegraphics[scale=$2]{$1}
 endsnippet
 
-snippet @@pycon "python console" bA
+snippet @pycon "python console" bA
 \begin{mdcode}
 \begin{minted}[mathescape, breaklines, ]{pycon}
 $1
@@ -258,7 +254,7 @@ $1
 \end{mdcode}
 endsnippet
 
-snippet @@pypy "pytho code block" bA
+snippet @pypy "pytho code block" bA
 \begin{mdcode}
 \begin{minted}[mathescape, breaklines, linenos]{python}
 $1
@@ -266,9 +262,20 @@ $1
 \end{mdcode}
 endsnippet
 
-snippet @@pyin "input python code" bA
+snippet @pyin "input python code" bA
+\begin{mdcode}
 \inputminted[mathescape, breaklines, linenos]{python}{$1}
+\end{mdcode}
 endsnippet
+
+snippet @cpp "cpp code block" bA
+\begin{mdcode}
+\begin{minted}{mathescape, breaklines, linenos}{python}
+$1
+\end{minted}
+\end{mdcode}
+endsnippet
+
 
 # tikz snippets
 context "env('tikzpicture')"

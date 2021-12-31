@@ -250,19 +250,21 @@
 \declaretheorem[style=Capribox,name=Tricks{\&}Techniques,numberwithin=section]{trick}
 \declaretheorem[style=Capribox,name=Tricks{\&}Techniques,numbered=no]{trick*}
 
-% code
+% code blocks
 \newif\ifcode\codefalse
 \DeclareOption{code}{\codetrue}
 
+% page setup
 \newif\ifpage\pagefalse
 \DeclareOption{page}{\pagetrue}
 
+% page header
 \newif\ifhead\headfalse
 \DeclareOption{head}{\headtrue}
 
-%% include Date in head
+%% include Date in header
 \newif\ifheaddate\headdatefalse
-\DeclareOption{headdate}{\headdatetrue}
+\DeclareOption{date}{\headdatetrue}
 
 %% use sans-serif fonts
 \newif\ifsf\sffalse
@@ -310,6 +312,9 @@
     {\end{mdframed}}
 
     \newcommand{\codefontsize}{\footnotesize}
+    
+    %\newcommand{\codetexdelimiters}{||}
+    %escapeinside=\codetexdelimiters
 
     %python, pycon, ipython, cpp, julia, julia-repl
 
@@ -317,37 +322,67 @@
 	\newenvironment{python}%
 	 {\VerbatimEnvironment
 	 \begin{mdcode}
-	 \begin{minted}[mathescape, breaklines, linenos, fontsize=\codefontsize]{python}}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments,
+	 breaklines,
+	 linenos,
+	 frame=leftline,
+	 fontsize=\codefontsize]{python}}
 	 {\end{minted}\end{mdcode}}
 
 	\newenvironment{pycon}%
 	 {\VerbatimEnvironment
 	 \begin{mdconsole}
-	 \begin{minted}[mathescape, breaklines, fontsize=\codefontsize]{pycon}}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments,
+	 breaklines,
+	 fontsize=\codefontsize]{pycon}}
 	 {\end{minted}\end{mdconsole}}
 
 	\newenvironment{ipython}%
 	 {\VerbatimEnvironment
 	 \begin{mdconsole}
-	 \begin{minted}[mathescape, breaklines, fontsize=\codefontsize]{ipython}}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments,
+	 breaklines,
+	 fontsize=\codefontsize]{ipython}}
 	 {\end{minted}\end{mdconsole}}
 
 	\newenvironment{cpp}%
 	 {\VerbatimEnvironment
 	 \begin{mdcode}
-	 \begin{minted}[mathescape, breaklines, linenos, fontsize=\codefontsize]{cpp}}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments, 
+	 breaklines, 
+	 linenos,
+	 frame=leftline,
+	 fontsize=\codefontsize]{cpp}}
 	 {\end{minted}\end{mdcode}}
 
 	\newenvironment{julia}%
 	 {\VerbatimEnvironment
 	 \begin{mdcode}
-	 \begin{minted}[mathescape, breaklines, linenos, fontsize=\codefontsize]{julia}}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments,
+	 breaklines,
+	 linenos,
+	 frame=leftline,
+	 fontsize=\codefontsize]{julia}}
 	 {\end{minted}\end{mdcode}}
 
 	\newenvironment{julia-repl}%
 	 {\VerbatimEnvironment
 	 \begin{mdconsole}
-	 \begin{minted}[mathescape, breaklines, fontsize=\codefontsize]{julia-repl}}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments,
+	 breaklines,
+	 fontsize=\codefontsize]{julia-repl}}
 	 {\end{minted}\end{mdconsole}}
 \fi
 
