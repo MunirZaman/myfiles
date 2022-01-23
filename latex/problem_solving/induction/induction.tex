@@ -275,7 +275,7 @@ Prove using induction that if $r$ is a real number not equal to 1 then for all $
 \end{sol}
 
 \begin{example}
-    If $n$ is a non-negative integer and $x, y$ are two real numbers then 
+    If $n$ is a positive integer and $x, y$ are two real numbers then 
     \[
         (x + y)^{n} = \sum_{k=0}^{n} \binom{n}{k} x^{k}y^{n-k}
     \]
@@ -458,4 +458,15 @@ Prove using induction that if $r$ is a real number not equal to 1 then for all $
     \end{align*}
     Therefore the formula works for all integers $n \geq 0$.
 \end{proof}
+
+\begin{theorem}[Cauchy Induction]
+    If $\mathcal{P}(n)$ is some predicate and if 
+    \begin{itemize}
+        \ii $\mathcal{P}(2)$ is true,
+        \ii $\mathcal{P}(k) \implies \mathcal{P}(2k)$ and 
+        \ii $\mathcal{P}(k) \implies \mathcal{P}(k-1)$
+    \end{itemize}
+    then $\mathcal{P}(n)$ is true for all $n\geq 2$.
+\end{theorem}
+
 \end{document}

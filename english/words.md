@@ -1,6 +1,8 @@
 ---
-geometry: margin=2cm
-output: pdf_document
+documentclass: scrartcl
+title: Words
+author: Munir Uz Zaman
+munir: sf, page
 ---
 
 # 22 September 2021
