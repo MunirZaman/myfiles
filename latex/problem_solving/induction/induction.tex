@@ -3,6 +3,9 @@
 \usepackage[page, head, date]{munir}
 \usepackage{mathtools}
 \usepackage{microtype}
+\usepackage{epigraph}
+
+\setlength{\epigraphwidth}{7cm}
 
 \title{Mathematical Induction}
 \author{Munir Uz Zaman}
@@ -51,17 +54,11 @@ For example, ``$a = b \iff a + c = b + c$'' and ``two sets are equal if and only
 examples of axioms.
 
 \section{The Induction Principle}
-
-\begin{center}
-{\itshape
+\epigraph{
 Mathematical induction proves that we can climb as high
 as we like on a ladder, by proving that we can climb onto
 the bottom rung (the basis) and that from each rung we
-can climb up to the next one (the step).}
-\end{center}
-\begin{flushright}
-\textsf{- Concrete Mathematics}
-\end{flushright}
+can climb up to the next one (the step).}{Concrete Mathematics}
 
 The \vocab{induction principle} claims that if $\mathcal{P}(n)$ is some predicate and if
 \begin{itemize}

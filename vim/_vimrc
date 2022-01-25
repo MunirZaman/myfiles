@@ -88,6 +88,10 @@ Plug 'hura/vim-asymptote'
 
 Plug 'xavierd/clang_complete'
 
+Plug 'pineapplegiant/spaceduck' 
+
+Plug 'sheerun/vim-polyglot'
+
 call plug#end() 
 
 let g:clang_library_path='C:/Program Files/LLVM/bin'
@@ -95,12 +99,16 @@ let g:clang_library_path='C:/Program Files/LLVM/bin'
 let g:python_indent = '    '
 let g:python_style = 'numpy'
 
-colorscheme gruvbox
+colorscheme spaceduck 
 "colorscheme monokai
 " colorscheme onedark
 " colorscheme gruvbox
 " set back-ground color"
-highlight Normal guibg=#062439
+" highlight Normal guibg=#062439
+
+let g:lightline = {
+     \ 'colorscheme': 'spaceduck',
+     \ }
 
 set nocp
 " OmniCppComplete
