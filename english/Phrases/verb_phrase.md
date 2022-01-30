@@ -1,40 +1,39 @@
 ---
-geometry: margin=2cm
-header-includes:
-  - \usepackage{tcolorbox}
-output:
-  pdf_document:
-    keep_tex: true
+documentclass: scrartcl
+title: Verb Phrases
+author: Munir Uz Zaman
+munir: page, head, date, sf
 ---
 
-# Verb Phrases
-
 A Verb Phrase is a phrase headed by a verb. Most verb phrases consist of a verb and its complement. \
-\hrule
+
 **Complement:** *A complement is whatever is required by a particular verb to make a complete sentence.* \
-\hrule
+
 For example: 
 
 * She saw *the accident*
 
 In the above example sentence *the accident* is the complement of the verb *saw*. If we delete the complement *the accident* 
 we either get a totally ungrammatical sentence or a new, unrelated sentence that does not mean the same thing as the original.
-    
+
 * She saw
 
 In traditional grammar there are two types of verb: *action verbs* and *linking verbs*.
 
 1. Action Verbs
-    * He **went** to the market
-    * He **has** a car 
-    * Jane **wrote** a novel
+   
+   * He **went** to the market
+   * He **has** a car 
+   * Jane **wrote** a novel
 
 2. Linking Verbs
-    * He **looks** happy
-    * The food **looks** delicious
-    * The novel **became** a bestseller
+   
+   * He **looks** happy
+   * The food **looks** delicious
+   * The novel **became** a bestseller
 
 # Linking Verbs
+
 A Linking verb links the complement back to the subject. That is, the complement of the linking verb describes or refers back to 
 the subject. For example:
 
@@ -70,19 +69,21 @@ An action verb is a verb that is not a linking verb. Action verbs that have comp
 verbs that do not have complements are called *Intransitive Verbs*. For example:
 
 1. Transitive Verbs:
-    * Simon **met** *a pie-man*.
-    * Simon **bought** *a pie*.
+   
+   * Simon **met** *a pie-man*.
+   * Simon **bought** *a pie*.
 
 2. Intransitive Verbs:
-    * She **snores**.
-    * They **laughed** at her.
+   
+   * She **snores**.
+   * They **laughed** at her.
 
 Notice in the sentence *They laughed at her*, the verb *laugh* is an intransitive verb because *at her* is not a complement of 
 *laugh*. *at her* is a *prepositional phrase*(*preposition* + *noun phrase*). \
-\hrule
+
 **Object:** *By far the most frequent complement of a transitive verb is a noun phrase. The noun phrase complement of 
 an action verb is called an object.* \
-\hrule
+
 For example:
 
 * Simon really **liked** *the pie*. (*the pie* is the object of the verb **liked**)
@@ -92,4 +93,3 @@ When there are two objects, the indirect object always occurs before the direct 
 
 * Sally gave *the boss* **(IO)** *her report* **(DO)**
 * Tom got *the kids* **(IO)** *some pizza* **(DO)**.
-

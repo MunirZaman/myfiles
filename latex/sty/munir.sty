@@ -295,101 +295,95 @@
       #1
     }
 
+    \definecolor{codebg}{RGB}{245, 247, 250}
+    \def\codebg{codebg} % mdframed background color
+
+    \def\codelinecolor{Gray} % mdframed line color
+
+    \def\coderound{5pt} % mdframed rounded corners
+
+    \def\codeframe{leftline} % minted frame line
+
+    \def\codelinenos{true} % minted show line no
+
+    \def\codelmargin{30pt} % mdcode innerleftmargin
+
+    \def\consolelmargin{2.5pt} % mdconsole innerleftmargin
+
+    \def\codefontsize{\footnotesize} % code font size
+
+    % define new language
+    \def\defcodelang#1{
+	\newenvironment{#1}%
+	 {\VerbatimEnvironment
+	 \begin{mdcode}
+	 \begin{minted}%
+	 [mathescape,
+     texcomments,
+     breaklines,
+     linenos=\codelinenos,
+     frame=\codeframe,
+	 fontsize=\codefontsize]{#1}}
+	 {\end{minted}\end{mdcode}}
+    }
+
+    % define new console language
+    \def\defconsolelang#1{
+	\newenvironment{#1}%
+	 {\VerbatimEnvironment
+	 \begin{mdconsole}
+	 \begin{minted}%
+	 [mathescape,
+	 texcomments,
+	 breaklines,
+	 fontsize=\codefontsize]{#1}}
+	 {\end{minted}\end{mdconsole}}
+    }
+
     % mdcode blocks
     \newenvironment{mdcode}[1][]%
     {\begin{mdframed}%
-    [linecolor=Gray,
-    backgroundcolor=Black!5,
+    [linecolor=\codelinecolor,
+    linewidth=0pt,
+    backgroundcolor=\codebg,
     skipabove=10pt,skipbelow=10pt,
-    roundcorner=0pt,
+    roundcorner=\coderound,
     splitbottomskip=6pt,splittopskip=12pt,
-    innerleftmargin=30pt, innerrightmargin=30pt,#1]}%
+    innerleftmargin=\codelmargin, innerrightmargin=30pt,#1]}%
     {\end{mdframed}}
 
     % mdconsole blocks
     \newenvironment{mdconsole}[1][]%
     {\begin{mdframed}%
-    [linecolor=Gray,
-    backgroundcolor=Black!5,
+    [linecolor=\codelinecolor,
+    linewidth=0pt,
+    backgroundcolor=\codebg,
     skipabove=10pt,skipbelow=10pt,
-    roundcorner=0pt,
+    roundcorner=\coderound,
     splitbottomskip=6pt,splittopskip=12pt,
-    innerleftmargin=2.5pt, innerrightmargin=30pt,#1]}%
+    innerleftmargin=\consolelmargin, innerrightmargin=30pt,#1]}%
     {\end{mdframed}}
 
-    \newcommand{\codefontsize}{\footnotesize}
-    
     %\newcommand{\codetexdelimiters}{||}
     %escapeinside=\codetexdelimiters
 
     %python, pycon, ipython, cpp, julia, julia-repl
 
 	%code environments
-	\newenvironment{python}%
-	 {\VerbatimEnvironment
-	 \begin{mdcode}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments,
-	 breaklines,
-	 linenos,
-	 frame=leftline,
-	 fontsize=\codefontsize]{python}}
-	 {\end{minted}\end{mdcode}}
+	\defcodelang{python}
+	\defcodelang{cpp}
+	\defcodelang{julia}
 
-	\newenvironment{pycon}%
-	 {\VerbatimEnvironment
-	 \begin{mdconsole}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments,
-	 breaklines,
-	 fontsize=\codefontsize]{pycon}}
-	 {\end{minted}\end{mdconsole}}
+	\defconsolelang{pycon}
+	\defconsolelang{ipython}
+	\defconsolelang{julia-repl}
 
-	\newenvironment{ipython}%
-	 {\VerbatimEnvironment
-	 \begin{mdconsole}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments,
-	 breaklines,
-	 fontsize=\codefontsize]{ipython}}
-	 {\end{minted}\end{mdconsole}}
+	\def\usesimplecodestyle{
+		\def\codeframe{none}
+		\def\codelinenos{false}
+		\def\codelmargin{10pt}
+	}
 
-	\newenvironment{cpp}%
-	 {\VerbatimEnvironment
-	 \begin{mdcode}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments, 
-	 breaklines, 
-	 linenos,
-	 frame=leftline,
-	 fontsize=\codefontsize]{cpp}}
-	 {\end{minted}\end{mdcode}}
-
-	\newenvironment{julia}%
-	 {\VerbatimEnvironment
-	 \begin{mdcode}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments,
-	 breaklines,
-	 linenos,
-	 frame=leftline,
-	 fontsize=\codefontsize]{julia}}
-	 {\end{minted}\end{mdcode}}
-
-	\newenvironment{julia-repl}%
-	 {\VerbatimEnvironment
-	 \begin{mdconsole}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments,
-	 breaklines,
-	 fontsize=\codefontsize]{julia-repl}}
-	 {\end{minted}\end{mdconsole}}
 \fi
 
 
