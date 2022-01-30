@@ -13,15 +13,14 @@ set ruler
 set smartindent
 set cursorline
 set cursorcolumn
-
 set t_Co=256
-
 set splitright
 set termwinsize=5x0
 
 " SHOW AUTOCOMPLETE
 inoremap <C-Space> <C-x><C-k>
 
+" FONT
 set guifont=Fira\ Code:h12
 set encoding=utf-8
 set renderoptions=type:directx
@@ -92,9 +91,11 @@ Plug 'pineapplegiant/spaceduck'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'dracula/vim'
+
 call plug#end() 
 
-let g:clang_library_path='C:/Program Files/LLVM/bin'
+"let g:clang_library_path='C:/Program Files/LLVM/bin'
 
 let g:python_indent = '    '
 let g:python_style = 'numpy'
@@ -148,8 +149,9 @@ noremap <k2>  :tabn<Enter>
 noremap <k1>  :tabp<Enter>
 noremap <k0>  :q!<Enter>
 
-"nnoremap <C-n> :NERDTreeToggle<CR>
-"inoremap <C-n> <Esc>:NERDTreeToggle<CR>
+nnoremap <;;> :NERDTreeToggle<CR>
+inoremap <;;> <Esc>:NERDTreeToggle<CR>
+let NERDTreeWinPos='right'
 
 inoremap <C-c> <Esc>"+y<Esc>li
 inoremap <C-w> <Esc>:set wrap!<Enter>li
@@ -159,14 +161,13 @@ noremap <C-c> "+y
 noremap <C-w> :set wrap!<Enter>
 noremap <k3> :below term<Enter>
 
-nnoremap <k5> :below term<Enter>ipython<Enter>
-inoremap <k5> <Esc>:below term<Enter>ipython<Enter>
+"nnoremap <k5> :below term<Enter>ipython<Enter>
+"inoremap <k5> <Esc>:below term<Enter>ipython<Enter>
 "Opens ipython"
 
 vmap <Tab> >
 vmap <S-Tab> <
 " visual tabbing/indenting
-let NERDTreeWinPos='right'
 
 nmap ;lc :!del *.aux *.log *.gz<Enter>
 nmap ;lb :!pdflatex -interaction=batchmode -shell-escape %<Enter>
