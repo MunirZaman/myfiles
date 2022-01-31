@@ -295,56 +295,69 @@
       #1
     }
 
+    \usemintedstyle{rainbow_dash}
+
     \definecolor{codebg}{RGB}{245, 247, 250}
-    \def\codebg{codebg} % mdframed background color
 
-    \def\codelinecolor{Gray} % mdframed line color
-
-    \def\coderound{5pt} % mdframed rounded corners
-
-    \def\codeframe{leftline} % minted frame line
-
-    \def\codelinenos{true} % minted show line no
-
+    \def\codebg{codebg} % mdcode background color
+    \def\codelinecolor{Gray} % mdcode line color
+    \def\codelinewidth{0pt} % mdcode line width
+    \def\coderound{2pt} % mdcode rounded corners
     \def\codelmargin{30pt} % mdcode innerleftmargin
 
-    \def\consolelmargin{2.5pt} % mdconsole innerleftmargin
+	\def\codeframe{none} % minted frame line
+    \def\codelinenos{true} % minted show line no
+    \def\codefontsize{\footnotesize} % minted code font size
 
-    \def\codefontsize{\footnotesize} % code font size
+    \def\consolebg{codebg} % mdconsole background color
+    \def\consolelinecolor{Gray} % mdconsole line color
+    \def\consolelinewidth{0pt} % mdconsole line width
+    \def\consoleround{2pt} % mdconsole rounded corners
+    \def\consolelmargin{2.5pt} % mdconsole innerleftmargin
+	
+	\def\consoleframe{none} % minted frame line
+    \def\consolelinenos{false} % minted show line no
+    \def\consolefontsize{\footnotesize} % minted code font size
 
     % define new language
-    \def\defcodelang#1{
-	\newenvironment{#1}%
+    \def\defcodelang#1#2{
+    \newenvironment{#1}%
 	 {\VerbatimEnvironment
 	 \begin{mdcode}
-	 \begin{minted}%
-	 [mathescape,
-     texcomments,
-     breaklines,
-     linenos=\codelinenos,
-     frame=\codeframe,
-	 fontsize=\codefontsize]{#1}}
-	 {\end{minted}\end{mdcode}}
-    }
+	 \begin{minted}[#2]{#1}}
+	 {\end{minted}
+	 \end{mdcode}}
+
+    \newenvironment{#1*}[1]%
+	 {\VerbatimEnvironment
+	 \begin{mdcode}
+	 \begin{minted}[#2,##1]{#1}}
+	 {\end{minted}
+	 \end{mdcode}}
+	}
 
     % define new console language
-    \def\defconsolelang#1{
+    \def\defconsolelang#1#2{
 	\newenvironment{#1}%
 	 {\VerbatimEnvironment
 	 \begin{mdconsole}
-	 \begin{minted}%
-	 [mathescape,
-	 texcomments,
-	 breaklines,
-	 fontsize=\codefontsize]{#1}}
-	 {\end{minted}\end{mdconsole}}
+	 \begin{minted}[#2]{#1}}
+	 {\end{minted}
+	 \end{mdconsole}}
+
+	\newenvironment{#1*}[1]%
+	 {\VerbatimEnvironment
+	 \begin{mdconsole}
+	 \begin{minted}[#2,##1]{#1}}
+	 {\end{minted}
+	 \end{mdconsole}}
     }
 
     % mdcode blocks
     \newenvironment{mdcode}[1][]%
     {\begin{mdframed}%
     [linecolor=\codelinecolor,
-    linewidth=0pt,
+    linewidth=\codelinewidth,
     backgroundcolor=\codebg,
     skipabove=10pt,skipbelow=10pt,
     roundcorner=\coderound,
@@ -355,11 +368,11 @@
     % mdconsole blocks
     \newenvironment{mdconsole}[1][]%
     {\begin{mdframed}%
-    [linecolor=\codelinecolor,
-    linewidth=0pt,
-    backgroundcolor=\codebg,
+    [linecolor=\consolelinecolor,
+    linewidth=\consolelinewidth,
+    backgroundcolor=\consolebg,
     skipabove=10pt,skipbelow=10pt,
-    roundcorner=\coderound,
+    roundcorner=\consoleround,
     splitbottomskip=6pt,splittopskip=12pt,
     innerleftmargin=\consolelmargin, innerrightmargin=30pt,#1]}%
     {\end{mdframed}}
@@ -370,13 +383,53 @@
     %python, pycon, ipython, cpp, julia, julia-repl
 
 	%code environments
-	\defcodelang{python}
-	\defcodelang{cpp}
-	\defcodelang{julia}
+	\defcodelang{python}%
+	{mathescape,
+	texcomments,
+	breaklines,
+	linenos=\codelinenos,
+	frame=\codeframe,
+	fontsize=\codefontsize}
 
-	\defconsolelang{pycon}
-	\defconsolelang{ipython}
-	\defconsolelang{julia-repl}
+	\defcodelang{cpp}%
+	{mathescape,
+	texcomments,
+	breaklines,
+	linenos=\codelinenos,
+	frame=\codeframe,
+	fontsize=\codefontsize}
+
+	\defcodelang{julia}%
+	{mathescape,
+	texcomments,
+	breaklines,
+	linenos=\codelinenos,
+	frame=\codeframe,
+	fontsize=\codefontsize}
+
+	\defconsolelang{pycon}%
+	{mathescape,
+    texcomments,
+    breaklines,
+    linenos=\consolelinenos,
+    frame=\consoleframe,
+    fontsize=\consolefontsize}
+
+	\defconsolelang{ipython}%
+	{mathescape,
+    texcomments,
+    breaklines,
+    linenos=\consolelinenos,
+    frame=\consoleframe,
+    fontsize=\consolefontsize}
+
+	\defconsolelang{julia-repl}%
+	{mathescape,
+    texcomments,
+    breaklines,
+    linenos=\consolelinenos,
+    frame=\consoleframe,
+    fontsize=\consolefontsize}
 
 	\def\usesimplecodestyle{
 		\def\codeframe{none}
