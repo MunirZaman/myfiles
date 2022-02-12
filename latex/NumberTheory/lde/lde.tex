@@ -1,0 +1,70 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage{munir}
+
+\title{Linear Diophantine Equations}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\begin{document}
+\maketitle
+
+\section{Bezout's Identity}
+
+\begin{theorem}[Bezout's Identity]
+    If $a,b$ are non-zero integers and $d = \gcd(a, b)$ then there exists $x, y \in \mathbb{Z}$ such that 
+    \[
+        ax + by = d
+    \]
+\end{theorem}
+\begin{proof}
+    We will show that $d$ is the smallest integer in the set 
+    \[
+        S = \left\{ax + by > 0 \text{ and } x, y \in \mathbb{Z}\right\}
+    \]
+    By the well ordering principle, the set has a minimum element. Let $d$ be the minimum element of $S$. 
+    We will first show that $d$ is a common divisor of $a$ and $b$. \\
+    Suppose $a = qd + r$ where $0 \leq r < d$. Now 
+    \begin{align*}
+        a = qd + r \implies a = q(ax + by) + r \implies r = (1 - qx)a + (-qb)y
+    \end{align*}
+    If $r > 0$ then $r$ must be an element of $S$. But that contradicts our assumption that $d$ is the minimal element 
+    of $S$ since $r < d$. Therefore $r = 0 \implies d \mid a$. Likewise we can show that $d \mid b$. \\
+    Therefore $d$ is a common divisor of $a,b$. Now we need to show that $d$ is the largest common divisor of $d$. 
+    Suppose $g$ is a common divisor of $a,b$ and $a = gm$ and $b = gn$. Now 
+    \begin{align*}
+        ax+ by = d \implies g(mx + ny) = d \implies g \mid d \implies g \leq d
+    \end{align*}
+    Thus $d$ is the largest common divisor of $a$ and $b$.
+\end{proof}
+
+\begin{corollary}
+    If $a,b$ are coprime integers then there exists integers $x, y$ such that 
+    \[
+        ax + by = 1
+    \]
+\end{corollary}
+
+\begin{theorem}[Euclid's Lemma]
+    If $a \mid bc$ and $\gcd(a, b) = 1$ then $a \mid c$.
+\end{theorem}
+\begin{proof}
+    Suppose $bc = ak$ where $k \in \mathbb{Z}$. 
+    Since $\gcd(a, b) = 1$, there exists integers $x, y$ such that 
+    \begin{align*}
+        ax + by = 1 &\implies (ac)x + (bc)y = c \\
+                    &\implies (ac)x + (ak)y = c \\
+                    &\implies a(cx + ky) = c \\
+                    &\implies a \mid c
+    \end{align*}
+\end{proof}
+
+\begin{theorem}[General Bezout's Identity]
+    If $a_{1}, a_{2}, \cdots, a_{n}$ are non-zero integers then there exists integers 
+    $x_{1}, x_{2}, \cdots, x_{n}$ such that 
+    \[
+        a_{1}x_{1} + \cdots + a_{n}x_{n} = \gcd(a_{1}, \cdots, a_{n})
+    \]
+\end{theorem}
+
+\end{document}

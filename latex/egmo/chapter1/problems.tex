@@ -1,0 +1,175 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[page, head, date]{munir}
+
+\usepackage{asymptote}
+\begin{asydef}
+import olympiad;
+import cse50;
+
+size(8cm);
+\end{asydef}
+\def\asydir{asy}
+
+\title{EGMO:Chpater 1}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\begin{document}
+\maketitle
+
+\begin{problem}[Lemma 1.44 Three Tangents]
+    Let $ABC$ be an acute angled triangle. Let $BE$ and $CF$ be the altitudes of 
+    $\triangle ABC$ and let $M$ be the midpoint of $BC$. Prove that $ME$, $MF$ and 
+    the line through $A$ parallel to $BC$ are all tangents to the circle $AEF$.
+\end{problem}
+
+\begin{center}    
+\begin{asy}
+pair A, B, C;
+A = (3, 5);
+B = (0, 0);
+C = (6, 0);
+
+pair M = (B + C)/2;
+pair E, F;
+E = foot(B, A, C);
+F = foot(C, A, B);
+
+D(rightanglemark(B, E, C));
+D(rightanglemark(C, F, B));
+
+D(A--B--C--cycle);
+
+D(B -- E);
+D(C -- F);
+D(E -- F);
+D(M -- E);
+D(M -- F);
+
+pair H = orthocenter(A, B, C);
+D(H -- A);
+
+pair X, Y;
+X = A + (B - C)/2;
+Y = A + (C - B)/2;
+D(X -- Y, Arrows());
+
+D(circumcircle(B, E, C), dashed+red);
+D(circumcircle(A, E, F), opacity(.5));
+
+dot("$A$", A, align=N);
+dot("$B$", B, align=SW);
+dot("$C$", C, align=SE);
+dot("$M$", M, align=S);
+dot("$E$", E, align=NE);
+dot("$F$", F, align=NW);
+dot("$X$", X, align=S);
+dot("$Y$", Y, align=S);
+dot("$\ell$", X + 3*(Y - X)/4, align=N);
+
+\end{asy}
+\end{center}
+
+\begin{proof}
+    Since $\triangle BEC$ is a right triangle and $M$ is the midpoint of the hypotenuse $BC$, we have $MB = ME = MC$. 
+    Likewise $MB = MF = MC$. Therefore 
+    \[
+        MB = ME = MF = MC
+    \]
+    Hence $B, E, F, C$ are all lying on the same circle with center $M$. If we can show that $\angle FAE = \angle FEM$ then 
+    it'll be shown that $EM$ is tangent to circle $AFE$. 
+    \begin{align*}
+        \angle FEM = \angle FEB + \angle MEB 
+    \end{align*}
+    Now since $ME = MB$, 
+    \begin{align*}
+                 & \angle FEM = \angle FEB + \angle MEB \\
+        \implies & \angle FEM = \angle FEB + \angle MBE 
+    \end{align*}
+    Since $CBEF$ is cyclic, $\angle FEB =  \angle BCF$.
+    \begin{align*}
+                 & \angle FEM = \angle FEB + \angle MBE \\
+        \implies & \angle FEM = \angle BCF + \angle MBE \\
+        \implies & \angle FEM = 180\dg - \angle BHC \\
+        \implies & \angle FEM = 180\dg - \angle FHE \\ 
+        \implies & \angle FEM = \angle FAE
+    \end{align*}
+    Therefore $EM$ is tangent to circle $AFE$. Likewise $FM$ is also tangent to $AFE$. Now we need to show 
+    that $\ell$ is tangent to circle $AFE$. It suffices to show that $\angle XAB = \angle AEF$. \\
+    \begin{align*}
+                 & \angle AEF = \angle EFC + \angle ECF \\
+        \implies & \angle AEF = 180\dg - \angle FEC \\
+        \implies & \angle AEF = \angle CBF \\
+        \implies & \angle AEF = \angle XAB
+    \end{align*}
+\end{proof}
+
+\begin{problem}[Simson line]
+    Let $ABC$ be a triangle and let $P$ be any point on the circumcircle of $\triangle ABC$. 
+    Let $X, Y, Z$ be the feet of the perpendiculars from $P$ onto lines $BC, CA, AB$. 
+    Prove that $X, Y, Z$ are collinear.
+\end{problem}
+\begin{center}
+\begin{asy}
+pair A, B, C;
+real r = 2;
+
+A = r*dir(100);
+B = r*dir(180 + 30);
+C = r*dir(-20);
+pair P = r*dir(70);
+
+D(A -- B -- C -- cycle);
+D(circumcircle(A, B, C));
+
+pair X, Y, Z;
+X = foot(P, B, C);
+Y = foot(P, C, A);
+Z = foot(P, A, B);
+
+D(P -- X);
+D(P -- Y);
+D(P -- Z);
+D(P -- A);
+D(P -- C);
+D(A -- Z);
+D(X -- Y -- Z, dashed+gray);
+
+D(rightanglemark(P, X, C, s = 4));
+D(rightanglemark(P, Y, C, s = 4));
+D(rightanglemark(P, Z, A, s = 4));
+
+D(circumcircle(P, X, Y), dashed+red);
+D(circumcircle(P, Y, Z), dashed+red);
+
+dot("$A$", A, align=NW);
+dot("$B$", B, align=SW);
+dot("$C$", C, align=SE);
+dot("$P$", P, align=NE);
+
+dot("$X$", X, align=S);
+dot("$Y$", Y, align=SW);
+dot("$Z$", Z, align=NW);
+
+\end{asy}
+\end{center}
+
+\begin{proof}
+    It suffices to show that $\angle XYC = \angle AYZ$. Since $XYPC$ is cyclic, $\angle XYC = \angle XPC$. 
+    \begin{align*}
+        \angle XYC = \angle XPC = 90\dg - \angle PCX
+    \end{align*}
+    Since $ABCP$ is cyclic, $\angle PCX = 180\dg - \angle PAB$. Therefore 
+    \begin{align*}
+        \angle XYC & = 90\dg - \angle PCX \\
+                   & = \angle PAB - 90\dg \\
+                   & = \angle ZPA
+    \end{align*}
+    Since $AZPY$ is cyclic, $\angle ZPA = \angle AYZ$. Hence 
+    \begin{align*}
+        \angle XYZ = \angle AYZ
+    \end{align*}
+\end{proof}
+
+\end{document}
