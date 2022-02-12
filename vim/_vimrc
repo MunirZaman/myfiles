@@ -149,8 +149,8 @@ noremap <k2>  :tabn<Enter>
 noremap <k1>  :tabp<Enter>
 noremap <k0>  :q!<Enter>
 
-nnoremap <;;> :NERDTreeToggle<CR>
-inoremap <;;> <Esc>:NERDTreeToggle<CR>
+nnoremap <kPlus> :NERDTreeToggle<CR>
+inoremap <kPlus> <Esc>:NERDTreeToggle<CR>
 let NERDTreeWinPos='right'
 
 inoremap <C-c> <Esc>"+y<Esc>li

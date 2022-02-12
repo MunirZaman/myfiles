@@ -276,7 +276,28 @@
 \newif\ifsf\sffalse
 \DeclareOption{sf}{\sftrue}
 
+%% use asymptote
+\newif\ifasy\asyfalse
+\DeclareOption{asy}{\asytrue}
+
 \ProcessOptions\relax
+
+\ifasy
+	\usepackage{asymptote}
+	\begin{asydef}
+	usepackage("amsmath");
+	usepackage("amssymb");
+	settings.tex="pdflatex";
+	settings.outformat="pdf";
+
+	import cse50;
+	import geometry;
+
+	size(8cm); // set a reasonable default
+	\end{asydef}
+	\def\asydir{asy}
+\fi
+
 
 \ifcode
     \usepackage{minted}
