@@ -8,48 +8,53 @@ settings.embed=true;
 settings.toolbar=false;
 viewportmargin=(2,2);
 
-import olympiad;
+usepackage("amsmath");
+usepackage("amssymb");
+settings.tex="pdflatex";
+settings.outformat="pdf";
+
 import cse50;
+import olympiad;
 
-size(8cm);
+size(8cm); // set a reasonable default
 
-pair A, B, C;
-real r = 2;
+pair A, B, C, D, O;
+A = (1, 3);
+B = (0, 0);
 
-A = r*dir(100);
-B = r*dir(180 + 30);
-C = r*dir(-20);
-pair P = r*dir(70);
+pair v = (5, 0);
+C = B + v;
+D = A + v;
 
-D(A -- B -- C -- cycle);
-D(circumcircle(A, B, C));
+real alpha = degrees(atan2(A.y, A.x));
+pair X, Y;
+real theta = 20;
+pair X1 = B + dir(theta);
+pair X2 = D + dir(-(180 - alpha + theta));
+pair O = extension(B, X1, D, X2);
 
-pair X, Y, Z;
-X = foot(P, B, C);
-Y = foot(P, C, A);
-Z = foot(P, A, B);
+D(B -- O);
+D(D -- O);
+D(A -- O);
+D(C -- O);
 
-D(P -- X);
-D(P -- Y);
-D(P -- Z);
-D(P -- A);
-D(P -- C);
-D(A -- Z);
-D(X -- Y -- Z, dashed+gray);
+pair Q = O - v; // o prime
+D(A -- Q);
+D(B -- Q);
+D(Q -- O);
+D(circumcircle(A, Q, B), red+dashed);
 
-D(rightanglemark(P, X, C, s = 4));
-D(rightanglemark(P, Y, C, s = 4));
-D(rightanglemark(P, Z, A, s = 4));
+//dot(X1);dot(X2);
+D(A -- B -- C -- D -- cycle);
 
-D(circumcircle(P, X, Y), dashed+red);
-D(circumcircle(P, Y, Z), dashed+red);
+D(anglemark(Q, O, B, t=12), red);
+D(anglemark(Q, A, B, t=12), red);
+D(anglemark(C, B, O, t=12), red);
+D(anglemark(O, D, C, t=12), red);
 
 dot("$A$", A, align=NW);
 dot("$B$", B, align=SW);
 dot("$C$", C, align=SE);
-dot("$P$", P, align=NE);
-
-dot("$X$", X, align=S);
-dot("$Y$", Y, align=SW);
-dot("$Z$", Z, align=NW);
-
+dot("$D$", D, align=NE);
+dot("$O'$", Q, align=W);
+dot("$O$", O, align=E);

@@ -8,10 +8,15 @@ settings.embed=true;
 settings.toolbar=false;
 viewportmargin=(2,2);
 
-import olympiad;
-import cse50;
+usepackage("amsmath");
+usepackage("amssymb");
+settings.tex="pdflatex";
+settings.outformat="pdf";
 
-size(8cm);
+import cse50;
+import olympiad;
+
+size(8cm); // set a reasonable default
 
 pair A, B, C;
 A = (3, 5);
@@ -53,5 +58,4 @@ dot("$E$", E, align=NE);
 dot("$F$", F, align=NW);
 dot("$X$", X, align=S);
 dot("$Y$", Y, align=S);
-dot("$\ell$", X + 3*(Y - X)/4, align=N);
-
+label("$\ell$", X + 3*(Y - X)/4, align=N);
