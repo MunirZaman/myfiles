@@ -1,0 +1,231 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[page, head, date, asy]{munir}
+
+\title{Cevians}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\begin{document}
+\maketitle
+
+\section{Cevians}
+\begin{definition*}
+    Let $\triangle ABC$ be a triangle and let $X$ be a point on $BC$. 
+    The segment $AX$ is called a \vocab{cevian} of triangle $ABC$.
+\end{definition*}
+\begin{center}
+\begin{asy}
+size(5cm);
+pair A, B, C, X;
+A = (2, 3);
+B = (0, 0);
+C = (4, 0);
+X = (B + C)*(0.65);
+
+D(A -- B -- C -- cycle);
+D(A -- X);
+dot("$A$", A, align=N);
+dot("$B$", B, align=SW);
+dot("$C$", C, align=SE);
+dot("$X$", X, align=S);
+\end{asy}
+\end{center}
+
+\begin{theorem}
+    If $ABC$ is a triangle and $X$ is a point on $BC$ then 
+    \[
+        \frac{BX}{XC} = \frac{[ABX]}{[ACX]}
+    \]
+\end{theorem}
+
+\begin{corollary}
+    \[
+        \frac{BX}{XC} = \frac{AB \times \sin \angle BAX}{AC \times \sin \angle CAX}
+    \]
+\end{corollary}
+\begin{proof}
+    Since 
+    \begin{align*}
+        & [ABX] = \frac{1}{2}AB \times AX \times \sin \angle BAX \\
+        & [ACX] = \frac{1}{2}AC \times AX \times \sin \angle CAX
+    \end{align*}
+    we have
+    \begin{align*}
+        \frac{BX}{XC} = \frac{[ABX]}{[ACX]} = \frac{AB \times \sin \angle BAX}{AC \times \sin \angle CAX}
+    \end{align*}
+\end{proof}
+
+\begin{corollary}
+    \[
+        \frac{AB}{AC} =  \frac{\sin \angle ACB}{\sin \angle ABC}
+    \]
+\end{corollary}
+\begin{proof}
+    \begin{align*}
+        \frac{BX}{XC} = \frac{AB \times BX \times \sin \angle ABC}{AC \times XC \times \sin \angle ACB} \implies 
+        \frac{AB}{AC} =  \frac{\sin \angle ACB}{\sin \angle ABC}
+    \end{align*}
+\end{proof}
+
+\begin{corollary}[Angle Bisector Theorem]
+    If $AX$ is the angle bisector of $\angle BAC$ then 
+    \[
+        \frac{BX}{CX} = \frac{BA}{CA}
+    \]
+\end{corollary}
+
+\begin{problem}
+    $ABCD$ is a square with $AB = 1$ and $M, N$ are the midpoints of $BC$ and $CD$. 
+    $P, Q$ are the intersection of $BD, AM$ and $BD, AN$. Find the length of $PQ$. 
+    \begin{center}
+    \begin{asy}
+    size(6cm);
+    pair A, B, C, D, M, N, P, Q;
+    A = (0, 2);
+    B = (0, 0);
+    C = (2, 0);
+    D = (2, 2);
+    M = midpoint(B -- C);
+    N = midpoint(C -- D);
+    P = extension(A, M, B, D);
+    Q = extension(A, N, B, D);
+
+    D(A -- B -- C -- D -- cycle);
+    D(B -- D);
+    D(A -- M);
+    D(A -- N);
+
+    dot("$A$", A, align=NW);
+    dot("$B$", B, align=SW);
+    dot("$C$", C, align=SE);
+    dot("$D$", D, align=NE);
+    dot("$M$", M, align=S);
+    dot("$N$", N, align=E);
+    dot("$P$", P, align=E);
+    dot("$Q$", Q, align=S);
+    \end{asy}
+    \end{center}
+\end{problem}
+\begin{sol}
+    Since $AP$ is a cevian of triangle $ABD$, we have 
+    \[
+        \frac{PD}{BP} = \frac{\sin \angle PAD}{\sin \angle PAB}
+                      = \frac{\sin 90\dg - \angle PAB}{\sin \angle PAB} 
+                      = \frac{\cos \angle PAB}{\sin \angle PAB} 
+                      = \cot \angle PAB
+    \]
+    Since $\triangle ABM$ is a right triangle, we have
+    \[
+        \cot \angle PAB = \frac{AB}{BM} = 2
+    \]
+    Therefore 
+    \[
+        \frac{PD}{BP} = 2 \implies \frac{QD + PQ}{PB} = 2 \implies \frac{PQ}{PB} = 1 \implies BP = PQ = QD
+    \]
+    Hence 
+    \[
+        PQ = \frac{\sqrt{2}}{3}
+    \]
+\end{sol}
+
+\begin{problem}[All-Russian Olympiad 1995/2]
+A chord $CD$ of a circle with center $O$ is perpendicular to a diameter $AB$. 
+A chord $AE$ bisects the radius $OC$. Show that the line $DE$ bisects the chord $BC$.
+\end{problem}
+\begin{sol}
+Let $M$ be the midpoint of $OC$ and let $DE$ intersect $BC$ at $N$. 
+\begin{center}
+\begin{asy}
+real r = 2;
+pair B, A, O;
+A = (r, 0);
+B = (-r, 0);
+O = (A + B)/2;
+
+pair G = B + (A - B)*0.65;
+pair C, D;
+
+C = (r**2 - G.x**2)**(1/2) * dir(90) + G;
+D = (r**2 - G.x**2)**(1/2) * dir(-90) + G;
+
+pair N, M;
+N = (B + C)/2;
+M = (O + C)/2;
+
+pair E = extension(D, N, A, M);
+
+D(CR(O, r));
+D(A -- B -- C -- cycle);
+D(B -- E -- A);
+D(O -- C);
+D(D -- C);
+D(D -- E);
+D(D -- A);
+D(E -- C);
+
+dot("$O$", O, align = S);
+dot("$A$", A, align = SE);
+dot("$B$", B, align = SW);
+dot("$C$", C, align = NE);
+dot("$D$", D, align = SE);
+dot("$G$", G, align = SE);
+dot("$E$", E, align = NW);
+dot("$M$", M, align = SW);
+dot("$N$", N, 1.5*dir(180));
+\end{asy}
+\end{center}
+Let $\angle BAE = \alpha$ and $\angle EAC = \beta$.
+Since $OM = MC$, 
+\begin{align*}
+             & \frac{MC}{OM} = \frac{AC \times \sin \beta}{OA \times \sin \alpha} \\
+    \implies & \frac{AC \times \sin \beta}{OA \times \sin \alpha} = 1 \\
+    \implies & \left(\frac{AC}{2\times OA}\right)\times \left(\frac{\sin \beta}{\sin \alpha}\right) = \frac{1}{2} \\
+    \implies & \frac{\cos \angle BAC \times \sin \beta}{\sin \alpha} = \frac{1}{2} \\
+    \implies & \boxed{\frac{\cos (\alpha+\beta) \times \sin \beta}{\sin \alpha} = \frac{1}{2}}
+\end{align*}
+If we can somehow show that 
+\[
+    \frac{EC \times \sin NEC}{EB \times \sin NEB} = 1
+\]
+then we'll be done. Now 
+\[
+    \angle NEB = \angle DEB = \angle DAB = \angle BAC = \alpha + \beta
+\]
+Since $DACE$ is cyclic
+\[
+    \angle DEC = 180\dg - \angle DAC = 180\dg - 2(\alpha + \beta) \implies \angle NEC = 180\dg - 2(\alpha + \beta)
+\]
+Using the sine law we get
+\[
+    \frac{EB}{\sin \alpha} = \frac{EC}{\sin \beta} = 2r \implies \frac{EC}{EB} = \frac{\sin \beta}{\sin \alpha}
+\]
+Hence
+\begin{align*}
+      \frac{EC \times \sin NEC}{EB \times \sin NEB}
+    = &\left(\frac{EC}{EB}\right)\times \left(\frac{\sin (180\dg - 2\alpha - 2\beta)}{\sin (\alpha + \beta)}\right) \\
+    = &\left(\frac{\sin \beta}{\sin \alpha}\right)\times \left(\frac{\sin {2(\alpha + \beta)}}{\sin (\alpha + \beta)}\right) \\
+    = &\left(\frac{\sin \beta}{\sin \alpha}\right)\times 
+       \left(\frac{2 \sin (\alpha + \beta) \cos (\alpha + \beta)}{\sin (\alpha + \beta)}\right) \\
+    = & 2\times \left(\frac{\sin \beta \times \cos (\alpha + \beta)}{\sin \alpha}\right) = 1
+\end{align*}
+Therefore since 
+\[
+    \frac{NC}{BN} = \frac{EC \times \sin NEC}{EB \times \sin NEB} = 1 \implies NC = NB
+\]
+$N$ must be the midpoint of $BC$.
+\end{sol}
+
+\section{Stewart's Theorem}
+\begin{theorem}[Stewart's Theorem]
+    Let $\triangle ABC$ be a triangle and let $AX$ be a cevian of $\triangle ABC$. 
+    If $BC = a, AC = b, AB = c, AX = x, BX = m$ and $CX = n$ then 
+    \[
+        b^{2}m + c^{2}n = a(x^{2} + mn)
+    \]
+\end{theorem}
+\begin{proof}
+    See \url{https://en.wikipedia.org/wiki/Stewart's_theorem}
+\end{proof}
+
+\end{document}
