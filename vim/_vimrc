@@ -19,44 +19,39 @@ set termwinsize=5x0
 
 " SHOW AUTOCOMPLETE
 inoremap <C-Space> <C-x><C-k>
-
 " FONT
-set guifont=Fira\ Code:h12
+set guifont=Fira\ Code:h11
+"set guifont=Hack_NF:h11
+"set guifont=*
 set encoding=utf-8
 set renderoptions=type:directx
 
 set bs=2
-
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
 set guioptions-=T
 set guioptions-=m
 
 
 call plug#begin("~/vimfiles/plugged")
 
-Plug 'lervag/vimtex'
-
+Plug 'lervag/vimtex', {'for' : 'tex'}
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
 
 Plug 'sirver/ultisnips'
-
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
 Plug 'maralla/completor.vim'
-
 let g:completor_python_binary = 'C:/Users/Munir/AppData/Local/Programs/Python/Python39'
 
 Plug 'preservim/nerdtree'
 
 Plug '907th/vim-auto-save'
-
 let g:auto_save=1
 let g:auto_save_silent=1
 let g:auto_save_events = ["InsertLeave"]
@@ -66,11 +61,9 @@ set laststatus=2
 
 Plug 'morhetz/gruvbox'
 
-let g:gruvbox_transparent_bg=1
+Plug 'davidhalter/jedi-vim', {'for' : 'python'}
 
-Plug 'davidhalter/jedi-vim'
-
-Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax', {'for' : 'python'}
 let g:python_highlight_all = 1
 
 Plug 'joshdick/onedark.vim'
@@ -79,13 +72,9 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'sickill/vim-monokai'
 
-Plug 'pixelneo/vim-python-docstring'
-
-Plug 'vim-scripts/OmniCppComplete'
+Plug 'pixelneo/vim-python-docstring', {'for' : 'python'}
 
 Plug 'hura/vim-asymptote'
-
-Plug 'xavierd/clang_complete'
 
 Plug 'pineapplegiant/spaceduck' 
 
@@ -94,8 +83,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim'
 
 call plug#end() 
-
-"let g:clang_library_path='C:/Program Files/LLVM/bin'
 
 let g:python_indent = '    '
 let g:python_style = 'numpy'
@@ -110,21 +97,6 @@ colorscheme spaceduck
 let g:lightline = {
      \ 'colorscheme': 'spaceduck',
      \ }
-
-set nocp
-" OmniCppComplete
-" https://vim.fandom.com/wiki/C%2B%2B_code_completion
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
 
 setlocal spell
 set spelllang=en
@@ -172,6 +144,8 @@ vmap <S-Tab> <
 nmap ;lc :!del *.aux *.log *.gz<Enter>
 nmap ;lb :!pdflatex -interaction=batchmode -shell-escape %<Enter>
 nmap ;ll :!pdflatex -shell-escape %<Enter> 
+nmap ;a :!asy asymptote\\*.asy<Enter> 
+
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : '',
     \ 'callback' : 1,

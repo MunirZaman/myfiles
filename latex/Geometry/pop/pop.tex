@@ -1,0 +1,46 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[asy]{munir}
+\DeclareMathOperator{\pow}{Pow}
+
+\title{Power of a Point}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\begin{document}
+\maketitle
+
+\section{Power of a Point}
+
+\begin{theorem}[Power of a Point]
+    Consider a circle $\omega$ and an arbitrary point $P$. 
+    The \vocab{power of $P$} with respect to circle $\omega$ 
+    is defined by 
+    \[
+        \pow_{\omega}(P) = OP^{2} - r^{2}
+    \]
+    where $O$ is the center of $\omega$ and $r$ is the radius.
+    \begin{itemize}
+        \ii $\pow_{\omega}(P)$ is negative, zero or positive according to whether 
+        $P$ is inside, on or outside the circle $\omega$, respectively. 
+        \ii If a line $\ell$ through point $P$ intersects $\omega$ at points $X$ 
+        and $Y$ then 
+        \[
+            PX \times PY = \abs{\pow_{\omega}(P)}
+        \]
+        \ii If the line $PA$ is tangent to circle $\omega$ at point $A$ then 
+        \[
+            PA^{2} = \pow_{\omega}(P)
+        \]
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}[Converse of the Power of a Point]
+    Let $A, B, X, Y$ be four distinct points in the plane and let 
+    $P = \ol{AB} \cap \ol{XY}$ be the intersection point of lines 
+    $\ol{AB}$ and $\ol{XY}$. If $PA \times PB = PX \times PY$ and 
+    if $P$ lies on both segments $AB$ and $XY$, or in neither segment 
+    then the points $A, B, X, Y$ are concyclic.
+\end{theorem}
+
+\end{document}

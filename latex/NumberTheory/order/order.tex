@@ -1,0 +1,154 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[head, date]{munir}
+
+\renewcommand{\pmod}[1]{\ (\mathrm{mod}\ #1)}
+
+\title{Order of an Integer Modulo $n$}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\begin{document}
+\maketitle
+
+\section{Orders}
+
+\begin{definition}
+    The order of an integer $a$ modulo $n$ where $a$ and $n$ are coprime integers 
+    is the smallest positive integer $k$ such that $a^{k} \equiv 1 \pmod{n}$
+\end{definition}
+We will use the notation $\ord_{n} a$ to denote the order of $a$ modulo $n$. 
+For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$. 
+
+\begin{remark}
+    If $\gcd(a, n) \neq 1$ then there does not exist any positive integer $k$ such that 
+    $a^{k} \equiv 1 \pmod n$, because the linear congruence $ax \equiv 1 \pmod n$ does not 
+    have a solution when $a$ and $n$ are not coprime. \\
+    Therefore whenever we are talking about the order of $a$ modulo $n$, 
+    it should be implicitly assumed that $a$ and $n$ are coprime integers.
+\end{remark}
+
+\begin{theorem}[Fundatmental Theorem of Orders]
+    If $a$ is an integer then 
+    \[
+        a^{k} \equiv 1 \pmod{n} \iff \ord_{n} a \mid k
+    \]
+\end{theorem}
+\begin{proof}
+    TODO
+\end{proof}
+
+\begin{corollary}
+    If $a$ is an integer then 
+    \[
+        \ord_{n} a \mid \phi(n)
+    \]
+\end{corollary}
+
+\begin{theorem}
+    If $p$ is a prime then there exists an $x$ such that 
+    \[
+        p \mid x^{2} + 1
+    \]
+    if and only if $p = 2$ or $p \equiv 1 \pmod{4}$
+\end{theorem}
+\begin{proof}
+    We are going to first prove that if $p>2$ then 
+    \[
+        p \mid x^{2} + 1 \implies 4 \mid p - 1
+    \]
+    Now 
+    \[
+        x^{2} \equiv -1 \pmod p \implies x^{4} \equiv 1 \pmod p
+    \]
+    Therefore $\ord_{p} x \mid 4 \implies \ord_{p} x \in \{1, 2, 4\}$. 
+    Clearly $\ord_{p}x$ is not $1$ or $2$ (why?). Thus $\ord_{p} x = 4$. 
+    Hence
+    \[
+        \ord_{p} x \mid \phi(p) \implies 4 \mid p - 1
+    \]
+    Now we will prove the converse: if $p > 2$ and $p \equiv 1 \pmod 4$ then there exists 
+    an $x$ such that $p \mid x^{2} + 1$. For this we take 
+    \[
+        x = \left(\frac{p - 1}{2}\right)!
+    \]
+    Now 
+    \begin{align*}
+        x & \equiv \left(\frac{p - 1}{2}\right)! \pmod p \\
+          & \equiv \left(\frac{p - 1}{2}\right)\cdot \left(\frac{p - 2}{2}\right) \cdots 2 \cdot 1 \pmod p \\
+          & \equiv \left(-\frac{p + 1}{2}\right)\cdot \left(-\frac{p + 2}{2}\right) \cdots -(p - 2) \cdot -(p - 1) \pmod p \\
+          & \equiv (-1)^{\frac{p-1}{2}} \left(\frac{p + 1}{2}\right)\cdot \left(\frac{p + 2}{2}\right) \cdots (p - 2) \cdot (p - 1) \pmod p
+    \end{align*}
+    Therefore 
+    \begin{align*}
+        & x^{2} = \left(\frac{p - 1}{2}\right)! 
+        \times (-1)^{\frac{p-1}{2}} \left(\frac{p + 1}{2}\right)\cdot \left(\frac{p + 2}{2}\right) \cdots (p - 2) \cdot (p - 1) \pmod p \\
+        \implies & x^{2} = (-1)^{\frac{p - 1}{2}}(p - 1)! \pmod p
+    \end{align*}
+    Using Wilson's Theorem we have 
+    \[
+        x^{2} \equiv (-1)^{\frac{p-1}{2} + 1} \pmod p \implies x^{2} \equiv -1 \pmod p \implies p \mid x^{2} + 1
+    \]
+\end{proof}
+
+\begin{lemma}[GCD Trick]
+    If $a^{m} \equiv 1 \pmod N$ and $a^{n} \equiv 1 \pmod N$ then 
+    \[
+        a^{\gcd(m, n)} \equiv 1 \pmod N
+    \]
+\end{lemma}
+\begin{proof}
+    This is just the famous fact that $\gcd(a^{m} - 1, a^{n} - 1) = a^{\gcd(m, n)} - 1$ 
+    phrased using modular arithmetic (how?). 
+\end{proof}
+
+\begin{example}
+    Find all $n$ such that $n$ divides $2^{n} - 1$.
+\end{example}
+\begin{sol}
+    Let $p$ be the smallest prime factor of $n$. Now 
+    \begin{align*}
+        \begin{matrix}
+            & 2^n     \equiv 1 \pmod p \\
+            & 2^{p-1} \equiv 1 \pmod p
+        \end{matrix} \implies 2^{\gcd(p - 1, n)} \equiv 1 \pmod p
+    \end{align*}
+    Since $p$ is the smallest prime divisor of $n$ and $\gcd(p - 1, n) \mid n$, 
+    we must have $\gcd(p - 1, n) = 1$ (why?). Hence 
+    \[
+        p \mid 2^1 - 1 \implies p \mid 1
+    \]
+    which is impossible. Therefore there does not exist such an $n$.
+\end{sol}
+
+\begin{theorem}
+    If $a$ is an integer such that $\ord_{n} a = k$, then 
+    \[
+        a^{i} \equiv a^{j} \pmod n \iff i \equiv j \pmod k
+    \]
+\end{theorem}
+%TODO -> Proof
+
+\begin{corollary}
+    If $a$ has order $k$ modulo $n$, then the integers $a, a^{2}, \cdots, a^{k}$ 
+    are incongruent modulo $n$.
+\end{corollary}
+
+\section{Primitive Roots}
+
+\begin{definition}
+    If the order of $g$ modulo $n$ is $\phi(n)$, then $g$ is called 
+    a \vocab{primitive root} of $n$
+\end{definition}
+If $n$ is not a prime, then it is possible that $n$ does not have any primitive root. 
+But for all prime there exists a primitive root.
+
+\begin{theorem}
+    If $p$ is a prime then the primitive root of $p$ exists. 
+\end{theorem}
+\begin{lemma}
+    Given a primitive root $g$, each nonzero residue modulo $p$ can be 
+    expressed uniquely as $g^{\alpha}$ where $\alpha \in \{1, 2, \cdots, p - 1\}$.
+\end{lemma}
+
+\end{document}
