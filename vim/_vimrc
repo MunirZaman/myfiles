@@ -82,6 +82,11 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'dracula/vim'
 
+"https://github.com/skywind3000/vim-keysound 
+Plug 'skywind3000/vim-keysound'
+let g:keysound_enable = 1
+let g:keysound_theme = 'typewriter'
+
 call plug#end() 
 
 let g:python_indent = '    '
