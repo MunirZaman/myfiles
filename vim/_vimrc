@@ -20,7 +20,9 @@ set termwinsize=5x0
 " SHOW AUTOCOMPLETE
 inoremap <C-Space> <C-x><C-k>
 " FONT
-set guifont=Fira\ Code:h11
+
+set guifont=FiraCode_NF:h11
+"set guifont=Fira\ Code:h11
 "set guifont=Hack_NF:h11
 "set guifont=*
 set encoding=utf-8
@@ -50,6 +52,8 @@ Plug 'maralla/completor.vim'
 let g:completor_python_binary = 'C:/Users/Munir/AppData/Local/Programs/Python/Python39'
 
 Plug 'preservim/nerdtree'
+let NERDTreeWinSize = 40
+let NERDTreeWinPos='right'
 
 Plug '907th/vim-auto-save'
 let g:auto_save=1
@@ -83,9 +87,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'dracula/vim'
 
 "https://github.com/skywind3000/vim-keysound 
-Plug 'skywind3000/vim-keysound'
+Plug 'skywind3000/vim-keysound', {'for' : ['tex', 'markdown', 'text']}
 let g:keysound_enable = 1
 let g:keysound_theme = 'typewriter'
+
+Plug 'junegunn/goyo.vim', {'on' : 'Goyo'}
+
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end() 
 
@@ -100,8 +108,20 @@ colorscheme spaceduck
 " highlight Normal guibg=#062439
 
 let g:lightline = {
-     \ 'colorscheme': 'spaceduck',
-     \ }
+      \ 'colorscheme': 'spaceduck',
+      \ 'component_function': {
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
+      \ }
+      \ }
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 
 setlocal spell
 set spelllang=en
@@ -128,7 +148,6 @@ noremap <k0>  :q!<Enter>
 
 nnoremap <kPlus> :NERDTreeToggle<CR>
 inoremap <kPlus> <Esc>:NERDTreeToggle<CR>
-let NERDTreeWinPos='right'
 
 inoremap <C-c> <Esc>"+y<Esc>li
 inoremap <C-w> <Esc>:set wrap!<Enter>li
