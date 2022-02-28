@@ -1,4 +1,5 @@
-syntax enable 
+syntax on
+set re=1
 
 " completor "
 filetype plugin on
@@ -7,7 +8,7 @@ set omnifunc=syntaxcomplete#Complete
 
 set encoding=utf-8
 set splitbelow
-set number
+set relativenumber
 set spl=en spell
 set ruler
 set smartindent
@@ -100,15 +101,22 @@ call plug#end()
 let g:python_indent = '    '
 let g:python_style = 'numpy'
 
-colorscheme spaceduck 
+"colorscheme spaceduck 
 "colorscheme monokai
-" colorscheme onedark
-" colorscheme gruvbox
+"colorscheme onedark
+colorscheme gruvbox
 " set back-ground color"
 " highlight Normal guibg=#062439
 
+" https://stackoverflow.com/questions/7588531/vim-set-color-theme-based-off-time-of-day
+if strftime("%H") < 12
+  set background=light
+else
+  set background=dark
+endif
+
 let g:lightline = {
-      \ 'colorscheme': 'spaceduck',
+      \ 'colorscheme': 'gruvbox',
       \ 'component_function': {
       \   'filetype': 'MyFiletype',
       \   'fileformat': 'MyFileformat',
