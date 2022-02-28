@@ -102,6 +102,64 @@ For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$.
     phrased using modular arithmetic (how?). 
 \end{proof}
 
+\begin{lemma}
+    If $p > 2$ is a prime and $p \mid x^{2^{n}} + 1$ where $n$ is a positive integer, then 
+    $p \equiv 1 \pmod{2^{n + 1}}$.
+\end{lemma}
+\begin{proof}
+    \[
+        x^{2^{n}} \equiv -1 \pmod p \implies x^{2^{n + 1}} \equiv 1 \pmod p
+    \]
+    Therefore $\ord_{p} x \mid 2^{n + 1}$ which implies $\ord_{p} x = 2^{t}$ where 
+    $1 \leq t \leq n + 1$. If $t < n + 1$ then 
+    \[
+        x^{2^{t}} \equiv 1 \pmod p \implies \left(x^{2^{t}}\right)^{2^{n - t}} \equiv x^{2^{n}} \equiv 1 \pmod p
+    \]
+    which contradicts our hypothesis. Therefore $t = n+1 \implies \ord_{p} x = 2^{n + 1}$. Hence 
+    \[
+        2^{n+1}\mid p-1 \implies p \equiv 1 \pmod{2^{n+1}}
+    \]
+\end{proof}
+
+\begin{remark}
+    Why can't $p = 2$? Because if $p = 2$ then $ 1 \equiv -1 \pmod 2$.
+\end{remark}
+
+\begin{example}
+    Find all primes $p$ and $q$ such that $pq \mid 2^{p} + 2^{q}$.
+\end{example}
+\begin{sol}
+    Let us assume that both $p$ and $q$ are coprime to 2.
+    \begin{align*}
+        pq \mid 2^p + 2^q &\implies 2^p + 2^q \equiv 0 \pmod p \\
+                          &\implies 2 + 2^q \equiv 0 \pmod p \\
+                          &\implies 2(2^{q-1} + 1) \equiv 0 \pmod p \\
+                          &\implies 2^{q-1} \equiv -1 \pmod p 
+    \end{align*}
+    Likewise $2^{p-1} \equiv -1 \pmod q$. Suppose $k$ is the largest integer 
+    such that $2^{k} \mid p-1$. That is, $2^{k}$ is the largest power of 2 that divides $p - 1$. 
+    Let $p-1 = 2^{k}n$. 
+    \[
+        2^{p-1} \equiv 2^{2^{k}n} \equiv -1 \pmod q \implies 2^{k+1} \mid q - 1
+    \]
+    Therefore $q-1 = 2^{k+1}m$ where $m$ is an integer. Now 
+    \[
+        2^{q-1} \equiv 2^{2^{k+1}m} \equiv -1 \pmod p \implies 2^{k+2}\mid p - 1
+    \]
+    This contradicts our assumption that $2^{k}$ is the largest power of $2$ which 
+    divides $p-1$. Hence both $p$ and $q$ cannot be coprime to 2. 
+
+    Clearly $p=q=2$ is a valid solution. Now assume $q=2$ and $p>2$. 
+    \begin{align*}
+        2p \mid 2^{p} + 4 &\implies p \mid 2^{p-1} + 2 \\
+                          &\implies 2^{p-1} + 2 \equiv 0 \pmod p \\
+                          &\implies 3 \equiv 0 \pmod p \implies p = 3
+    \end{align*}
+    Therefore $(p,q) = (3, 2), (2, 3)$ are also a valid solutions. 
+
+    Hence the solutions are $(2,2), (3,2), (2,3)$.
+\end{sol}
+
 \begin{example}
     Find all $n$ such that $n$ divides $2^{n} - 1$.
 \end{example}
@@ -134,12 +192,38 @@ For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$.
     are incongruent modulo $n$.
 \end{corollary}
 
+\begin{example}
+    Show that for all $n$, $3^{n} - 2^{n}$ is not divisible by $n$.
+\end{example}
+\begin{proof}
+    For the sake of contradiction, assume $n\mid 3^{n} - 2^{n}$. Let $p$ be the smallest 
+    prime divisor of $n$. 
+    \[
+        n \mid 3^{n} - 2^{n} \implies p \mid 3^{n} - 2^{n}
+    \]
+    Let $a$ be an integer such that $2a \equiv 1 \pmod p$. Now since $3^{n} \equiv 2^{n} \pmod p$ 
+    \[
+        2a \equiv 1 \pmod p \implies (2a)^{n} \equiv (3a)^{n} \equiv 1 \pmod p
+    \]
+    Therefore 
+    \[
+        \ord_{p}(3a) \mid n
+    \]
+    But since $\ord_{p}(3a) < p$ and $p$ is the smallest prime divisor of $n$, we must have 
+    $\ord_{p}(3a) = 1$. Thus 
+    \[
+        3a \equiv 1 \pmod p \implies a \equiv 0 \pmod p
+    \]
+    This contradicts our assumption that $2a \equiv 1 \pmod p$. Hence such an integer $n$ cannot exist.
+\end{proof}
+
 \section{Primitive Roots}
 
 \begin{definition}
     If the order of $g$ modulo $n$ is $\phi(n)$, then $g$ is called 
     a \vocab{primitive root} of $n$
 \end{definition}
+For example, 2 is a primitive root of 5. 
 If $n$ is not a prime, then it is possible that $n$ does not have any primitive root. 
 But for all prime there exists a primitive root.
 
@@ -150,5 +234,34 @@ But for all prime there exists a primitive root.
     Given a primitive root $g$, each nonzero residue modulo $p$ can be 
     expressed uniquely as $g^{\alpha}$ where $\alpha \in \{1, 2, \cdots, p - 1\}$.
 \end{lemma}
+
+\begin{lemma}
+    Let $p > 2$ be a prime. If $x$ is an integer, then 
+    \begin{equation*}
+        1^{x} + 2^{x} + \cdots + (p - 1)^{x} \equiv 
+        \begin{cases}
+            -1 &\text{if }(p - 1) \mid x \\
+             0 &\text{otherwise}
+        \end{cases}
+        \pmod p
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    Let $g$ be a primitive root of $p$. 
+    If $(p - 1)\mid x$ then 
+    \[
+        1^{x} + \cdots + (p - 1)^{x} 
+        \equiv \sum_{\alpha = 1}^{p - 1} g^{\alpha x} 
+        \equiv \sum_{\alpha = 1}^{p - 1} 1^{x} 
+        \equiv (p - 1) \equiv -1 \pmod p
+    \]
+    If $(p - 1)\nmid x$ then 
+    \[
+        1^{x} + \cdots + (p - 1)^{x} 
+        \equiv \sum_{\alpha = 1}^{p-1} g^{\alpha x} 
+        \equiv g^{x}\left(\frac{g^{(p - 1)x} - 1}{g^{x} - 1}\right) 
+        \equiv 0 \pmod p
+    \]
+\end{proof}
 
 \end{document}
