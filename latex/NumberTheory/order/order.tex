@@ -103,8 +103,8 @@ For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$.
 \end{proof}
 
 \begin{lemma}
-    If $p > 2$ is a prime and $p \mid x^{2^{n}} + 1$ where $n$ is a positive integer, then 
-    $p \equiv 1 \pmod{2^{n + 1}}$.
+    If $p > 2$ is a prime and $p \mid x^{2^{n}} + 1$ where 
+    $n$ is a positive integer, then $p \equiv 1 \pmod{2^{n + 1}}$.
 \end{lemma}
 \begin{proof}
     \[
@@ -161,6 +161,47 @@ For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$.
 \end{sol}
 
 \begin{example}
+    Find all positive integers $m$ and $n$ such that 
+    \[
+        n \mid 1 + m^{3^{n}} + m^{2\cdot 3^{n}}
+    \]
+\end{example}
+\begin{sol}
+    \[
+        n \mid 1 + m^{3^{n}} + m^{2\cdot 3^{n}}
+        \implies n \mid m^{3^{n+1}} - 1
+        \implies m^{3^{n+1}} \equiv 1 \pmod n
+    \]
+    Therefore $\ord_{n}(m) \mid 3^{n+1} \implies \ord_{n}(m) = 3^{t}$ 
+    where $0\leq t \leq n+1$. 
+
+    If $t = n+1$ then 
+    \[
+        \ord_{n}(m) \mid \phi(n) 
+        \implies 3^{n+1} \mid \phi(n) 
+        \implies 3^{n+1} \leq \phi(n) < n
+    \]
+    which is impossible. 
+
+    If $t < n+1$, then 
+    \[
+        1 + m^{3^{n}} + m^{2\cdot 3^{n}} \equiv 0 \pmod n
+        \implies 3 \equiv 0 \pmod n 
+        \implies n \in \{1, 3\}
+    \]
+    If $n=1$, then
+    \[
+        1 \mid 1 + m^{3} + m^{6}
+    \]
+    which is true for all positive integer values of $m$. 
+    If $n=3$, then 
+    \[ m^{3^{t}} \equiv 1 \pmod 3\]
+    which is only possible if $m \equiv 1 \pmod 3$. (Why?)
+
+    Therefore the solutions are $(n, m) = (1, k), (3, 3k+1)$.
+\end{sol}
+
+\begin{example}
     Find all $n$ such that $n$ divides $2^{n} - 1$.
 \end{example}
 \begin{sol}
@@ -177,6 +218,45 @@ For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$.
         p \mid 2^1 - 1 \implies p \mid 1
     \]
     which is impossible. Therefore there does not exist such an $n$.
+\end{sol}
+
+\begin{problem}[China TST 2006]
+    Find all positive integers $a$ and $n$ such that 
+    \[
+        (a+1)^{n}\equiv a^{n}\pmod n
+    \]
+\end{problem}
+\begin{sol}
+    We are gonna use the same idea as before. Let $p$ be smallest prime divisor of $n$. 
+    \begin{align*}
+                 (a+1)^n \equiv a^n \pmod p 
+        \implies \left(1 + \frac{1}{a}\right)^n \equiv 1 \pmod p
+    \end{align*}
+    Now 
+    \begin{equation*}
+        \begin{matrix}
+            \left(1 + \frac{1}{a}\right)^{n}   \equiv 1 \pmod p\\
+            \left(1 + \frac{1}{a}\right)^{p-1} \equiv 1 \pmod p
+        \end{matrix}
+        \implies 
+        \left(1 + \frac{1}{a}\right)^{\gcd(n, p-1)} \equiv 1\pmod p
+    \end{equation*}
+    Since $\gcd(n,p-1)\mid n$ and $\gcd(n,p-1) < p$, $\gcd(n,p-1)$ must be 1. 
+    Therefore 
+    \[
+        \left(1 + \frac{1}{a}\right) \equiv 1 \pmod p 
+        \implies a \equiv 1 \pmod p 
+        \implies a \equiv 1 \pmod n
+    \]
+    Hence 
+    \[
+        2^{n} \equiv 1 \pmod n
+    \]
+    We've shown earlier that there does not exist any integer $n$ such that 
+    \[
+        n \mid 2^{n} - 1
+    \]
+    Therefore such integers do not exist.
 \end{sol}
 
 \begin{theorem}
