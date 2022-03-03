@@ -87,11 +87,6 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'dracula/vim'
 
-"https://github.com/skywind3000/vim-keysound 
-Plug 'skywind3000/vim-keysound', {'for' : ['tex', 'markdown', 'text']}
-let g:keysound_enable = 1
-let g:keysound_theme = 'typewriter'
-
 Plug 'junegunn/goyo.vim', {'on' : 'Goyo'}
 
 Plug 'ryanoasis/vim-devicons'

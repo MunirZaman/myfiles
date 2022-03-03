@@ -31,20 +31,35 @@ For example 2 has order 3 modulo 7. Therefore we can write  $\ord_{7} 2 = 3$.
 \begin{theorem}[Fundatmental Theorem of Orders]
     If $a$ is an integer then 
     \[
-        a^{k} \equiv 1 \pmod{n} \iff \ord_{n} a \mid k
+        a^{k} \equiv 1 \pmod{n} \iff \ord_{n}(a)\mid k
     \]
 \end{theorem}
 \begin{proof}
-    TODO
+    For the sake of contradiction, let us assume that $\ord_{n}(a) \nmid k$ and 
+    \[ k = q\times \ord_{n}(a) + r \] where $0 < r < \ord_{n}(a)$. 
+    Now 
+    \begin{align*}
+        a^k \equiv 1 \pmod n &\implies a^{q \times \ord_n(a)} \times a^r \equiv 1 \pmod n\\
+                             &\implies a^r \equiv 1 \pmod n
+    \end{align*}
+    This contradicts the fact that $\ord_{n}(a)=x$ is the smallest positive integer such that 
+    \[
+        a^{x} \equiv 1 \pmod n
+    \]
+    Therefore $\ord_{n}(a) \mid k$. The converse is trivial!
 \end{proof}
 
 \begin{corollary}
     If $a$ is an integer then 
     \[
-        \ord_{n} a \mid \phi(n)
+        \ord_{n}(a) \mid \phi(n)
     \]
 \end{corollary}
-
+\begin{proof}
+    \[
+        a^{\phi(n)} \equiv 1 \pmod n \implies \ord_{n}(a) \mid \phi(n)
+    \]
+\end{proof}
 \begin{theorem}
     If $p$ is a prime then there exists an $x$ such that 
     \[
