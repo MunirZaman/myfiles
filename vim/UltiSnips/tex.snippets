@@ -32,10 +32,32 @@ $1
 \end{document}
 endsnippet
 
-snippet #book "article preamble" b
+snippet #xart "xelatex article preamble" b
+%!TEX TS-program = xelatex
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[xe]{munir}
+
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+snippet #book "book preamble" b
 \documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrbook}
 \usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
 \usepackage{munir}
+
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+snippet #xbook "xelatex book preamble" b
+%!TEX TS-program = xelatex
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrbook}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[xe]{munir}
 
 \begin{document}
 $1
@@ -231,37 +253,6 @@ endsnippet
 snippet @inpic "inlcude graphics" bA
 \includegraphics[scale=$2]{$1}
 endsnippet
-
-snippet @pycon "python console" bA
-\begin{mdcode}
-\begin{minted}[mathescape, breaklines, ]{pycon}
-$1
-\end{minted}
-\end{mdcode}
-endsnippet
-
-snippet @pypy "pytho code block" bA
-\begin{mdcode}
-\begin{minted}[mathescape, breaklines, linenos]{python}
-$1
-\end{minted}
-\end{mdcode}
-endsnippet
-
-snippet @pyin "input python code" bA
-\begin{mdcode}
-\inputminted[mathescape, breaklines, linenos]{python}{$1}
-\end{mdcode}
-endsnippet
-
-snippet @cpp "cpp code block" bA
-\begin{mdcode}
-\begin{minted}{mathescape, breaklines, linenos}{python}
-$1
-\end{minted}
-\end{mdcode}
-endsnippet
-
 
 # tikz snippets
 context "env('tikzpicture')"

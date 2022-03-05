@@ -281,7 +281,18 @@
 \newif\ifasy\asyfalse
 \DeclareOption{asy}{\asytrue}
 
+%% use xelatex
+\newif\ifxe\xefalse
+\DeclareOption{xe}{\xetrue}
+
 \ProcessOptions\relax
+
+\ifxe
+\usepackage{fontspec}
+\setmonofont{Fira Code}[
+Contextuals=Alternate  % Activate the calt feature
+] %% use Fira Code as MonoFont
+\fi
 
 \ifasy
 	\usepackage{asymptote}
@@ -298,7 +309,6 @@
 	\end{asydef}
 	\def\asydir{asy}
 \fi
-
 
 \ifcode
     \usepackage{minted}
@@ -422,6 +432,14 @@
 	fontsize=\codefontsize}
 
 	\defcodelang{julia}%
+	{mathescape,
+	texcomments,
+	breaklines,
+	linenos=\codelinenos,
+	frame=\codeframe,
+	fontsize=\codefontsize}
+
+	\defcodelang{haskell}%
 	{mathescape,
 	texcomments,
 	breaklines,
