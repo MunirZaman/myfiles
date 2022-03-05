@@ -71,13 +71,7 @@ Plug 'davidhalter/jedi-vim', {'for' : 'python'}
 Plug 'vim-python/python-syntax', {'for' : 'python'}
 let g:python_highlight_all = 1
 
-Plug 'joshdick/onedark.vim'
-
 Plug 'tpope/vim-fugitive'
-
-Plug 'sickill/vim-monokai'
-
-Plug 'pixelneo/vim-python-docstring', {'for' : 'python'}
 
 Plug 'hura/vim-asymptote'
 
@@ -85,11 +79,16 @@ Plug 'pineapplegiant/spaceduck'
 
 Plug 'sheerun/vim-polyglot'
 
-Plug 'dracula/vim'
-
-Plug 'junegunn/goyo.vim', {'on' : 'Goyo'}
-
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'neovimhaskell/haskell-vim', {'for' : 'haskell'}
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 call plug#end() 
 
