@@ -1,5 +1,5 @@
 "fzf
-nnoremap <leader><leader> :Telescope find_files
+nnoremap <leader><leader> :Telescope find_files<CR>
 
 "terminal
 nnoremap <leader>tf :ToggleTerm direction=float<CR>

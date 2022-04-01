@@ -26,11 +26,30 @@ let mapleader = " "
 call plug#begin('~/AppData/Local/nvim/plugged')
 
 Plug 'lervag/vimtex' " For LaTeX
+Plug 'SirVer/ultisnips'
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'pineapplegiant/spaceduck'
+Plug 'marko-cerovac/material.nvim'
 
+Plug 'glepnir/dashboard-nvim'
+let g:dashboard_default_executive ='telescope'
+let g:dashboard_custom_header = [
+\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+\]
+
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -55,11 +74,13 @@ Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
-colorscheme gruvbox 
+colorscheme material
+let g:material_style = 'deep ocean'
 
-let NERDTreeWinPos='right'
-let NERDTreeWinSize=40
+let NERDTreeWinPos='left'
+let NERDTreeWinSize=30
 
 source <sfile>:h/lualine_config.vim 
 source <sfile>:h/keymaps.vim
 source <sfile>:h/bufferline_config.vim
+source <sfile>:h/nvimtree_config.vim

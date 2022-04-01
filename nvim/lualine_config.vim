@@ -14,7 +14,7 @@ require('lualine').setup {
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
+    lualine_y = {'%{strftime("%d %b %X")}'},
     lualine_z = {'location'}
   },
   inactive_sections = {
