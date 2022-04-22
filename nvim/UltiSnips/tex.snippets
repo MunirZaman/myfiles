@@ -1,0 +1,275 @@
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def nomath():
+    return vim.eval('vimtex#syntax#in_mathzone()') != '1'
+
+def comment():
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+    return x != '0' and x != '0'
+
+def Int(val):
+	try:
+		x = int(val)
+	except:
+		x = 0
+	return x
+
+endglobal
+
+
+snippet #art "article preamble" b
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage{munir}
+
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+snippet #xart "xelatex article preamble" b
+%!TEX TS-program = xelatex
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[xe]{munir}
+
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+snippet #book "book preamble" b
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrbook}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage{munir}
+
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+snippet #xbook "xelatex book preamble" b
+%!TEX TS-program = xelatex
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrbook}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[xe]{munir}
+
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+snippet #tikz "tikz standalone" b
+\documentclass[tikz, border=5, svgnames]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+\begin{tikzpicture}
+
+$1
+
+\end{tikzpicture}
+\end{document}
+endsnippet
+
+snippet #title "title page" b
+\title{$1}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+endsnippet
+
+
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)//' "Fraction" irA
+\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 1000
+context "math()"
+snippet '^.*\)//' "() Fraction" irA
+`!p
+stripped = match.string[:-2]
+depth = 0
+i = len(stripped) - 1
+while True:
+    if stripped[i] == ')': depth += 1
+    if stripped[i] == '(': depth -= 1
+    if depth == 0: break;
+    i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+
+snippet \begin "\begin{env}" bA
+\begin{$1}
+    $0
+\end{$1}
+endsnippet
+
+
+snippet \[ "display math" bA
+\[
+    $1
+\]
+endsnippet
+
+snippet $ "inline math" iA
+\$$1\$
+endsnippet
+
+
+context "math()"
+snippet \\[ "3rd bracket" iA
+\left[$1\right]
+endsnippet
+
+context "math()"
+snippet \\{ "2rd bracket" iA
+\left\\{$1\right\\}
+endsnippet
+
+context "math()"
+snippet \\( "1st bracket" iA
+\left($1\right)
+endsnippet
+
+
+context "math()"
+snippet ... "cdots" iA
+\cdots
+endsnippet
+
+context "math()"
+snippet if "implies" w
+\implies
+endsnippet
+
+
+context "math()"
+snippet _ "sub" iA
+_{$1}
+endsnippet
+
+context "math()"
+snippet ^ "power" iA
+^{$1}
+endsnippet
+
+context "math()"
+snippet === "equiv" iA
+\equiv $1
+endsnippet
+
+
+context "math()"
+snippet RR "Reals" iA
+\mathbb{R}
+endsnippet
+
+context "math()"
+snippet ZZ "Integers" iA
+\mathbb{Z}
+endsnippet
+
+context "math()"
+snippet NN "Natural Numbers" iA
+\mathbb{N}
+endsnippet
+
+
+snippet @def "definition" bA
+\begin{definition}
+    $1
+\end{definition}
+endsnippet
+
+snippet @thm "theorem" bA
+\begin{theorem}
+    $1
+\end{theorem}
+endsnippet
+
+snippet @exa "example" bA
+\begin{example}
+    $1
+\end{example}
+endsnippet
+
+snippet @coro "corollary" bA
+\begin{corollary}
+    $1
+\end{corollary}
+endsnippet
+
+snippet @prf "proof" bA
+\begin{proof}
+    $1
+\end{proof}
+endsnippet
+
+snippet @sol "solution" bA
+\begin{sol}
+    $1
+\end{sol}
+endsnippet
+
+snippet @prob "problem" bA
+\begin{problem}
+	$1
+\end{problem}
+endsnippet
+
+snippet @lem "lemma" bA
+\begin{lemma}
+	$1
+\end{lemma}
+endsnippet
+
+snippet @fig "figure" bA
+\begin{figure}[H]
+$1
+\end{figure}
+endsnippet
+
+snippet @sfig "subfigures" bA
+\begin{subfigure}[t]{$1\textwidth}
+\centering
+$2
+\caption{$3}
+\end{subfigure}
+endsnippet
+
+snippet @inpic "inlcude graphics" bA
+\includegraphics[scale=$2]{$1}
+endsnippet
+
+# tikz snippets
+context "env('tikzpicture')"
+snippet @@plane "coordinate plane" bA
+\foreach \i in {`!p snip.rv=str(Int(t[1]) + 1)`,...,`!p snip.rv=str(Int(t[2]) - 1)`}
+	\draw[line cap = round, Cyan!75!Black] (\i, $1) -- (\i, $2) %
+	($1, \i) -- ($2, \i);
+
+\draw[{Stealth[round]}-{Stealth[round]}] ($1,0) -- ($2,0);
+\draw[{Stealth[round]}-{Stealth[round]}] (0, $1) -- (0, $2);
+
+\node at ($2, 0) [anchor=north east] {$3};
+\node at (0, $2) [anchor=north east] {$4};
+endsnippet
+
+context "env('tikzpicture')"
+snippet @@point "point in tikz" bA
+\draw[thick, fill=purple] ($1, $2) circle (2pt);
+endsnippet
+

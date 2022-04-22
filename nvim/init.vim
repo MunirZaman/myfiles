@@ -1,4 +1,5 @@
 syntax on
+set spl=en spell 
 set encoding=utf-8
 
 filetype plugin on
@@ -27,17 +28,23 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 
 Plug 'lervag/vimtex' " For LaTeX
 Plug 'SirVer/ultisnips'
-
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-
+" Markdown
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+let g:glow_binary_path = "C:/glow"
+let g:glow_border = "rounded"
+Plug '907th/vim-auto-save'
+let g:auto_save = 1
+let g:auto_save_silent = 1
+let g:auto_save_events = ['InsertLeave'] 
 " Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'pineapplegiant/spaceduck'
 Plug 'marko-cerovac/material.nvim'
-
 Plug 'glepnir/dashboard-nvim'
 let g:dashboard_default_executive ='telescope'
 let g:dashboard_custom_header = [
@@ -54,31 +61,28 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-
 " AutoCompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_node_path = 'C:/Program Files/nodejs/node.exe'
-
 " Syntax
 Plug 'sheerun/vim-polyglot'
-
 " Terminal
 Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
-colorscheme material
-let g:material_style = 'deep ocean'
+colorscheme gruvbox 
 
 let NERDTreeWinPos='left'
 let NERDTreeWinSize=30
+
+setlocal spell
+inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 source <sfile>:h/lualine_config.vim 
 source <sfile>:h/keymaps.vim
