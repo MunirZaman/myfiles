@@ -292,6 +292,11 @@
 \setmonofont{Fira Code}[
 Contextuals=Alternate  % Activate the calt feature
 ] %% use Fira Code as MonoFont
+
+\makeatletter
+\def\verbatim@nolig@list{}
+\makeatother
+
 \fi
 
 \ifasy
@@ -366,6 +371,9 @@ Contextuals=Alternate  % Activate the calt feature
 	 \begin{minted}[#2,##1]{#1}}
 	 {\end{minted}
 	 \end{mdcode}}
+
+	 \newmintinline{#1}{#2}
+	 \newmintedfile{#1}{#2}
 	}
 
     % define new console language
