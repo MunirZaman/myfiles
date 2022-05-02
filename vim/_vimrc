@@ -188,4 +188,4 @@ let g:vimtex_compiler_latexmk = {
     \}
 
 " execute latexmk -c when exiting tex file
-au BufWinLeave *.tex !latexmk -c
+au BufWinLeave *.tex silent !latexmk -c

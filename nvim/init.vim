@@ -84,6 +84,24 @@ let NERDTreeWinSize=30
 setlocal spell
 inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'hooks' : [],
+    \ 'options' : [
+    \   '-verbose',
+    \   '-shell-escape',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+
+" execute latexmk -c when exiting tex file
+au BufWinLeave *.tex silent !latexmk -c
+
 source <sfile>:h/lualine_config.vim 
 source <sfile>:h/keymaps.vim
 source <sfile>:h/bufferline_config.vim
