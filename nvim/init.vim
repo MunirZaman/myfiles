@@ -24,6 +24,8 @@ set termguicolors
 
 let mapleader = " "
 
+let g:ale_disable_lsp = 1
+
 call plug#begin('~/AppData/Local/nvim/plugged')
 
 Plug 'lervag/vimtex' " For LaTeX
@@ -69,6 +71,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 " AutoCompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_node_path = 'C:/Program Files/nodejs/node.exe'
+Plug 'dense-analysis/ale'
 " Syntax
 Plug 'sheerun/vim-polyglot'
 " Terminal

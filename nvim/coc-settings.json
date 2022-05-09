@@ -1,4 +1,5 @@
-{
+{   
+    "diagnostic.displayByAle": true,
     "npm.binPath": "C:/Users/bijli/AppData/Roaming/npm",
     "suggest.completionItemKindLabels": {
     	"keyword": "\uf1de", //  sliders
