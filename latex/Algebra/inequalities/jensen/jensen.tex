@@ -1,1 +1,40 @@
 \chapter{Jensen's Inequality}
+
+\section{Convex and Concave Functions}
+
+\begin{definition}
+    A function $f$ is said to be \vocab{convex} in an interval if and only if 
+    for all $x$ and $y$ in the interval and for any $0 < t < 1$ 
+    \[
+        (1 - t)f(x) + tf(y) \geq f((1 - t )x + ty)
+    \]
+    If the function is \vocab{concave} then 
+    \[
+        (1 - t)f(x) + tf(y) \leq f((1 - t )x + ty)
+    \]
+\end{definition}
+
+\begin{theorem}
+    If $f: \mathbb{R} \to \mathbb{R}$ is a function then $f$ is concave if and only if 
+    $f''(x) \leq 0$ for all $x$ and similarly $f$ is convex if and only if $f''(x) \geq 0$ 
+    for all $x$. 
+\end{theorem}
+
+\begin{example}
+    The function $\sin(x)$ is convex in the interval $[0, \pi]$ and 
+    concave in the interval $[\pi, 2\pi]$.
+    \begin{center}
+    \begin{asy}
+    import graph;
+    path p = graph(sin, -6.18, 6.18);
+    Label Lx= Label("$x$", position=EndPoint);
+    Label Ly = Label("$y$", position=EndPoint);
+    draw((-6.18, 0) -- (6.18, 0), arrow=Arrows(), L=Lx);
+    draw((0, -1.5) -- (0, 1.5), arrow=Arrows(), L=Ly);
+    draw(p);
+    \end{asy}
+    \end{center}
+\end{example}
+
+\section{Jensen's Inequality}
+#TODO
