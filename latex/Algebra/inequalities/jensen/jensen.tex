@@ -21,8 +21,8 @@
 \end{theorem}
 
 \begin{example}
-    The function $\sin(x)$ is convex in the interval $[0, \pi]$ and 
-    concave in the interval $[\pi, 2\pi]$.
+    The function $\sin(x)$ is concave in the interval $[0, \pi]$ and 
+    convex in the interval $[\pi, 2\pi]$.
     \begin{center}
     \begin{asy}
     import graph;
@@ -37,4 +37,58 @@
 \end{example}
 
 \section{Jensen's Inequality}
-#TODO
+
+\begin{theorem}[Weak Jensen's Inequality]
+    If $\varphi$ is a convex funtion in the interval $I$ and $x_{i} \in I$ for $i = 1, 2, \cdots, n$ 
+    then 
+    \[
+        \varphi\left( \frac{\sum_{i=1}^{n} x_{i}}{n} \right) \leq 
+        \frac{\sum_{i=1}^{n} \varphi(x_{i})}{n}
+    \]
+    The reverse inequality holds when $\varphi$ is concave.
+\end{theorem}
+
+\begin{problem}
+    Show that if $ABC$ is a triangle then 
+    \[
+        \sin(\angle A) + \sin(\angle B) + \sin(\angle C) \leq \frac{3\sqrt{3}}{2}
+    \]
+\end{problem}
+\begin{sol}
+    Since $\sin(x)$ is concave in the interval $[0, \pi]$, 
+    \begin{align*}
+        & \frac{\sin(\angle A) + \sin(\angle B) + \sin(\angle C)}{3} \leq 
+        \sin\left( \frac{\angle A + \angle B + \angle C}{3} \right) \\
+         \implies &\frac{\sin(\angle A) + \sin(\angle B) + \sin(\angle C)}{3} \leq 
+        \sin(60\dg) \\
+         \implies &\sin(\angle A) + \sin(\angle B) + \sin(\angle C) \leq 
+        \frac{3\sqrt{3}}{2}
+    \end{align*}
+\end{sol}
+
+\begin{problem}
+    Given $a+b+c = \frac{1}{a}+\frac{1}{b}+\frac{1}{c}$, prove that 
+    \[
+        \frac{1}{(2a + b + c)^{2}} +
+        \frac{1}{(a + 2b + c)^{2}} + 
+        \frac{1}{(a + b + 2c)^{2}} \leq \frac{3}{16}
+    \]
+\end{problem}
+\begin{sol}
+   We can rewrite the inequality as 
+    \[
+        \frac{1}{(2a + b + c)^{2}} +
+        \frac{1}{(a + 2b + c)^{2}} + 
+        \frac{1}{(a + b + 2c)^{2}} \leq \frac{3}{16}\frac{\frac{1}{a} + \frac{1}{b} + \frac{1}{c}}{a + b + c}
+    \]
+    This makes both sides of the inequality homogenous. Hence we can assume $a + b + c = 3$. 
+    We can now rewrite the inequality as 
+    \[
+        \sum_{\mathrm{cyc}} \frac{1}{16a} - \frac{1}{(a + 3)^{2}} \geq 0
+    \]
+    Since the function $f(x) = \frac{1}{16x} - \frac{1}{(x + 3)^{2}}$ is convex in the interval $(0, 3)$, 
+    \begin{align*}
+        f(a) + f(b) + f(c) \geq 3f
+    \end{align*}
+\end{sol}
+
