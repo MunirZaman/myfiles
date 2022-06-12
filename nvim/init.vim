@@ -26,15 +26,15 @@ let mapleader = " "
 
 call plug#begin('~/AppData/Local/nvim/plugged')
 
-Plug 'lervag/vimtex' " For LaTeX
+Plug 'lervag/vimtex', {'for' : 'latex'} " For LaTeX
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 " Markdown
-Plug 'iamcco/markdown-preview.nvim'
-Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+Plug 'iamcco/markdown-preview.nvim', {'for' : 'markdown'}
+Plug 'ellisonleao/glow.nvim', {'branch': 'main', 'for' : 'markdown'}
 let g:glow_binary_path = "C:/glow"
 let g:glow_border = "rounded"
 Plug '907th/vim-auto-save'
@@ -57,7 +57,6 @@ let g:dashboard_custom_header = [
 \]
 
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
