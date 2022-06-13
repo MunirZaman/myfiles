@@ -45,6 +45,7 @@ let g:auto_save_events = ['InsertLeave']
 Plug 'morhetz/gruvbox'
 Plug 'pineapplegiant/spaceduck'
 Plug 'marko-cerovac/material.nvim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'glepnir/dashboard-nvim'
 let g:dashboard_default_executive ='telescope'
 let g:dashboard_custom_header = [
@@ -75,10 +76,7 @@ Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
-colorscheme gruvbox 
-
-let NERDTreeWinPos='left'
-let NERDTreeWinSize=30
+colorscheme nord
 
 setlocal spell
 inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
