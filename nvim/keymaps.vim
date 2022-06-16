@@ -14,8 +14,3 @@ nnoremap <leader>v :bprevious<CR>
 nnoremap <leader>b :bnext<CR>
 "Deleting buffers
 nnoremap <leader>d :bdelete<CR>
-
-"LATEX
-if &ft=="latex"
-    nnoremap <leader>l :VimtexCompile
-endif
