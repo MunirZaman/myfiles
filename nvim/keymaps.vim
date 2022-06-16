@@ -9,3 +9,13 @@ nnoremap <leader>tv :ToggleTerm direction=vertical size=50<CR>
 "tree
 nnoremap <leader>n :NvimTreeToggle<CR>
 
+"Changing buffers
+nnoremap <leader>v :bprevious<CR>
+nnoremap <leader>b :bnext<CR>
+"Deleting buffers
+nnoremap <leader>d :bdelete<CR>
+
+"LATEX
+if &ft=="latex"
+    <leader>l :VimtexCompile
+endif

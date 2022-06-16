@@ -25,8 +25,8 @@ set termguicolors
 let mapleader = " "
 
 call plug#begin('~/AppData/Local/nvim/plugged')
-
-Plug 'lervag/vimtex', {'for' : 'latex'} " For LaTeX
+" Latex
+Plug 'lervag/vimtex', {'for' : 'tex'} 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -37,6 +37,7 @@ Plug 'iamcco/markdown-preview.nvim', {'for' : 'markdown'}
 Plug 'ellisonleao/glow.nvim', {'branch': 'main', 'for' : 'markdown'}
 let g:glow_binary_path = "C:/glow"
 let g:glow_border = "rounded"
+" Autosave
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
 let g:auto_save_silent = 1
@@ -46,26 +47,17 @@ Plug 'morhetz/gruvbox'
 Plug 'pineapplegiant/spaceduck'
 Plug 'marko-cerovac/material.nvim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'glepnir/dashboard-nvim'
-let g:dashboard_default_executive ='telescope'
-let g:dashboard_custom_header = [
-\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-\]
 
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'ryanoasis/vim-devicons'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/plenary.nvim' " Telescope uses this plugin
 Plug 'nvim-telescope/telescope.nvim'
+" Bufferline and Statusline
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
+" Icons
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
 " AutoCompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_node_path = 'C:/Program Files/nodejs/node.exe'
@@ -99,7 +91,8 @@ let g:vimtex_compiler_latexmk = {
 " execute latexmk -c when exiting tex file
 au BufWinLeave *.tex silent !latexmk -c
 
-source <sfile>:h/lualine_config.vim 
 source <sfile>:h/keymaps.vim
 source <sfile>:h/bufferline_config.vim
+source <sfile>:h/lualine_config.vim 
 source <sfile>:h/nvimtree_config.vim
+source <sfile>:h/toggleterm_config.vim
