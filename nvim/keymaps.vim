@@ -17,5 +17,5 @@ nnoremap <leader>d :bdelete<CR>
 
 "LATEX
 if &ft=="latex"
-    <leader>l :VimtexCompile
+    nnoremap <leader>l :VimtexCompile
 endif
