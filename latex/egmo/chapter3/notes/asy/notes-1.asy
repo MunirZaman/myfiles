@@ -1,6 +1,6 @@
 if(!settings.multipleView) settings.batchView=false;
 settings.tex="pdflatex";
-defaultfilename="pop-1";
+defaultfilename="notes-1";
 if(settings.render < 0) settings.render=4;
 settings.outformat="";
 settings.inlineimage=true;
@@ -18,10 +18,11 @@ import olympiad;
 
 size(8cm); // set a reasonable default
 
-real PA, PB;
-real PX, PY;
-PA = 3;
-PB = 4;
-PX = 6;
-PY = 12;
-
+size(3cm);
+pair O = (0, 0);
+pair P = (1, .5);
+pair H = P*2;
+D(O -- P -- H, dashed);
+dot("$\mathcal{H}(P)$", H, align=N);
+dot("$O$", O, align=S);
+dot("$P$", P, align=NW);

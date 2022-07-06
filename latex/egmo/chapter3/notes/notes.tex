@@ -1,0 +1,52 @@
+\documentclass[11pt,numbers=noenddot,svgnames,dvipsnames]{scrartcl}
+\usepackage[top=1in, left=1in, right=1in, bottom=1in]{geometry}
+\usepackage[page, head, date, asy]{munir}
+\title{EGMO : Chapter 3}
+\author{Munir Uz Zaman}
+\date{Date: \today}
+
+\newcommand{\Homo}{\mathcal{H}}
+
+\begin{document}
+\maketitle
+
+\section{Menelaus's and Ceva's Theorem}
+\begin{theorem}[Menelaus's Theorem]
+    Let $X, Y, Z$ be points on lines $BC, CA, AB$ in triangle $\triangle ABC$, 
+    distinct from its vertices. Then $X, Y, Z$ are collinear if and only if 
+    \[
+        \frac{BX}{XC} \cdot \frac{CY}{YA} \cdot \frac{AZ}{ZB} = -1
+    \]
+    where the lengths are directed\footnote{Given collinear points $X, Y, Z$, we say that $\frac{XY}{YZ}$ is positive if $Y$ lies between $X$ and $Z$}.
+\end{theorem}
+
+\begin{theorem}[Ceva's Theorem]
+    Let $X, Y, Z$ be points on lines $BC, CA, AB$ in triangle $\triangle ABC$, 
+    distinct from its vertices. Then $X, Y, Z$ are concurrent if and only if 
+    \[
+        \frac{BX}{XC} \cdot \frac{CY}{YA} \cdot \frac{AZ}{ZB} = +1
+    \]
+    where the lengths are directed.
+\end{theorem}
+
+\section{Homothety}
+
+\begin{definition}
+    A \vocab{homothety} $\Homo$ is a transformation defined by a center $O$ and a real number $k$. 
+    It sends a point $P$ to another point $\Homo(P)$, multiplying the distance from $O$ by $k$. 
+    The number $k$ is called the scale factor.
+\end{definition}
+
+\begin{center}
+\begin{asy}
+size(3cm);
+pair O = (0, 0);
+pair P = (1, .5);
+pair H = P*2;
+D(O -- P -- H, dashed);
+dot("$\mathcal{H}(P)$", H, align=N);
+dot("$O$", O, align=S);
+dot("$P$", P, align=NW);
+\end{asy}
+\end{center}
+\end{document}

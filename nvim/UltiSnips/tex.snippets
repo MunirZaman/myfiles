@@ -1,16 +1,17 @@
 global !p
+
 def math():
-    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1' or env('align')
 
 def nomath():
-    return vim.eval('vimtex#syntax#in_mathzone()') != '1'
+    return vim.eval('vimtex#syntax#in_mathzone()') != '1' and not env('align')
 
 def comment():
     return vim.eval('vimtex#syntax#in_comment()') == '1'
 
 def env(name):
     [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
-    return x != '0' and x != '0'
+    return x != '0' and y != '0'
 
 def Int(val):
 	try:

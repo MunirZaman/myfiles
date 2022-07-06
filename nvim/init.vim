@@ -1,4 +1,5 @@
 syntax on
+"spelling
 set spl=en spell 
 set encoding=utf-8
 
@@ -21,7 +22,7 @@ set splitbelow
 set splitright
 
 set termguicolors
-
+"leader key
 let mapleader = " "
 
 call plug#begin('~/AppData/Local/nvim/plugged')
@@ -52,27 +53,32 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'nvim-lua/plenary.nvim' " Telescope uses this plugin
 Plug 'nvim-telescope/telescope.nvim'
-" Bufferline and Statusline
+" Bufferline and Status line
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 " Icons
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
-" AutoCompletion
+"Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_node_path = 'C:/Program Files/nodejs/node.exe'
-" Syntax
+"use <Ctrl-B> for trigger completion 
+inoremap <silent><expr> <C-b>
+      \ pumvisible() ? "\<C-n>" :
+      \ coc#refresh()
+"Syntax
 Plug 'sheerun/vim-polyglot'
-" Terminal
+"Terminal
 Plug 'akinsho/toggleterm.nvim'
-
 call plug#end()
 
 colorscheme nord
 
 setlocal spell
+"fix spelling with Ctrl-L
 inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
+"use latexmk for compiling
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : '',
     \ 'callback' : 1,
