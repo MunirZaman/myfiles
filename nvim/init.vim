@@ -24,10 +24,12 @@ set splitright
 set termguicolors
 
 call plug#begin('~/AppData/Local/nvim/plugged')
-Plug 'catppuccin/nvim'
 "Latex
 Plug 'lervag/vimtex', {'for' : 'tex'} 
 Plug 'SirVer/ultisnips'
+Plug 'hura/vim-asymptote'
+Plug 'AndOrangutan/nabla.nvim'
+
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -48,6 +50,7 @@ Plug 'morhetz/gruvbox'
 Plug 'pineapplegiant/spaceduck'
 Plug 'marko-cerovac/material.nvim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'catppuccin/nvim', {'as' : 'catppuccin'}
 
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

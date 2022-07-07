@@ -2,6 +2,9 @@
 let mapleader = " "
 let maplocalleader = " "
 
+" Nabla Preview
+nnoremap P :lua require("nabla").popup()<CR>
+
 setlocal spell
 "fix spelling with Ctrl-L
 inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
