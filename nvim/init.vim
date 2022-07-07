@@ -22,28 +22,28 @@ set splitbelow
 set splitright
 
 set termguicolors
-"leader key
-let mapleader = " "
 
 call plug#begin('~/AppData/Local/nvim/plugged')
-" Latex
+Plug 'catppuccin/nvim'
+"Latex
 Plug 'lervag/vimtex', {'for' : 'tex'} 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', {'for' : 'markdown'}
+"Markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'ellisonleao/glow.nvim', {'branch': 'main', 'for' : 'markdown'}
+let g:mkdp_browser = 'firefox'
 let g:glow_binary_path = "C:/glow"
 let g:glow_border = "rounded"
-" Autosave
+"Autosave
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
 let g:auto_save_silent = 1
 let g:auto_save_events = ['InsertLeave'] 
-" Colorschemes
+"Colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'pineapplegiant/spaceduck'
 Plug 'marko-cerovac/material.nvim'
@@ -62,21 +62,14 @@ Plug 'ryanoasis/vim-devicons'
 "Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_node_path = 'C:/Program Files/nodejs/node.exe'
-"use <Ctrl-B> for trigger completion 
-inoremap <silent><expr> <C-b>
-      \ pumvisible() ? "\<C-n>" :
-      \ coc#refresh()
 "Syntax
 Plug 'sheerun/vim-polyglot'
 "Terminal
 Plug 'akinsho/toggleterm.nvim'
 call plug#end()
 
-colorscheme nord
-
-setlocal spell
-"fix spelling with Ctrl-L
-inoremap <c-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+colorscheme catppuccin
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
 
 "use latexmk for compiling
 let g:vimtex_compiler_latexmk = {
@@ -96,6 +89,7 @@ let g:vimtex_compiler_latexmk = {
 
 " execute latexmk -c when exiting tex file
 au BufWinLeave *.tex silent !latexmk -c
+
 
 source <sfile>:h/keymaps.vim
 source <sfile>:h/bufferline_config.vim
