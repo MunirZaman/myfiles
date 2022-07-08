@@ -25,10 +25,6 @@ nnoremap <C-l> <C-w>l
 " Reselect text ater indent/unindent.
 vnoremap < <gv
 vnoremap > >gv
-" Tab to indent in visual mode.
-vnoremap <Tab> >gv
-" Shift+Tab to unindent in visual mode.
-vnoremap <S-Tab> <gv
 
 
 " COC Keybinds
@@ -67,31 +63,16 @@ function! s:show_documentation()
   endif
 endfunction
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-" shift+tab cycles backwards 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 " Enter to confirm completion
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "use <Ctrl-B> for trigger completion 
 inoremap <silent><expr> <C-b>
       \ pumvisible() ? "\<C-n>" :
-      \ coc#refresh()
-
+      \ coc#refresh() 
 
 " Markdown preview
 nmap <Leader>md <Plug>MarkdownPreviewToggle
-
 
 "fzf
 nnoremap <leader><leader> :Telescope find_files<CR>
@@ -101,10 +82,8 @@ nnoremap <leader>tf :ToggleTerm direction=float<CR>
 nnoremap <leader>tt :ToggleTerm direction=tab<CR>
 nnoremap <leader>tv :ToggleTerm direction=vertical size=50<CR>
 
-
 "tree
 nnoremap <leader>n :NvimTreeToggle<CR>
-
 
 "Changing buffers
 nnoremap <leader>bv :bprevious<CR>
@@ -112,5 +91,3 @@ nnoremap <leader>bb :bnext<CR>
 "Deleting buffers
 nnoremap <leader>bd :bdelete<CR>
 
-
-"https://github.com/GideonWolfe/vim.reaper/blob/master/nvim/configs/mappings.vim

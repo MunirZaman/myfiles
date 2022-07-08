@@ -29,7 +29,6 @@ Plug 'lervag/vimtex', {'for' : 'tex'}
 Plug 'SirVer/ultisnips'
 Plug 'hura/vim-asymptote'
 Plug 'AndOrangutan/nabla.nvim'
-
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -95,7 +94,7 @@ au BufWinLeave *.tex silent !latexmk -c
 
 
 source <sfile>:h/keymaps.vim
-source <sfile>:h/bufferline_config.vim
-source <sfile>:h/lualine_config.vim 
-source <sfile>:h/nvimtree_config.vim
-source <sfile>:h/toggleterm_config.vim
+source <sfile>:h/configs/bufferline.vim
+source <sfile>:h/configs/lualine.vim 
+source <sfile>:h/configs/nvimtree.vim
+source <sfile>:h/configs/toggleterm.vim
